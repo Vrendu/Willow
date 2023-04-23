@@ -1,7 +1,36 @@
+.profile-icon {
+  position: absolute;
+  top: calc(1vh + 10px);
+  right: calc(8vw + 10px);
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: #0074E4;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.profile-icon:hover {
+  text-decoration: underline;
+}
+
+.fa-solid.fa-user-circle {
+  width: 24px;
+  height: 24px;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 14px;
+  line-height: 24px;
+  color: #555;
+}
+
 .profile-dropdown {
   position: absolute;
-  top: 60px;
-  right: 10px;
+  top: calc(1vh + 40px);
+  right: calc(1vw + 40px);
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -46,19 +75,3 @@
 .profile-dropdown button:hover {
   text-decoration: underline;
 }
-
-
-
-.fa-solid.fa-user-circle {
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  background-color: #fff;
-  border: 1px solid #d9d9d9;
-  border-radius: 50%;
-  text-align: center;
-  font-size: 14px;
-  line-height: 24px;
-  color: #555;
-}
-
