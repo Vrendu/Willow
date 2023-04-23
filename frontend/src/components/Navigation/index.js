@@ -21,8 +21,7 @@ function Navigation() {
         <div className="session-links">
            <LoginFormModal />
           <SignUpFormModal />
-        </div>
-       
+        </div> 
       </>
     );
   }
@@ -31,7 +30,10 @@ function Navigation() {
     <ul>
         <div className="home">
           <NavLink exact to="/">
-          <img src="/assets/logo.png" ></img>
+
+          <div class="logo-container">
+            <img src="/logo.png" class="logo" alt="Zillow logo"/>
+          </div>
           </NavLink>
           
         </div>

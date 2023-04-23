@@ -38,10 +38,10 @@ function SignUpForm() {
 
     return (
         <>
-            <h1>Sign Up</h1>
+            <h1>Welcome to Willow</h1>
             <form onSubmit={handleSubmit}>
                 <ul>
-                    {errors.map((error) => <li key={error}>{error}</li>)}
+                    {errors.map((error) => <p class="error" key={error}>{error}</p>)}
                 </ul>
                 <label>
                     Email

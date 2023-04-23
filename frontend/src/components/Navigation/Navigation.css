@@ -78,33 +78,25 @@
 
 .home {
   position: fixed;
-  top: 5%;
+  top: 2%;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .session-links{
   position: absolute;
-    top: calc(1vh + 10px);
-    right: calc(8vw + 10px);
-  
-    display: flex;
-    align-items: center;
-  }
+  top: calc(2vh + 10px);
+  right: calc(8vw + 10px);
+  padding-inline-start: 5%;
+  display: flex;
+  align-items: center;
+}
 
-  .session-links {
-    padding: 0.5rem;
-    font-size: 1rem;
-    text-decoration: none;
-    color: #555;
-    transition: all 0.3s ease;
-  }
-
-  .session-links:hover {
-    color: #000;
-  }
-
-  /* .logo{
-    height: 30px;
-    width: 50px
-  } */
+.logo {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.logo-container {
+  max-width: 250px;
+}
