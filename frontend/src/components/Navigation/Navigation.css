@@ -1,7 +1,7 @@
 .profile-icon {
   position: absolute;
   top: calc(1vh + 10px);
-  right: calc(8vw + 10px);
+  right: calc(7.5vw + 10px);
   display: flex;
   align-items: center;
   background: none;
@@ -16,21 +16,21 @@
 }
 
 .fa-solid.fa-user-circle {
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   background-color: #fff;
   border: 1px solid #d9d9d9;
   border-radius: 50%;
   text-align: center;
-  font-size: 14px;
-  line-height: 24px;
+  font-size: 30px;
+  line-height: 30px;
   color: #555;
 }
 
 .profile-dropdown {
   position: absolute;
-  top: calc(1vh + 40px);
-  right: calc(1vw + 40px);
+  top: calc(3vh + 40px);
+  right: calc(6vw + 40px);
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -75,3 +75,36 @@
 .profile-dropdown button:hover {
   text-decoration: underline;
 }
+
+.home {
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.session-links{
+  position: absolute;
+    top: calc(1vh + 10px);
+    right: calc(8vw + 10px);
+  
+    display: flex;
+    align-items: center;
+  }
+
+  .session-links {
+    padding: 0.5rem;
+    font-size: 1rem;
+    text-decoration: none;
+    color: #555;
+    transition: all 0.3s ease;
+  }
+
+  .session-links:hover {
+    color: #000;
+  }
+
+  /* .logo{
+    height: 30px;
+    width: 50px
+  } */

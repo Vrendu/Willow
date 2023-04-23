@@ -6,9 +6,10 @@ import LoginFormModal from '../LoginFormModal';
 import SignUpFormModal from '../SignUpFormModal';
 import './Navigation.css';
 
+
 function Navigation() {
   const sessionUser = useSelector(state => state.session.user);
-
+ 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
@@ -17,18 +18,24 @@ function Navigation() {
   } else {
     sessionLinks = (
       <>
-        <LoginFormModal />
-        <SignUpFormModal />
+        <div className="session-links">
+           <LoginFormModal />
+          <SignUpFormModal />
+        </div>
+       
       </>
     );
   }
 
   return (
     <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
+        <div className="home">
+          <NavLink exact to="/">
+          <img src="/assets/logo.png" ></img>
+          </NavLink>
+          
+        </div>
         {sessionLinks}
-      </li>
     </ul>
   );
 }

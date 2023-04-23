@@ -29,13 +29,15 @@ function LoginForm() {
 
   return (
     <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
+      <h1>Welcome to Willow</h1>
+      <form id="loginform" onSubmit={handleSubmit}>
         <ul>
-          {errors.map(error => <li key={error}>{error}</li>)}
+          {errors.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
         </ul>
         <label>
-          Username or Email
+          <span>Username or Email</span>
           <input
             type="text"
             value={credential}
@@ -44,7 +46,7 @@ function LoginForm() {
           />
         </label>
         <label>
-          Password
+          <span>Password</span>
           <input
             type="password"
             value={password}
