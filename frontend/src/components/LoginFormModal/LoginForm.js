@@ -29,11 +29,11 @@ function LoginForm() {
 
   return (
     <>
-      <h1>Welcome to Willow</h1>
+      <h2 className="header">Welcome to Willow</h2>
       <form id="loginform" onSubmit={handleSubmit}>
         <ul>
           {errors.map((error) => (
-            <p class="error"key={error}>{error}</p>
+            <p className="error"key={error}>{error}</p>
           ))}
         </ul>
         <label>

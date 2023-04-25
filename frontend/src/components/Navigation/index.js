@@ -5,11 +5,21 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import SignUpFormModal from '../SignUpFormModal';
 import './Navigation.css';
-
+import { useDispatch } from 'react-redux';
+import * as sessionActions from "../../store/session";
 
 function Navigation() {
   const sessionUser = useSelector(state => state.session.user);
- 
+  const dispatch = useDispatch();
+
+  const handleDemoLogin = async () => {
+    try {
+      dispatch(sessionActions.login({credential:"Demo", password: "demoaccount"}));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
@@ -19,6 +29,7 @@ function Navigation() {
     sessionLinks = (
       <>
         <div className="session-links">
+           <span className="demo" onClick={()=> handleDemoLogin()}>Demo Login</span> 
            <LoginFormModal />
           <SignUpFormModal />
         </div> 
@@ -31,8 +42,8 @@ function Navigation() {
         <div className="home">
           <NavLink exact to="/">
 
-          <div class="logo-container">
-            <img src="/logo.png" class="logo" alt="Zillow logo"/>
+          <div className="logo-container">
+            <img src="/logo.png" className="logo" alt="Zillow logo"/>
           </div>
           </NavLink>
           
