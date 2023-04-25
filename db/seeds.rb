@@ -7,10 +7,10 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 
-User.destroy_all
+User.destroy_all   
 Listing.destroy_all
 
-ApplicationRecord.connection.reset_pk_sequence!('users')
+#ApplicationRecord.connection.reset_pk_sequence!('users')
 ApplicationRecord.connection.reset_pk_sequence!('listings')
 User.create!(
     username: 'Demo', 
@@ -31,7 +31,8 @@ Listing.create!(
   address: "555 California St",
   city: "San Francisco",
   state: "CA",
-  zipcode: "94104",
+  zip_code: "94104",
+  square_feet: 3200,
   poster_id: user_ids.sample,
   image_url: "https://via.placeholder.com/400x300?text=Luxury+Condo+in+Downtown+San+Francisco"
 )
@@ -45,7 +46,8 @@ Listing.create!(
   address: "100 Grizzly Peak Blvd",
   city: "Berkeley",
   state: "CA",
-  zipcode: "94708",
+  zip_code: "94708",
+  square_feet: 2300,
   poster_id: user_ids.sample,
   image_url: "https://via.placeholder.com/400x300?text=Charming+Cottage+in+the+Berkeley+Hills"
 )
@@ -59,7 +61,8 @@ Listing.create!(
   address: "123 Main St",
   city: "Palo Alto",
   state: "CA",
-  zipcode: "94301",
+  zip_code: "94301",
+  square_feet: 1200,
   poster_id: user_ids.sample,
   image_url: "https://via.placeholder.com/400x300?text=Spacious+Family+Home+in+Silicon+Valley"
 )
@@ -70,13 +73,14 @@ Listing.create!(
   address: "123 Main St",
   city: "San Francisco",
   state: "CA",
-  zipcode: "94123",
+  zip_code: "94123",
   price: 5000,
   bedrooms: 3,
   bathrooms: 2,
   square_feet: 2500,
-  image_url: "https://images.unsplash.com/photo-1545239356-bf210947c0e6",
-  poster_id: User.first.id
+  poster_id: User.first.id,
+  image_url: "https://images.unsplash.com/photo-1545239356-bf210947c0e6"
+  
 )
 
 Listing.create!(
@@ -85,13 +89,14 @@ Listing.create!(
   address: "456 Pine St",
   city: "San Francisco",
   state: "CA",
-  zipcode: "94108",
+  zip_code: "94108",
   price: 3000,
   bedrooms: 2,
   bathrooms: 1,
   square_feet: 1200,
-  image_url: "https://images.unsplash.com/photo-1601373617892-0e76a8f22a1b",
-  poster_id: User.first.id
+  poster_id: User.first.id,
+  image_url: "https://images.unsplash.com/photo-1601373617892-0e76a8f22a1b"
+  
 )
 
 Listing.create!(
@@ -100,13 +105,14 @@ Listing.create!(
   address: "789 Broadway",
   city: "San Francisco",
   state: "CA",
-  zipcode: "94109",
+  zip_code: "94109",
   price: 10000,
   bedrooms: 5,
   bathrooms: 3,
   square_feet: 5000,
-  image_url: "https://images.unsplash.com/photo-1591902875819-ccf81e01d7f8",
-  poster_id: User.first.id
+  poster_id: User.first.id,
+  image_url: "https://images.unsplash.com/photo-1591902875819-ccf81e01d7f8"
+  
 )
 
 Listing.create!(
@@ -118,7 +124,8 @@ Listing.create!(
   address: "345 S 5th St",
   city: "San Jose",
   state: "CA",
-  zipcode: "95112",
+  zip_code: "95112",
+  square_feet: 2100,
   poster_id: user_ids.sample,
   image_url: "https://images.unsplash.com/photo-1591197134873-5475a7f0cc1d"
 )
@@ -132,7 +139,8 @@ Listing.create!(
   address: "2000 Washington St",
   city: "San Francisco",
   state: "CA",
-  zipcode: "94109",
+  zip_code: "94109",
+  square_feet: 1400,
   poster_id: user_ids.sample,
   image_url: "https://images.unsplash.com/photo-1560655687-28d9cdee6392"
 )
@@ -146,7 +154,8 @@ Listing.create!(
   address: "1234 Redwood Dr",
   city: "Mill Valley",
   state: "CA",
-  zipcode: "94941",
+  zip_code: "94941",
+  square_feet: 1350,
   poster_id: user_ids.sample,
   image_url: "https://images.unsplash.com/photo-1605274566168-910051cd9f54"
 )
@@ -160,7 +169,8 @@ Listing.create!(
   address: "123 Mission St",
   city: "San Francisco",
   state: "CA",
-  zipcode: "94103",
+  zip_code: "94103",
+  square_feet: 1500,
   poster_id: user_ids.sample,
   image_url: "https://images.unsplash.com/photo-1602505421609-011bca4f4d4d"
 )
@@ -174,7 +184,8 @@ Listing.create!(
   address: "5678 Wine Country Rd",
   city: "Glen Ellen",
   state: "CA",
-  zipcode: "95442",
+  zip_code: "95442",
+  square_feet: 1500,
   poster_id: user_ids.sample,
   image_url: "https://images.unsplash.com/photo-1585644415095-0d29b93590c9"
 )
@@ -188,7 +199,8 @@ Listing.create!(
   address: "123 Malibu Road",
   city: "Malibu",
   state: "CA",
-  zipcode: "90265",
+  zip_code: "90265",
+  square_feet: 2000,
   poster_id: user_ids.sample,
   image_url: "https://i.imgur.com/0DbdLrF.jpg"
 )
@@ -202,7 +214,8 @@ Listing.create!(
   address: "123 S Figueroa St",
   city: "Los Angeles",
   state: "CA",
-  zipcode: "90012",
+  zip_code: "90012",
+  square_feet: 900,
   poster_id: user_ids.sample,
   image_url: "https://i.imgur.com/Pztl7d3.jpg"
 )
@@ -216,7 +229,8 @@ Listing.create!(
   address: "1234 Vineyard Lane",
   city: "Napa",
   state: "CA",
-  zipcode: "94558",
+  zip_code: "94558",
+  square_feet: 5000,
   poster_id: user_ids.sample,
   image_url: "https://i.imgur.com/Mv4Ns4P.jpg"
 )
@@ -230,7 +244,8 @@ Listing.create!(
   address: "123 Pine Street",
   city: "Tahoe City",
   state: "CA",
-  zipcode: "96145",
+  zip_code: "96145",
+  square_feet: 1500,
   poster_id: user_ids.sample,
   image_url: "https://i.imgur.com/Rxom5Pr.jpg"
 )
@@ -244,7 +259,8 @@ Listing.create!(
   address: "1234 Broadway St",
   city: "San Francisco",
   state: "CA",
-  zipcode: "94109",
+  zip_code: "94109",
+  square_feet: 1500,
   poster_id: user_ids.sample,
   image_url: "https://i.imgur.com/GQD9t8X.jpg"
 )
