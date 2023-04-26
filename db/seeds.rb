@@ -5,20 +5,18 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require 'open-uri'
 
-
-User.destroy_all   
+#User.destroy_all   
 Listing.destroy_all
 
 #ApplicationRecord.connection.reset_pk_sequence!('users')
 ApplicationRecord.connection.reset_pk_sequence!('listings')
-User.create!(
-    username: 'Demo', 
-    email: 'dummyaccount@gmail.com', 
-    password: 'demoaccount'
-)
-
-
+# User.create!(
+#     username: 'Demo', 
+#     email: 'dummyaccount@gmail.com', 
+#     password: 'demoaccount'
+# )
 
 user_ids = User.pluck(:id)
 
@@ -33,9 +31,9 @@ Listing.create!(
   state: "CA",
   zip_code: "94104",
   square_feet: 3200,
-  poster_id: user_ids.sample,
-  image_url: "https://via.placeholder.com/400x300?text=Luxury+Condo+in+Downtown+San+Francisco"
+  poster_id: user_ids.sample
 )
+
 
 Listing.create!(
   title: "Charming Cottage in the Berkeley Hills",
@@ -48,8 +46,7 @@ Listing.create!(
   state: "CA",
   zip_code: "94708",
   square_feet: 2300,
-  poster_id: user_ids.sample,
-  image_url: "https://via.placeholder.com/400x300?text=Charming+Cottage+in+the+Berkeley+Hills"
+  poster_id: user_ids.sample
 )
 
 Listing.create!(
@@ -63,8 +60,7 @@ Listing.create!(
   state: "CA",
   zip_code: "94301",
   square_feet: 1200,
-  poster_id: user_ids.sample,
-  image_url: "https://via.placeholder.com/400x300?text=Spacious+Family+Home+in+Silicon+Valley"
+  poster_id: user_ids.sample
 )
 
 Listing.create!(
@@ -78,8 +74,7 @@ Listing.create!(
   bedrooms: 3,
   bathrooms: 2,
   square_feet: 2500,
-  poster_id: User.first.id,
-  image_url: "https://images.unsplash.com/photo-1545239356-bf210947c0e6"
+  poster_id: User.first.id
   
 )
 
@@ -94,8 +89,7 @@ Listing.create!(
   bedrooms: 2,
   bathrooms: 1,
   square_feet: 1200,
-  poster_id: User.first.id,
-  image_url: "https://images.unsplash.com/photo-1601373617892-0e76a8f22a1b"
+  poster_id: User.first.id
   
 )
 
@@ -110,8 +104,7 @@ Listing.create!(
   bedrooms: 5,
   bathrooms: 3,
   square_feet: 5000,
-  poster_id: User.first.id,
-  image_url: "https://images.unsplash.com/photo-1591902875819-ccf81e01d7f8"
+  poster_id: User.first.id
   
 )
 
@@ -126,8 +119,7 @@ Listing.create!(
   state: "CA",
   zip_code: "95112",
   square_feet: 2100,
-  poster_id: user_ids.sample,
-  image_url: "https://images.unsplash.com/photo-1591197134873-5475a7f0cc1d"
+  poster_id: user_ids.sample
 )
 
 Listing.create!(
@@ -141,8 +133,7 @@ Listing.create!(
   state: "CA",
   zip_code: "94109",
   square_feet: 1400,
-  poster_id: user_ids.sample,
-  image_url: "https://images.unsplash.com/photo-1560655687-28d9cdee6392"
+  poster_id: user_ids.sample
 )
 
 Listing.create!(
@@ -156,8 +147,7 @@ Listing.create!(
   state: "CA",
   zip_code: "94941",
   square_feet: 1350,
-  poster_id: user_ids.sample,
-  image_url: "https://images.unsplash.com/photo-1605274566168-910051cd9f54"
+  poster_id: user_ids.sample
 )
 
 Listing.create!(
@@ -171,8 +161,7 @@ Listing.create!(
   state: "CA",
   zip_code: "94103",
   square_feet: 1500,
-  poster_id: user_ids.sample,
-  image_url: "https://images.unsplash.com/photo-1602505421609-011bca4f4d4d"
+  poster_id: user_ids.sample
 )
 
 Listing.create!(
@@ -186,8 +175,7 @@ Listing.create!(
   state: "CA",
   zip_code: "95442",
   square_feet: 1500,
-  poster_id: user_ids.sample,
-  image_url: "https://images.unsplash.com/photo-1585644415095-0d29b93590c9"
+  poster_id: user_ids.sample
 )
 
 Listing.create!(
@@ -201,8 +189,7 @@ Listing.create!(
   state: "CA",
   zip_code: "90265",
   square_feet: 2000,
-  poster_id: user_ids.sample,
-  image_url: "https://i.imgur.com/0DbdLrF.jpg"
+  poster_id: user_ids.sample
 )
 
 Listing.create!(
@@ -216,8 +203,7 @@ Listing.create!(
   state: "CA",
   zip_code: "90012",
   square_feet: 900,
-  poster_id: user_ids.sample,
-  image_url: "https://i.imgur.com/Pztl7d3.jpg"
+  poster_id: user_ids.sample
 )
 
 Listing.create!(
@@ -231,8 +217,7 @@ Listing.create!(
   state: "CA",
   zip_code: "94558",
   square_feet: 5000,
-  poster_id: user_ids.sample,
-  image_url: "https://i.imgur.com/Mv4Ns4P.jpg"
+  poster_id: user_ids.sample
 )
 
 Listing.create!(
@@ -246,8 +231,7 @@ Listing.create!(
   state: "CA",
   zip_code: "96145",
   square_feet: 1500,
-  poster_id: user_ids.sample,
-  image_url: "https://i.imgur.com/Rxom5Pr.jpg"
+  poster_id: user_ids.sample
 )
 
 Listing.create!(
@@ -261,6 +245,13 @@ Listing.create!(
   state: "CA",
   zip_code: "94109",
   square_feet: 1500,
-  poster_id: user_ids.sample,
-  image_url: "https://i.imgur.com/GQD9t8X.jpg"
+  poster_id: user_ids.sample
 )
+
+
+Listing.each_with_index do |listing, index| 
+    listing.photos.attach(
+        io: URI.open("https://willow-v-seeds.s3.us-west-1.amazonaws.com/House+Photos+for+FullStack+Project/file#{index+1}.webp"),
+        filename: "file#{index + 1}.webp"
+    )
+end

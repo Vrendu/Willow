@@ -15,6 +15,7 @@
 #  bathrooms   :integer          not null
 #  title       :string           not null
 #  description :text             not null
+#  square_feet :integer
 #
 class Listing < ApplicationRecord
     validates :address, :city, :state, :zip_code, :price, 
@@ -23,5 +24,7 @@ class Listing < ApplicationRecord
     belongs_to :poster, 
     class_name: :User,
     foreign_key: :poster_id 
+
+    has_many_attached :photos
 
 end
