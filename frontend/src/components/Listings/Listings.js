@@ -16,6 +16,7 @@ const Listings = () => {
     useEffect(() => {
         dispatch(fetchListings());
     },[dispatch]);
+    
     console.log(listings)
     if (!listings){
         return null;
