@@ -1,0 +1,38 @@
+.card {
+    display: block;
+    flex-direction: row;
+    align-items: flex-start;
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    width: 20%;
+    /* set a fixed width value */
+    height: 20vh;
+    /* set a fixed height value */
+}
+
+.card img {
+    width: 100%;
+    max-height: 50%;
+    object-fit: cover;
+    border-radius: 8px 0 0 8px;
+}
+
+.card-body {
+    padding: 16px;
+}
+
+.card-body h3 {
+    font-size: 24px;
+    margin: 0 0 8px;
+}
+
+.card-body p {
+    font-size: 16px;
+    margin: 0;
+}
+
+.card-body p:first-child {
+    font-weight: bold;
+    margin-bottom: 8px;
+}

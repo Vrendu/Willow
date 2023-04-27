@@ -2,7 +2,7 @@ class Api::ListingsController < ApplicationController
 
     def index
         @listings = Listing.all
-        render 'index.json.jbuilder'
+        render :index
     end
   
     def show

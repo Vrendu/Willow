@@ -7,16 +7,16 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'open-uri'
 
-#User.destroy_all   
+User.destroy_all   
 Listing.destroy_all
 
-#ApplicationRecord.connection.reset_pk_sequence!('users')
+ApplicationRecord.connection.reset_pk_sequence!('users')
 ApplicationRecord.connection.reset_pk_sequence!('listings')
-# User.create!(
-#     username: 'Demo', 
-#     email: 'dummyaccount@gmail.com', 
-#     password: 'demoaccount'
-# )
+User.create!(
+    username: 'Demo', 
+    email: 'dummyaccount@gmail.com', 
+    password: 'demoaccount'
+)
 
 user_ids = User.pluck(:id)
 
@@ -249,7 +249,7 @@ Listing.create!(
 )
 
 
-Listing.each_with_index do |listing, index| 
+Listing.all.each_with_index do |listing, index| 
     listing.photos.attach(
         io: URI.open("https://willow-v-seeds.s3.us-west-1.amazonaws.com/House+Photos+for+FullStack+Project/file#{index+1}.webp"),
         filename: "file#{index + 1}.webp"
