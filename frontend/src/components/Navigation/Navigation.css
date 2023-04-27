@@ -96,9 +96,11 @@
   display: block;
   max-width: 100%;
   height: auto;
+  z-index: -9999;
 }
 .logo-container {
   max-width: 250px;
+  z-index: -9999;
 }
 
 .session-links > * {
