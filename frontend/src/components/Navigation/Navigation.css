@@ -99,8 +99,9 @@
   z-index: -9999;
 }
 .logo-container {
-  max-width: 250px;
+  max-width: 40%;
   z-index: -9999;
+  margin-left: 30%;
 }
 
 .session-links > * {

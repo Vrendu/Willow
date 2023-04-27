@@ -4,7 +4,6 @@ import "./SearchBar.css"
 
 function SearchBar(props) {
 
-
     return(
         <> 
             <form className="search-bar"action="/search" method="get">

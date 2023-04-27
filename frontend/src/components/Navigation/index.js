@@ -38,18 +38,19 @@ function Navigation() {
   }
 
   return (
-    <ul>
-        <div className="home">
-          <NavLink exact to="/">
+    <>
+      
+          <div className="home">
+            <NavLink to="/">
 
-          <div className="logo-container">
-            <img src="/logo.png" className="logo" alt="Zillow logo"/>
+            <div className="logo-container">
+              <img src="/logo.png" className="logo" alt="Zillow logo"/>
+            </div>
+            </NavLink>
           </div>
-          </NavLink>
-          
-        </div>
-        {sessionLinks}
-    </ul>
+      
+      {sessionLinks}
+    </>
   );
 }
 

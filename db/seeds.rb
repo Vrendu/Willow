@@ -23,7 +23,7 @@ user_ids = User.pluck(:id)
 Listing.create!(
   title: "Luxury Condo in Downtown San Francisco",
   description: "Beautifully furnished luxury condo in the heart of San Francisco's Financial District. Features stunning views of the Bay Bridge and downtown skyline, gourmet kitchen, and top-of-the-line amenities.",
-  price: 9500,
+  price: 950000,
   bedrooms: 2,
   bathrooms: 2,
   address: "555 California St",
@@ -38,7 +38,7 @@ Listing.create!(
 Listing.create!(
   title: "Charming Cottage in the Berkeley Hills",
   description: "Lovely and cozy cottage nestled in the beautiful Berkeley Hills. Features a serene and tranquil atmosphere, breathtaking views of the Bay, and all the amenities you need for a comfortable stay.",
-  price: 2200,
+  price: 2200000,
   bedrooms: 1,
   bathrooms: 1,
   address: "100 Grizzly Peak Blvd",
@@ -52,7 +52,7 @@ Listing.create!(
 Listing.create!(
   title: "Spacious Family Home in Silicon Valley",
   description: "Gorgeous family home in the heart of Silicon Valley. Features a spacious and open floor plan, beautiful outdoor living spaces, and plenty of room for the whole family.",
-  price: 12000,
+  price: 1200000,
   bedrooms: 4,
   bathrooms: 3,
   address: "123 Main St",
@@ -70,7 +70,7 @@ Listing.create!(
   city: "San Francisco",
   state: "CA",
   zip_code: "94123",
-  price: 5000,
+  price: 3000000,
   bedrooms: 3,
   bathrooms: 2,
   square_feet: 2500,
@@ -85,7 +85,7 @@ Listing.create!(
   city: "San Francisco",
   state: "CA",
   zip_code: "94108",
-  price: 3000,
+  price: 900000,
   bedrooms: 2,
   bathrooms: 1,
   square_feet: 1200,
@@ -100,7 +100,7 @@ Listing.create!(
   city: "San Francisco",
   state: "CA",
   zip_code: "94109",
-  price: 10000,
+  price: 3000000,
   bedrooms: 5,
   bathrooms: 3,
   square_feet: 5000,
@@ -111,7 +111,7 @@ Listing.create!(
 Listing.create!(
   title: "Modern Condo in the Heart of San Jose",
   description: "Brand new, modern condo located in downtown San Jose. Walking distance to all the best restaurants, shops, and entertainment. Features high-end finishes, in-unit laundry, and a private balcony.",
-  price: 3500,
+  price: 750000,
   bedrooms: 1,
   bathrooms: 1,
   address: "345 S 5th St",
@@ -125,7 +125,7 @@ Listing.create!(
 Listing.create!(
   title: "Luxury Penthouse in Pacific Heights",
   description: "Stunning penthouse unit in one of San Francisco's most exclusive neighborhoods. Features breathtaking views of the Golden Gate Bridge, spacious living areas, and a private rooftop deck.",
-  price: 18500,
+  price: 1850000,
   bedrooms: 3,
   bathrooms: 3,
   address: "2000 Washington St",
@@ -139,7 +139,7 @@ Listing.create!(
 Listing.create!(
   title: "Cozy Cottage in the Redwoods",
   description: "Escape to this charming and rustic cottage nestled in the beautiful redwoods. Features a cozy fireplace, peaceful surroundings, and a private hot tub.",
-  price: 3000,
+  price: 400000,
   bedrooms: 2,
   bathrooms: 1,
   address: "1234 Redwood Dr",
@@ -153,7 +153,7 @@ Listing.create!(
 Listing.create!(
   title: "Sunny Studio in the Mission District",
   description: "Bright and sunny studio apartment located in the heart of San Francisco's vibrant Mission District. Features a fully equipped kitchen, in-unit laundry, and easy access to public transportation.",
-  price: 2000,
+  price: 1000000,
   bedrooms: 0,
   bathrooms: 1,
   address: "123 Mission St",
@@ -167,7 +167,7 @@ Listing.create!(
 Listing.create!(
   title: "Secluded Retreat in Sonoma County",
   description: "Get away from it all at this secluded and peaceful retreat in Sonoma County. Features beautiful gardens, a private hot tub, and easy access to wineries and hiking trails.",
-  price: 4000,
+  price: 400000,
   bedrooms: 2,
   bathrooms: 2,
   address: "5678 Wine Country Rd",
@@ -181,7 +181,7 @@ Listing.create!(
 Listing.create!(
   title: "Stunning Oceanfront Villa in Malibu",
   description: "Experience the ultimate in luxury living in this breathtaking oceanfront villa in Malibu. Features a private pool, outdoor living areas, and stunning views of the Pacific Ocean.",
-  price: 15000,
+  price: 1500000,
   bedrooms: 5,
   bathrooms: 5,
   address: "123 Malibu Road",
@@ -195,7 +195,7 @@ Listing.create!(
 Listing.create!(
   title: "Modern Loft in Trendy Downtown LA",
   description: "Chic and modern loft in the heart of downtown LA. Features sleek and stylish furnishings, large windows with panoramic views, and all the amenities you need for a comfortable stay.",
-  price: 3500,
+  price: 350000,
   bedrooms: 1,
   bathrooms: 1,
   address: "123 S Figueroa St",
@@ -209,7 +209,7 @@ Listing.create!(
 Listing.create!(
   title: "Luxury Retreat in Napa Valley",
   description: "Escape to this luxurious and serene retreat in the heart of Napa Valley. Features stunning views of the vineyards, a private pool, and all the amenities you need for a relaxing stay.",
-  price: 8000,
+  price: 800000,
   bedrooms: 3,
   bathrooms: 3,
   address: "1234 Vineyard Lane",
@@ -223,7 +223,7 @@ Listing.create!(
 Listing.create!(
   title: "Secluded Mountain Cabin in Lake Tahoe",
   description: "Experience the beauty of Lake Tahoe in this cozy and secluded mountain cabin. Features a rustic yet modern interior, beautiful views of the surrounding forest, and all the amenities you need for a comfortable stay.",
-  price: 2500,
+  price: 2500000,
   bedrooms: 2,
   bathrooms: 1,
   address: "123 Pine Street",
@@ -237,7 +237,7 @@ Listing.create!(
 Listing.create!(
   title: "Historic Victorian in Pacific Heights",
   description: "Step back in time and experience the elegance and charm of this beautifully restored Victorian home in Pacific Heights. Features ornate details, antique furnishings, and all the modern amenities you need for a comfortable stay.",
-  price: 5000,
+  price: 2000000,
   bedrooms: 3,
   bathrooms: 2,
   address: "1234 Broadway St",
