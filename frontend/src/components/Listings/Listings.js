@@ -36,8 +36,8 @@ const Listings = () => {
                     <div key={listing.id} className="card">
                         <img src={listing.photos[0]} alt={listing.title} />
                         <div className="card-body">
-                            <h3>${Math.floor(listing.price)}</h3>
-                            <p>{listing.bedrooms} bds | {listing.bathrooms} ba | {listing.square_feet} sqft</p>
+                            <h3>${Math.floor(listing.price).toLocaleString()}</h3>
+                                <p>{listing.bedrooms} bd <span class="lighter">|</span> {listing.bathrooms} ba <span class="lighter">|</span> {listing.square_feet} sqft</p>
                             <p>{listing.address}</p>
                         </div>
                     </div>

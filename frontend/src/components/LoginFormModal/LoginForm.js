@@ -28,7 +28,7 @@ function LoginForm() {
   };
 
   return (
-    <>
+    <div className="everything">
       <h2 className="header">Welcome to Willow</h2>
       <form id="loginform" onSubmit={handleSubmit}>
         <ul>
@@ -56,7 +56,7 @@ function LoginForm() {
         </label>
         <button type="submit">Sign In</button>
       </form>
-    </>
+    </div>
   );
 }
 

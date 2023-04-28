@@ -1,0 +1,52 @@
+.show-page {
+    margin-top: 14vh;
+    display: flex;
+}
+
+.photo-list {
+    flex: 1;
+    flex-basis: 50%;
+    margin-right: 1%;
+}
+
+.photo{
+    width: 100%;
+}
+
+.downsized {
+    font-size: medium;
+    font-family: sans-serif;
+    font-weight: lighter;
+    margin-left: 37%;
+}
+
+.address{
+    font-size: medium;
+    font-family: sans-serif;
+    font-weight: lighter;
+    margin-left: 28%;
+}
+
+.lighter{
+    font-weight:lighter;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: x-large;
+}
+
+.details {
+    flex: 1;
+    flex-basis: 50%;
+    max-width: 50%;
+}
+
+.show-header{
+    margin-left: 40%;
+}
+
+.update{
+    margin-left: 37%;
+}
+
+.top{
+    position: fixed;
+}

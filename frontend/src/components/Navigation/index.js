@@ -7,6 +7,8 @@ import SignUpFormModal from '../SignUpFormModal';
 import './Navigation.css';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from "../../store/session";
+import SearchBar from '../SearchBar/SearchBar';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 function Navigation() {
   const sessionUser = useSelector(state => state.session.user);
@@ -23,7 +25,16 @@ function Navigation() {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
+      <>
+        <Link to = "/newlisting">
+          <span className='create-listing'>
+            Create Listing
+          </span>
+        </Link>
       <ProfileButton user={sessionUser} />
+      </>
+      
+      
     );
   } else {
     sessionLinks = (
@@ -38,19 +49,21 @@ function Navigation() {
   }
 
   return (
-    <>
+    <div className='navbar'>
+      <div className='searchbar'>
+        <SearchBar></SearchBar>
+      </div>
       
           <div className="home">
             <NavLink to="/">
-
-            <div className="logo-container">
               <img src="/logo.png" className="logo" alt="Zillow logo"/>
-            </div>
             </NavLink>
           </div>
-      
-      {sessionLinks}
-    </>
+      <div class="navbar-links">
+         {sessionLinks}
+      </div>
+     
+    </div>
   );
 }
 

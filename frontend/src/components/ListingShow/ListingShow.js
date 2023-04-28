@@ -2,11 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchListing } from "../../store/listingsActions";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import "./ListingShow.css";
 
 const ListingShow = () => {
     const dispatch = useDispatch();
     const {id} = useParams();
-    //const listing = useSelector((state) => state.listing.id)
+    const listing = useSelector((state) => state.listings[id])
     useEffect(() => {
        dispatch(fetchListing(id));
     }, [dispatch]);
@@ -14,15 +15,29 @@ const ListingShow = () => {
     
 
     return (
-        <div>
-            {/* <h1>{listing.title}</h1>
-            <p>{listing.description}</p>
-            <img src={listing.photoUrls[0]} alt={listing.title} />
-            <p>Price: {listing.price}</p>
-            <p>Square Feet: {listing.squareFeet}</p>
-            <p>Bedrooms: {listing.bedrooms}</p>
-            <p>Bathrooms: {listing.bathrooms}</p> */}
-            Hello there
+        <div className = "show-page">
+            <div className="photo-list">
+                    {listing.photos.map((photo) => <img src={photo} alt={listing.title} class="photo" />)}
+            </div>
+            
+            <div className="details">
+
+                <div className="top">
+                    <h1 className="show-header">${Math.floor(listing.price).toLocaleString()} </h1>
+                    <span className="downsized"> {listing.bedrooms} bd <span class="lighter">| </span>
+                    {listing.bathrooms} ba <span class="lighter">|</span> {listing.square_feet} sqft</span> <br></br>
+                    <div className = "address">
+                    {listing.address} {" "} {listing.city} {", "} {listing.state} {" "} {listing.zip_code}
+                </div>
+                  
+                <p>{listing.description}</p>
+                <button className="update">Update Listing</button>
+                </div>
+                
+            </div>
+                
+                
+            
         </div>
     );
 };

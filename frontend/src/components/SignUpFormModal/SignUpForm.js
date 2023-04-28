@@ -37,7 +37,7 @@ function SignUpForm() {
     };
 
     return (
-        <>
+        <div className="everything">
             <h2 className="header">Welcome to Willow</h2>
             <form onSubmit={handleSubmit}>
                 <ul>
@@ -81,7 +81,7 @@ function SignUpForm() {
                 </label>
                 <button type="submit">Sign Up</button>
             </form>
-        </>
+        </div>
     );
 }
 

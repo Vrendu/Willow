@@ -5,6 +5,7 @@ import Navigation from "./components/Navigation";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Listings from "./components/Listings/Listings";
 import ListingShow from "./components/ListingShow/ListingShow";
+import ListingForm from "./components/ListingForm/ListingForm";
 
 function App() {
   return (
@@ -13,11 +14,13 @@ function App() {
       
       <Switch>
         <Route exact path="/"> 
-          <SearchBar></SearchBar>
           <Listings></Listings>
         </Route>
         <Route exact path="/listings/:id">
           <ListingShow></ListingShow>
+        </Route>
+        <Route exact path="/newlisting">
+          <ListingForm></ListingForm>
         </Route>
       </Switch>
         
