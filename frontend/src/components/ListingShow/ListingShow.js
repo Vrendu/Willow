@@ -18,6 +18,7 @@ const ListingShow = () => {
         <div className = "show-page">
             <div className="photo-list">
                     {listing.photos.map((photo) => <img src={photo} alt={listing.title} class="photo" />)}
+                    {console.log(listing.photos)}
             </div>
             
             <div className="details">

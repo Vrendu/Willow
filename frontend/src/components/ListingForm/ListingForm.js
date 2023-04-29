@@ -13,26 +13,34 @@ const ListingForm = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [squareFeet, setSquareFeet] = useState("");
-    const [image, setImage] = useState(null);
-    const currentUser = useSelector((state) => state.session.user)
+    const [images, setImages] = useState([]);
+    const currentUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-       const newListing = { title: "Historic Victorian in Pacific Heights",
-        description,
-        price,
-        bedrooms,
-        bathrooms,
-        address,
-        city,
-        state,
-        zip_code: zipCode,
-        square_feet: squareFeet,
-        poster_id: currentUser.id }
+
+        const newListing = {
+            title,
+            description,
+            price,
+            bedrooms,
+            bathrooms,
+            address,
+            city,
+            state,
+            zip_code: zipCode,
+            square_feet: squareFeet,
+            poster_id: currentUser.id
+        }
 
         dispatch(createListing(newListing));
+    };
+
+    const handleImageChange = (e) => {
+        const files = e.target.files;
+        setImages(files);
     };
 
     return (
@@ -78,8 +86,8 @@ const ListingForm = () => {
                 <input type="text" value={squareFeet} onChange={(e) => setSquareFeet(e.target.value)} />
             </label>
             <label>
-                Image:
-                <input type="file" onChange={(e) => setImage(e.target.files[0])} />
+                Images:
+                <input type="file" multiple onChange={(e) => setImages(e.target.files)} />
             </label>
             <button type="submit">Create Listing</button>
         </form>
