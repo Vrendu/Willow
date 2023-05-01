@@ -1,5 +1,7 @@
 class Api::ListingsController < ApplicationController 
 
+wrap_parameters include: Listing.attribute_names + [:photos]
+
     def index
         @listings = Listing.all
         render :index
@@ -11,9 +13,11 @@ class Api::ListingsController < ApplicationController
     end
   
     def create
+        puts listing_params
         @listing = Listing.new(listing_params)
+
         if @listing.save
-            render 'show.json.jbuilder'
+            render :show
         else
             render json: { errors: @listing.errors.full_messages }, status: :unprocessable_entity
         end
@@ -26,24 +30,26 @@ class Api::ListingsController < ApplicationController
     def update
         @listing = Listing.find(params[:id])
         if @listing.update(listing_params)
-            render 'show.json.jbuilder'
+            render :show
         else
             render json: { errors: @listing.errors.full_messages }, status: :unprocessable_entity
         end
     end
     
     def destroy
+        # debugger
         @listing = Listing.find(params[:id])
+        @listingID = @listing.id 
         @listing.destroy
-        render json: { message: 'Listing successfully deleted' }
+        
+        render json: @listingID 
     end
 
     private 
 
     def listing_params 
         params.require(:listing).permit(
-            :address, :city, :state, :zip_code, :price, :bedrooms,
-            :bathrooms, :title, :description, :square_feet)
+            :title, :description, :price, :bedrooms, :bathrooms, :address, :city, :state, :zip_code, :square_feet, :poster_id, :photos)
     end 
 
 

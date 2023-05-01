@@ -24,6 +24,14 @@ class User < ApplicationRecord
     class_name: :Listing,
     foreign_key: :poster_id
 
+    has_many :favorites, 
+    foreign_key: :user_id,
+    class_name: :Favorite
+
+    has_many :favorited_listings,
+    through: :favorites,
+    source: :listing 
+
 
     def self.find_by_credentials(credential, password)
         field = credential =~ URI::MailTo::EMAIL_REGEXP ? :email : :username

@@ -6,6 +6,7 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import Listings from "./components/Listings/Listings";
 import ListingShow from "./components/ListingShow/ListingShow";
 import ListingForm from "./components/ListingForm/ListingForm";
+import UpdateForm from "./components/UpdateForm/UpdateForm";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
         </Route>
         <Route exact path="/newlisting">
           <ListingForm></ListingForm>
+        </Route>
+        <Route exact path="/updatelisting">
+          <UpdateForm></UpdateForm>
         </Route>
       </Switch>
         

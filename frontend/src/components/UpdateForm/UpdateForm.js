@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createListing } from "../../store/listingsActions";
-import "./ListingForm.css";
+import "./UpdateForm.css";
 import { Link } from "react-router-dom/cjs/react-router-dom";
+import { updateListing } from "../../store/listingsActions";
+import { useLocation } from "react-router-dom/cjs/react-router-dom";
 
-const ListingForm = () => {
+const UpdateForm = ({listing}) => {
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
@@ -17,6 +19,7 @@ const ListingForm = () => {
     const [squareFeet, setSquareFeet] = useState(0);
     const [images, setImages] = useState([]);
     const currentUser = useSelector((state) => state.session.user);
+    const listingID = useLocation().state?.listing.id
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
@@ -34,28 +37,17 @@ const ListingForm = () => {
         formData.append("zip_code", zipCode);
         formData.append("square_feet", squareFeet);
         formData.append("poster_id", currentUser.id);
-        if (images){
-            // images.forEach((image, idx) => {
-            //     formData.append(`photos`, images);
-            // })
-
-            for(let i = 0; i < images.length; i++){
-                formData.append("photos[]", images[i])
-            }
-            
-       }
-        
-        
-       // console.log(formData);
-       // console.log(Object.fromEntries(formData.entries()));
-        dispatch(createListing(Object.fromEntries(formData.entries())));
+        formData.append("photos", images);
+        formData.append("id", listingID)
+        dispatch(updateListing(Object.fromEntries(formData.entries())));
     };
 
     const handleImage = (e) => {
         const newImages = Array.from(e.target.files);
         setImages(newImages);
-        console.log(newImages)
     };
+
+    console.log(images)
 
     return (
         <form onSubmit={handleSubmit} className="form">
@@ -104,13 +96,11 @@ const ListingForm = () => {
                 Images:
                 <input type="file" multiple onChange={(e) => handleImage(e)} />
             </label>
-            {/* <Link to="/"> */}
-                <button type="submit">Create Listing</button>
-            {/* </Link> */}
-            
-            
+
+            <button type="submit">Update Listing</button>
+
         </form>
     );
 };
 
-export default ListingForm;
+export default UpdateForm;

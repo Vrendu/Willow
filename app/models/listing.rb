@@ -27,4 +27,14 @@ class Listing < ApplicationRecord
 
     has_many_attached :photos
 
+    has_many :favorites,
+    foreign_key: :listing_id,
+    class_name: :Favorite
+
+    has_many :favorited_by_users,
+    through: :favorites, 
+    source: :user 
+    
+    
+
 end

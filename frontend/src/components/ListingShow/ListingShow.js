@@ -1,18 +1,24 @@
-import { useDispatch, useSelector } from "react-redux";
+ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchListing } from "../../store/listingsActions";
+import { fetchListing,deleteListing } from "../../store/listingsActions";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import "./ListingShow.css";
+import { Link } from "react-router-dom/cjs/react-router-dom";
 
 const ListingShow = () => {
     const dispatch = useDispatch();
     const {id} = useParams();
     const listing = useSelector((state) => state.listings[id])
+    const currentUser = useSelector((state) => state.session.user);
     useEffect(() => {
        dispatch(fetchListing(id));
     }, [dispatch]);
 
-    
+    //const showButton = listing.poster_id === currentUser.id;
+    const removeListing = () => {
+        console.log(listing);
+        dispatch(deleteListing(listing.id))
+    }
 
     return (
         <div className = "show-page">
@@ -32,7 +38,17 @@ const ListingShow = () => {
                 </div>
                   
                 <p>{listing.description}</p>
-                <button className="update">Update Listing</button>
+                <p>Posted by {listing.poster_id}</p>
+                {currentUser?.id === listing.poster_id && <p className ="updateanddestroy">
+                    <Link to={{pathname:"/updatelisting", state: {listing}}}>
+                        <button className="update">Update Listing</button>
+                    </Link>
+                     <Link to = "/">
+                         <button className="delete" onClick={()=>removeListing()}>Delete Listing</button>
+                     </Link>
+                    
+                </p>}
+                
                 </div>
                 
             </div>

@@ -7,7 +7,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Mousewheel } from 'swiper';
 import 'swiper/css/bundle';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
-import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Listings = () => {
     const dispatch = useDispatch();
@@ -31,7 +30,7 @@ const Listings = () => {
                 mousewheel
             >
             {listings.length > 0 && listings.map((listing, index) => (
-                <SwiperSlide>
+               listing && <SwiperSlide>
                     <Link to={`/listings/${listing.id}`} className="card-link" >
                     <div key={listing.id} className="card">
                         <img src={listing.photos[0]} alt={listing.title} />

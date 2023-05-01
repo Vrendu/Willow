@@ -1,0 +1,12 @@
+.form {
+    margin-top: 8%;
+}
+
+@media (max-width: 1019px) {
+    .form {
+        margin-top: auto;
+        height: auto;
+        width: auto;
+        /* add more styles as needed */
+    }
+}

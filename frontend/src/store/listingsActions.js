@@ -1,3 +1,5 @@
+import csrfFetch from "./csrf";
+
 
 export const setListings = (listings) => {
     return { type: "SET_LISTINGS", payload: listings };
@@ -9,6 +11,14 @@ export const receiveListing = (listing) => {
 
 export const postListing = (listing) => {
     return {type: "POST_LISTING", listing};
+}
+
+export const changeListing = (listing) => {
+    return {type: "UPDATE_LISTING", listing};
+}
+
+export const destroyListing = (listingID) => {
+    return {type: "DELETE_LISTING", listingID};
 }
 
 export const fetchListings = () => {
@@ -32,11 +42,13 @@ export const fetchListing = (listingID) => {
 }
 
 export const createListing = (listing) => {
+
     return (dispatch) => {
         fetch("api/listings", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "X-CSRF-Token": sessionStorage.getItem("X-CSRF-Token")
             },
             body: JSON.stringify(listing),
         })
@@ -48,21 +60,65 @@ export const createListing = (listing) => {
     };
 }
 
+export const deleteListing = (listingID) => {
+    return (dispatch) => {
+    
+        csrfFetch(`/api/listings/${listingID}`, {
+            method: "DELETE"
+        })
+            .then((response) => response.json())
+            .then((listingID) => {
+                //console.log(listing);
+                dispatch(destroyListing(listingID))
+            })
+    }
+}
+
+// export const deleteListing = (listingID) => async (dispatch) => {
+//     const response = await fetch(`api/listings/${listingID}`, {method: 'DELETE'})
+//     if (response.ok){
+//         dispatch(destroyListing(listingID));
+//     }
+
+// }
+
+export const updateListing = (listing) => {
+    return (dispatch) => {
+        fetch(`api/listings/${listing.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-Token": sessionStorage.getItem("X-CSRF-Token")
+            },
+            body: JSON.stringify(listing)
+        })
+        .then((response) => response.json())
+        .then((listing) => {
+            dispatch(changeListing(listing))
+        })
+    }
+}
+
 export const getListings = (state) => {
    return state.listings ? Object.values(state.listings) : [] 
 }
 
 
 const listingsReducer = (state = {}, action) => {
+    const newState = {...state}
     switch (action.type) {
         case "SET_LISTINGS":
            return { ...state,  ...action.payload };
         case "RECEIVE_LISTING":
-            const newState = {...state}
             newState[action.listing.id] = action.listing
             return newState;
         case "POST_LISTING":
             return {...state, [action.listing.id]: action.listing};
+        case "UPDATE_LISTING":
+            return {...state, [action.listing.id]: action.listing};
+        case "DELETE_LISTING":
+            delete newState[action.listingID];
+            return newState;
         default:
             return state;
     }

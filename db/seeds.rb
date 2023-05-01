@@ -7,16 +7,50 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'open-uri'
 
-#User.destroy_all   
+  
 Listing.destroy_all
+User.destroy_all 
 
-#ApplicationRecord.connection.reset_pk_sequence!('users')
+ApplicationRecord.connection.reset_pk_sequence!('users')
 ApplicationRecord.connection.reset_pk_sequence!('listings')
-# User.create!(
-#     username: 'Demo', 
-#     email: 'dummyaccount@gmail.com', 
-#     password: 'demoaccount'
-# )
+User.create!(
+    username: 'Demo', 
+    email: 'dummyaccount@gmail.com', 
+    password: 'demoaccount'
+)
+
+User.create!(
+    username: 'Tommy Shelby', 
+    email: 'tommy_shelby@gmail.com', 
+    password: 'peakyblinders'
+)
+
+User.create!(
+    username: 'Vamshi Renduchintala', 
+    email: 'vamshi101@gmail.com', 
+    password: 'vamshi101'
+)
+
+User.create!(
+    username: 'Bill Clinton', 
+    email: 'bill_clinton@gmail.com', 
+    password: 'president'
+)
+
+User.create!(
+    username: 'Tony Soprano', 
+    email: 'tony_soprano@gmail.com', 
+    password: 'thisthingofours'
+)
+
+User.create!(
+    username: 'Adriana Moltisanti', 
+    email: 'adriana_moltisanti@gmail.com', 
+    password: 'cristufuhhh'
+)
+
+
+
 
 user_ids = User.pluck(:id)
 
@@ -74,7 +108,7 @@ Listing.create!(
   bedrooms: 3,
   bathrooms: 2,
   square_feet: 2500,
-  poster_id: User.first.id
+  poster_id: user_ids.sample
   
 )
 
@@ -89,7 +123,7 @@ Listing.create!(
   bedrooms: 2,
   bathrooms: 1,
   square_feet: 1200,
-  poster_id: User.first.id
+  poster_id: user_ids.sample
   
 )
 
@@ -104,7 +138,7 @@ Listing.create!(
   bedrooms: 5,
   bathrooms: 3,
   square_feet: 5000,
-  poster_id: User.first.id
+  poster_id: user_ids.sample
   
 )
 

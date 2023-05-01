@@ -50,3 +50,11 @@
 .top{
     position: fixed;
 }
+
+.updateanddestroy{
+    display: block;
+}
+
+.delete{
+    margin-left: 2%;
+}
