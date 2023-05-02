@@ -47,10 +47,9 @@ export const createListing = (listing) => {
         fetch("api/listings", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
                 "X-CSRF-Token": sessionStorage.getItem("X-CSRF-Token")
             },
-            body: JSON.stringify(listing),
+            body: listing,
         })
             .then((response) => response.json())
             .then((newListing) => {
@@ -68,19 +67,12 @@ export const deleteListing = (listingID) => {
         })
             .then((response) => response.json())
             .then((listingID) => {
-                //console.log(listing);
                 dispatch(destroyListing(listingID))
             })
     }
 }
 
-// export const deleteListing = (listingID) => async (dispatch) => {
-//     const response = await fetch(`api/listings/${listingID}`, {method: 'DELETE'})
-//     if (response.ok){
-//         dispatch(destroyListing(listingID));
-//     }
 
-// }
 
 export const updateListing = (listing) => {
     return (dispatch) => {

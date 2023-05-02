@@ -3,58 +3,101 @@ import { useDispatch, useSelector } from "react-redux";
 import { createListing } from "../../store/listingsActions";
 import "./ListingForm.css";
 import { Link } from "react-router-dom/cjs/react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ListingForm = () => {
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
     const [zipCode, setZipCode] = useState("");
-    const [price, setPrice] = useState(0);
-    const [bedrooms, setBedrooms] = useState(0);
-    const [bathrooms, setBathrooms] = useState(0);
+    const [price, setPrice] = useState("0");
+    const [bedrooms, setBedrooms] = useState("0");
+    const [bathrooms, setBathrooms] = useState("0");
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [squareFeet, setSquareFeet] = useState(0);
+    const [squareFeet, setSquareFeet] = useState("");
     const [images, setImages] = useState([]);
+    const [imageUrls, setImageUrls] = useState([]);
     const currentUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
+        //debugger;
         e.preventDefault();
 
-        const formData = new FormData();
-        formData.append("title", title);
-        formData.append("description", description);
-        formData.append("price", price);
-        formData.append("bedrooms", bedrooms);
-        formData.append("bathrooms", bathrooms);
-        formData.append("address", address);
-        formData.append("city", city);
-        formData.append("state", state);
-        formData.append("zip_code", zipCode);
-        formData.append("square_feet", squareFeet);
-        formData.append("poster_id", currentUser.id);
-        if (images){
-            // images.forEach((image, idx) => {
-            //     formData.append(`photos`, images);
-            // })
+       
+        const priceInt = parseInt(price);
+        const bedroomsInt = parseInt(bedrooms);
+        const bathroomsInt = parseInt(bathrooms);
+        const squareFeetInt = parseInt(squareFeet);
+        if (!address || !city || !state || !zipCode || !price || !bedrooms || !bathrooms || !squareFeet) {
+            alert("Please fill in all required fields.");
+            return;
+        }
 
-            for(let i = 0; i < images.length; i++){
-                formData.append("photos[]", images[i])
-            }
-            
-       }
+        // Check that price, bedrooms, bathrooms, and square feet are valid integers
+        if (isNaN(parseInt(price)) || isNaN(parseInt(bedrooms)) || isNaN(parseInt(bathrooms)) || isNaN(parseInt(squareFeet))) {
+            alert("Please enter valid numbers for price, bedrooms, bathrooms, and square feet.");
+            return;
+        }
+
+
+        const formData = new FormData();
+        formData.append("listing[title]", title);
+        formData.append("listing[description]", description);
+        formData.append("listing[price]", priceInt);
+        formData.append("listing[bedrooms]", bedroomsInt);
+        formData.append("listing[bathrooms]", bathroomsInt);
+        formData.append("listing[address]", address);
+        formData.append("listing[city]", city);
+        formData.append("listing[state]", state);
+        formData.append("listing[zip_code]", zipCode);
+        formData.append("listing[square_feet]", squareFeetInt);
+        formData.append("listing[poster_id]", currentUser.id);
+        if (images.length !== 0){
+            images.forEach(image => {
+                formData.append('listing[photos][]', image);
+            })
+
+        }
+
+          
         
-        
-       // console.log(formData);
-       // console.log(Object.fromEntries(formData.entries()));
-        dispatch(createListing(Object.fromEntries(formData.entries())));
+        dispatch(createListing(formData));
+        setAddress("");
+        setCity("");
+        setState("");
+        setZipCode("");
+        setPrice("0");
+        setBedrooms("0");
+        setBathrooms("0");
+        setTitle("");
+        setDescription("");
+        setSquareFeet("");
+        setImages([]);
+        setImageUrls([]);
+        alert("Listing created successfully!");
     };
 
     const handleImage = (e) => {
         const newImages = Array.from(e.target.files);
         setImages(newImages);
-        console.log(newImages)
+       // debugger 
+        // if (images.length !== 0){
+        //     let imagesLoaded = 0;
+        //     const urls = [];
+        //     Array.from(images).forEach((image, index) => {
+        //         const fileReader = new FileReader();
+        //         fileReader.readAsDataURL(image);
+        //         fileReader.onload = () => {
+        //             urls[index] = fileReader.result;
+        //             if (++imagesLoaded == images.length)
+        //                 setImageUrls(urls);
+        //         }
+        //     })
+        // }
+        // else setImageUrls([]);
     };
 
     return (
@@ -78,15 +121,15 @@ const ListingForm = () => {
             </label>
             <label>
                 Price:
-                <input type="text" value={price} onChange={(e) => setPrice(parseInt(e.target.value))} />
+                <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
             </label>
             <label>
                 Bedrooms:
-                <input type="text" value={bedrooms} onChange={(e) => setBedrooms(parseInt(e.target.value))} />
+                <input type="text" value={bedrooms} onChange={(e) => setBedrooms(e.target.value)} />
             </label>
             <label>
                 Bathrooms:
-                <input type="text" value={bathrooms} onChange={(e) => setBathrooms(parseInt(e.target.value))} />
+                <input type="text" value={bathrooms} onChange={(e) => setBathrooms(e.target.value)} />
             </label>
             <label>
                 Title:
@@ -98,11 +141,11 @@ const ListingForm = () => {
             </label>
             <label>
                 Square Feet:
-                <input type="text" value={squareFeet} onChange={(e) => setSquareFeet(parseInt(e.target.value))} />
+                <input type="text" value={squareFeet} onChange={(e) => setSquareFeet(e.target.value)} />
             </label>
             <label>
                 Images:
-                <input type="file" multiple onChange={(e) => handleImage(e)} />
+                <input type="file" onChange={(e) => handleImage(e)} multiple  />
             </label>
             {/* <Link to="/"> */}
                 <button type="submit">Create Listing</button>

@@ -1,6 +1,6 @@
 class Api::ListingsController < ApplicationController 
 
-wrap_parameters include: Listing.attribute_names + [:photos]
+wrap_parameters :listing, include: Listing.attribute_names + [:photos]
 
     def index
         @listings = Listing.all
@@ -13,7 +13,7 @@ wrap_parameters include: Listing.attribute_names + [:photos]
     end
   
     def create
-        puts listing_params
+        
         @listing = Listing.new(listing_params)
 
         if @listing.save
@@ -49,7 +49,7 @@ wrap_parameters include: Listing.attribute_names + [:photos]
 
     def listing_params 
         params.require(:listing).permit(
-            :title, :description, :price, :bedrooms, :bathrooms, :address, :city, :state, :zip_code, :square_feet, :poster_id, :photos)
+            :title, :description, :price, :bedrooms, :bathrooms, :address, :city, :state, :zip_code, :square_feet, :poster_id, photos: [])
     end 
 
 

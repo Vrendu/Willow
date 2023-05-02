@@ -29,7 +29,8 @@ class Listing < ApplicationRecord
 
     has_many :favorites,
     foreign_key: :listing_id,
-    class_name: :Favorite
+    class_name: :Favorite,
+    dependent: :destroy  
 
     has_many :favorited_by_users,
     through: :favorites, 

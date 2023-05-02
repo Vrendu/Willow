@@ -1,13 +1,22 @@
-class FavoritesController < ApplicationController
+class Api::FavoritesController < ApplicationController
+  def create
+    @favorite = Favorite.new(favorite_params)
+    if @favorite.save
+      render :show
+    else
+      render json: { errors: @favorite.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
 
-    def create 
+  def destroy
+    @favorite = Favorite.find(params[:id])
+    @favorite.destroy
+    render json: params[:id]
+  end
 
-    end 
+  private
 
-    def destroy 
-
-    end 
-
-    private 
-    def 
+  def favorite_params
+    params.require(:favorite).permit(:user_id, :listing_id)
+  end
 end

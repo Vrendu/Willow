@@ -1,4 +1,5 @@
 import csrfFetch from "./csrf.js";
+import { CREATE_FAVORITE, DELETE_FAVORITE } from "./favoritesActions.js";
 
 const SET_CURRENT_USER = 'session/setCurrentUser';
 const REMOVE_CURRENT_USER = 'session/removeCurrentUser';
@@ -72,11 +73,18 @@ const initialState = {
 };
 
 const sessionReducer = (state = initialState, action) => {
+  const newState = {...state}
   switch (action.type) {
     case SET_CURRENT_USER:
       return { ...state, user: action.payload };
     case REMOVE_CURRENT_USER:
       return { ...state, user: null };
+    case CREATE_FAVORITE:
+      newState.user.favorited_listings[action.payload.id] = action.payload;
+      return newState;
+    case DELETE_FAVORITE:
+      delete newState.user.favorited_listings[action.payload];
+      return newState;
     default:
       return state;
   }

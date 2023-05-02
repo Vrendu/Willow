@@ -7,12 +7,14 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'open-uri'
 
-  
+Favorite.destroy_all 
 Listing.destroy_all
 User.destroy_all 
 
+ApplicationRecord.connection.reset_pk_sequence!('favorites')
 ApplicationRecord.connection.reset_pk_sequence!('users')
 ApplicationRecord.connection.reset_pk_sequence!('listings')
+
 User.create!(
     username: 'Demo', 
     email: 'dummyaccount@gmail.com', 
