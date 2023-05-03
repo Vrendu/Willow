@@ -3,15 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { fetchListings, getListings } from '../../store/listingsActions';
 import "./Listings.css";
-// import { Swiper, SwiperSlide } from 'swiper/react';
-// import { Navigation, Mousewheel } from 'swiper';
 import 'swiper/css/bundle';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation, Mousewheel } from "swiper";
-// import "swiper/swiper.min.css";
-// import "swiper/components/navigation/navigation.min.css";
-// import "swiper/components/mousewheel/mousewheel.min.css";
+import { Navigation, Mousewheel } from "swiper";
 
 const Listings = () => {
     const dispatch = useDispatch();

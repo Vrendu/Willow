@@ -21,6 +21,12 @@ export const destroyListing = (listingID) => {
     return {type: "DELETE_LISTING", listingID};
 }
 
+export const fetchDataForSearch = async () => {
+    const response = await fetch('/api/listings');
+    const data = await response.json();
+    return data;
+}
+
 export const fetchListings = () => {
     return (dispatch) => {
         fetch("/api/listings")

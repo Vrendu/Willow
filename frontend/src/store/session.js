@@ -73,17 +73,30 @@ const initialState = {
 };
 
 const sessionReducer = (state = initialState, action) => {
-  const newState = {...state}
+  let newState = {...state}
   switch (action.type) {
     case SET_CURRENT_USER:
       return { ...state, user: action.payload };
     case REMOVE_CURRENT_USER:
       return { ...state, user: null };
     case CREATE_FAVORITE:
-      newState.user.favorited_listings[action.payload.id] = action.payload;
-      return newState;
+      console.log(action, "this is my action")
+     // newState.user.favorites.push(action.payload);
+      return {
+        ...state, 
+        user: {
+            ...state.user, 
+            favorites: [...state.user.favorites, action.payload]
+        }
+      }
+      //return newState;
     case DELETE_FAVORITE:
-      delete newState.user.favorited_listings[action.payload];
+      console.log(newState, "before delete")
+      newState.user.favorites.forEach((favorite, idx)=> {
+        if (favorite.id === action.payload){
+          delete newState.user.favorites[idx]
+        }
+      })
       return newState;
     default:
       return state;

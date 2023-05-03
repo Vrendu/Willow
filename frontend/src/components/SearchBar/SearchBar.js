@@ -2,15 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import "./SearchBar.css"
 
-function SearchBar(props) {
+function SearchBar({placeholder, data}) {
 
     return(
-        <> 
-            <form className="search-bar"action="/search" method="get">
-                <input type="text" name="q" placeholder="Enter an address, city, or zip code"></input>
-                {/* <button type="submit">Search</button> */}
-            </form>
-         </>
+        <div className="search"> 
+            <div className="search-bar"action="/search" method="get">
+                <input type="text" name="q" placeholder={placeholder}></input>
+                <div className="searchIcon"></div>
+            </div>
+            <div className="dataResult"></div>
+         </div>
         
     );
 }

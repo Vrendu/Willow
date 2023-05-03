@@ -12,21 +12,37 @@ const ListingShow = () => {
     const { id } = useParams();
     const listing = useSelector((state) => state.listings[id]);
     const currentUser = useSelector((state) => state.session.user);
+    let favorites;
+    if (currentUser){
+        favorites = currentUser.favorites;
+    }
+    const [currentFavorite, setCurrentFavorite] = useState({})
     const [isFavorite, setIsFavorite] = useState(false);
     //console.log(currentUser.favorited_listings)
     useEffect(() => {
         dispatch(fetchListing(id));
+        
+
     }, [dispatch]);
 
-    // useEffect(() => {
-    //     if (currentUser) {
-    //         const isFavorited = currentUser.favorited_listings.includes(listing.id);
-    //         setIsFavorite(isFavorited);
-    //     } else {
-    //         setIsFavorite(false);
-    //     }
-    // }, [currentUser, listing]);
-
+    useEffect(() => {
+        if(currentUser && listing){
+            checkIsFavorite(); 
+                //console.log(favorites, "these are my favorites");
+        }
+    }, [listing, currentUser, ])
+   
+    const checkIsFavorite = () => {
+        favorites.forEach((favorite) => {
+           if (favorite && (favorite.listing_id === listing.id)){
+            setIsFavorite(true);
+            setCurrentFavorite(favorite);
+            console.log(currentFavorite)
+           }
+        })
+    }
+    
+   
     const removeListing = () => {
         dispatch(deleteListing(listing.id));
         alert("Listing deleted")
@@ -35,9 +51,12 @@ const ListingShow = () => {
     const toggleFavorite = () => {
         if (currentUser) {
             if (isFavorite) {
-                dispatch(deleteFavorite(listing.id)).then(() => setIsFavorite(false));
+                dispatch(deleteFavorite(currentFavorite.id)).then(() => setIsFavorite(false));
             } else {
-                dispatch(createFavorite(listing.id, currentUser.id)).then(() => setIsFavorite(true));
+                dispatch(createFavorite(listing.id, currentUser.id)).then((response_favorite) => {
+                    setCurrentFavorite(response_favorite);
+                    setIsFavorite(true);
+                })
             }
         }
     };
@@ -46,6 +65,7 @@ const ListingShow = () => {
     }
     return (
         <div className="show-page">
+            {/* {checkIsFavorite()} */}
             <div className="photo-list">
                 {listing.photos.map((photo) => (
                     <img src={photo} alt={listing.title} class="photo" />

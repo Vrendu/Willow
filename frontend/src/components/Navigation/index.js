@@ -9,10 +9,14 @@ import { useDispatch } from 'react-redux';
 import * as sessionActions from "../../store/session";
 import SearchBar from '../SearchBar/SearchBar';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { fetchDataForSearch } from '../../store/listingsActions';
 
 function Navigation() {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+ 
+  const data = fetchDataForSearch();
+  console.log(data);
 
   const handleDemoLogin = async () => {
     try {
@@ -51,7 +55,7 @@ function Navigation() {
   return (
     <div className='navbar'>
       <div className='searchbar'>
-        <SearchBar></SearchBar>
+        <SearchBar placeholder="Enter an address, city or zip code" data={data}></SearchBar>
       </div>
       
           <div className="home">

@@ -32,7 +32,7 @@ class Listing < ApplicationRecord
     class_name: :Favorite,
     dependent: :destroy  
 
-    has_many :favorited_by_users,
+    has_many :users_who_favorited,
     through: :favorites, 
     source: :user 
     

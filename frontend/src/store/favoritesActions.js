@@ -21,8 +21,11 @@ export const createFavorite = (listingId, userID) => async (dispatch) => {
         });
         if (res.ok) {
             const { favorite } = await res.json();
-            console.log(favorite)
-            dispatch(createFavoriteAction(favorite));
+            //console.log(favorite)
+            if (dispatch(createFavoriteAction(favorite))){
+                return favorite;
+            }
+            //return favorite;
         }
     } catch (err) {
         console.error(err);
@@ -43,22 +46,3 @@ export const deleteFavorite = (favoriteId) => async (dispatch) => {
     }
 };
 
-
-
-
-// const favoritesReducer = (state = {}, action) => {
-//     let newState;
-//     switch (action.type) {
-//         case CREATE_FAVORITE:
-//             newState = { ...state };
-//             newState.favorites[action.payload.id] = action.payload;
-//             return newState;
-//         case DELETE_FAVORITE:
-//             newState = { ...state };
-//             delete newState.favorites[action.payload];
-//             return newState;
-//         default:
-//             return state;
-//     }
-// }
-// export default favoritesReducer;
