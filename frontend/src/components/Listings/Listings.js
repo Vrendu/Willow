@@ -5,8 +5,13 @@ import { fetchListings, getListings } from '../../store/listingsActions';
 import "./Listings.css";
 // import { Swiper, SwiperSlide } from 'swiper/react';
 // import { Navigation, Mousewheel } from 'swiper';
-// import 'swiper/css/bundle';
+import 'swiper/css/bundle';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation, Mousewheel } from "swiper";
+// import "swiper/swiper.min.css";
+// import "swiper/components/navigation/navigation.min.css";
+// import "swiper/components/mousewheel/mousewheel.min.css";
 
 const Listings = () => {
     const dispatch = useDispatch();
@@ -22,28 +27,36 @@ const Listings = () => {
     }
     return (
         <div className="container">
-            {/* <Swiper
+            <Swiper
                 modules={[Navigation, Mousewheel]}
                 spaceBetween={50}
                 slidesPerView={3}
                 navigation
                 mousewheel
-            > */}
-            {listings.length > 0 && listings.map((listing, index) => (
-               listing && 
-                    <Link to={`/listings/${listing.id}`} className="card-link" >
-                    <div key={listing.id} className="card">
-                        <img src={listing.photos[0]} alt={listing.title} />
-                        <div className="card-body">
-                            <h3>${Math.floor(listing.price).toLocaleString()}</h3>
-                                <p>{listing.bedrooms} bd <span class="lighter">|</span> {listing.bathrooms} ba <span class="lighter">|</span> {listing.square_feet} sqft</p>
-                            <p>{listing.address}</p>
-                        </div>
-                    </div>
-                    </Link>
-                // </SwiperSlide>
-            ))}
-            {/* </Swiper> */}
+            >
+                {listings.length > 0 &&
+                    listings.map((listing, index) =>
+                        listing && (
+                            <SwiperSlide key={listing.id}>
+                                <Link to={`/listings/${listing.id}`} className="card-link">
+                                    <div className="card">
+                                        <img src={listing.photos[0]} alt={listing.title} />
+                                        <div className="card-body">
+                                            <h3>${Math.floor(listing.price).toLocaleString()}</h3>
+                                            <p>
+                                                {listing.bedrooms} bd <span className="lighter">|</span>{" "}
+                                                {listing.bathrooms} ba{" "}
+                                                <span className="lighter">|</span>{" "}
+                                                {listing.square_feet} sqft
+                                            </p>
+                                            <p>{listing.address}</p>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </SwiperSlide>
+                        )
+                    )}
+            </Swiper>
         </div>
     );
 };
