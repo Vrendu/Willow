@@ -18,14 +18,14 @@ const ListingShow = () => {
         dispatch(fetchListing(id));
     }, [dispatch]);
 
-    useEffect(() => {
-        if (currentUser) {
-            const isFavorited = currentUser.favorited_listings.includes(listing.id);
-            setIsFavorite(isFavorited);
-        } else {
-            setIsFavorite(false);
-        }
-    }, [currentUser, listing]);
+    // useEffect(() => {
+    //     if (currentUser) {
+    //         const isFavorited = currentUser.favorited_listings.includes(listing.id);
+    //         setIsFavorite(isFavorited);
+    //     } else {
+    //         setIsFavorite(false);
+    //     }
+    // }, [currentUser, listing]);
 
     const removeListing = () => {
         dispatch(deleteListing(listing.id));

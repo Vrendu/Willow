@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { fetchListings, getListings } from '../../store/listingsActions';
 import "./Listings.css";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Mousewheel } from 'swiper';
-import 'swiper/css/bundle';
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import { Navigation, Mousewheel } from 'swiper';
+// import 'swiper/css/bundle';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 const Listings = () => {
@@ -22,15 +22,15 @@ const Listings = () => {
     }
     return (
         <div className="container">
-            <Swiper
+            {/* <Swiper
                 modules={[Navigation, Mousewheel]}
                 spaceBetween={50}
                 slidesPerView={3}
                 navigation
                 mousewheel
-            >
+            > */}
             {listings.length > 0 && listings.map((listing, index) => (
-               listing && <SwiperSlide>
+               listing && 
                     <Link to={`/listings/${listing.id}`} className="card-link" >
                     <div key={listing.id} className="card">
                         <img src={listing.photos[0]} alt={listing.title} />
@@ -41,9 +41,9 @@ const Listings = () => {
                         </div>
                     </div>
                     </Link>
-                </SwiperSlide>
+                // </SwiperSlide>
             ))}
-            </Swiper>
+            {/* </Swiper> */}
         </div>
     );
 };

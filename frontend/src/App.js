@@ -19,11 +19,25 @@ function App() {
       
       <Switch>
         <Route exact path="/"> 
+        
           <img
             src="/home_page_background.jpeg"
             className="home_page_background"
-            style={{ width: "100%", height: "40vh", transform: "translateY(28%)" }}
+            style={{ width: "100%", height: "50vh", transform: "translateY(28%)" }}
           />
+          <div className= "banner-text" style={{
+            position: "absolute",
+            top: "40%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            textAlign: "center",
+            color: "#fff",
+            fontSize: "2.5rem",
+            fontFamily: "sans-serif",
+            
+          }}>
+            Find a Home Today
+          </div>
           <Listings></Listings>
         </Route>
         <Route exact path="/listings/:id">

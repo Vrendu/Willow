@@ -38,7 +38,7 @@ function ProfileButton({ user }) {
           <li>{user.username}</li>
           <li>{user.email}</li>
           <li>
-            <button>Saved Listings</button>
+            <button>User Profile</button>
           </li>
           <li>
             <button onClick={logout}>Log Out</button>
