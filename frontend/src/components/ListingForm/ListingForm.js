@@ -84,20 +84,20 @@ const ListingForm = () => {
         const newImages = Array.from(e.target.files);
         setImages(newImages);
        // debugger 
-        // if (images.length !== 0){
-        //     let imagesLoaded = 0;
-        //     const urls = [];
-        //     Array.from(images).forEach((image, index) => {
-        //         const fileReader = new FileReader();
-        //         fileReader.readAsDataURL(image);
-        //         fileReader.onload = () => {
-        //             urls[index] = fileReader.result;
-        //             if (++imagesLoaded == images.length)
-        //                 setImageUrls(urls);
-        //         }
-        //     })
-        // }
-        // else setImageUrls([]);
+        if (images.length !== 0){
+            let imagesLoaded = 0;
+            const urls = [];
+            Array.from(images).forEach((image, index) => {
+                const fileReader = new FileReader();
+                fileReader.readAsDataURL(image);
+                fileReader.onload = () => {
+                    urls[index] = fileReader.result;
+                    if (++imagesLoaded == images.length)
+                        setImageUrls(urls);
+                }
+            })
+        }
+        else setImageUrls([]);
     };
 
     return (

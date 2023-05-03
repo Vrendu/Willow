@@ -19,6 +19,11 @@ function App() {
       
       <Switch>
         <Route exact path="/"> 
+          <img
+            src="/home_page_background.jpeg"
+            className="home_page_background"
+            style={{ width: "100%", height: "40vh", transform: "translateY(28%)" }}
+          />
           <Listings></Listings>
         </Route>
         <Route exact path="/listings/:id">
