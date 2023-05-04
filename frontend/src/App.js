@@ -7,6 +7,7 @@ import Listings from "./components/Listings/Listings";
 import ListingShow from "./components/ListingShow/ListingShow";
 import ListingForm from "./components/ListingForm/ListingForm";
 import UpdateForm from "./components/UpdateForm/UpdateForm";
+import ListingIndex from "./components/ListingIndex/ListingIndex";
 // import { ToastContainer } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 // import { ToastProvider } from 'react-toast-notifications';
@@ -48,6 +49,9 @@ function App() {
         </Route>
         <Route exact path="/updatelisting">
           <UpdateForm></UpdateForm>
+        </Route>
+        <Route exact path="/searchresults">
+          <ListingIndex/>
         </Route>
       </Switch>
         

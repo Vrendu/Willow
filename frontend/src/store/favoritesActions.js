@@ -60,7 +60,7 @@ const favoritesReducer = (state = {}, action) => {
     const newState = { ...state }
     switch (action.type) {
         case SET_CURRENT_USER:
-            return action.favorites;
+            return action.favorites ? action.favorites : {};
         case CREATE_FAVORITE:
             //return {...state, ...action.payload}
             newState[action.payload.id] = action.payload;
