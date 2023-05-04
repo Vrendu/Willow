@@ -61,9 +61,13 @@ function Navigation() {
   const data = fetchDataForSearch();
   return (
     <div className='navbar'>
-      <div className='searchbar'>
+      {/* <div className='searchbar'>
         <SearchBar placeholder="Enter an address, city or zip code" data={data} setSearchResults={setSearchResults} setQuery={setQuery} />
-      </div>
+      </div> */}
+
+      <Link to="/searchresults" className="searchbar">
+        Search Listings
+      </Link>
       {/* <ListingIndex listings={searchResults} /> */}
           <div className="home">
             <NavLink to="/">
