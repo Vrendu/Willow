@@ -29,7 +29,6 @@ export const fetchUser = (userID) => {
     fetch(`/api/users/${userID}`)
     .then((response) => response.json())
     .then((user) => {
-     //console.log(user, "user")
        dispatch(setCurrentUser(user)); 
     })
   }

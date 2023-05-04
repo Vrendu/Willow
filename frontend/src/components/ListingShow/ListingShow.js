@@ -13,15 +13,11 @@ const ListingShow = () => {
     const { id } = useParams();
     const listing = useSelector((state) => state.listings[id]);
     const currentUser = useSelector((state) => state.session.user);
-    // let favorites;
-    // if (currentUser){
-    //     favorites = currentUser.favorites;
-    // }
     const favorites = useSelector(getFavorites)
     console.log(favorites);
     const [currentFavorite, setCurrentFavorite] = useState({})
     const [isFavorite, setIsFavorite] = useState(false);
-    //console.log(currentUser.favorited_listings)
+    
     useEffect(() => {
         dispatch(fetchListing(id));
         if (currentUser){
@@ -30,17 +26,10 @@ const ListingShow = () => {
 
     }, [dispatch]);
 
-    // useEffect(() => {
-    //     if (currentUser){
-    //         console.log("dispatching")
-            
-    //     }
-    // }, )
 
     useEffect(() => {
         if(currentUser && listing){
             checkIsFavorite(); 
-                //console.log(favorites, "these are my favorites");
         }
     }, [listing, currentUser, ])
    
@@ -49,7 +38,6 @@ const ListingShow = () => {
            if (favorite && (favorite.listing_id === listing.id)){
             setIsFavorite(true);
             setCurrentFavorite(favorite);
-            //console.log(currentFavorite)
            }
         })
     }
@@ -77,7 +65,6 @@ const ListingShow = () => {
     }
     return (
         <div className="show-page">
-            {/* {checkIsFavorite()} */}
             <div className="photo-list">
                 {listing.photos.map((photo) => (
                     <img src={photo} alt={listing.title} class="photo" />
