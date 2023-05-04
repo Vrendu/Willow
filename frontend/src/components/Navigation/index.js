@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
@@ -8,13 +8,15 @@ import './Navigation.css';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from "../../store/session";
 import SearchBar from '../SearchBar/SearchBar';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { fetchDataForSearch } from '../../store/listingsActions';
 
 function Navigation() {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
- 
+  const [searchResults, setSearchResults] = useState([]);
+ const history = useHistory();
+  const [query, setQuery] = useState('');
 
   const handleDemoLogin = async () => {
     try {
@@ -49,13 +51,20 @@ function Navigation() {
       </>
     );
   }
+  const handleSearch = async e => {
+    e.preventDefault();
+    const response = await fetch(`/api/search?q=${query}`);
+    const data = await response.json();
+    history.push('/searchresults');
+    setSearchResults(data.results);
+  };
   const data = fetchDataForSearch();
   return (
     <div className='navbar'>
       <div className='searchbar'>
-        <SearchBar placeholder="Enter an address, city or zip code" data={data}></SearchBar>
+        <SearchBar placeholder="Enter an address, city or zip code" data={data} setSearchResults={setSearchResults} setQuery={setQuery} />
       </div>
-      
+      {/* <ListingIndex listings={searchResults} /> */}
           <div className="home">
             <NavLink to="/">
               <img src="/logo.png" className="logo" alt="Zillow logo"/>
