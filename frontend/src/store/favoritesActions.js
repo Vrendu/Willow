@@ -1,7 +1,16 @@
 import csrfFetch from "./csrf";
+import { SET_CURRENT_USER } from "./session";
 
 export const CREATE_FAVORITE = "CREATE_FAVORITE";
 export const DELETE_FAVORITE = "DELETE_FAVORITE";
+
+//custom selector 
+
+export const getFavorites = (state) => {
+    return state.favorites ? Object.values(state.favorites) : [];
+}
+
+
 
 export const createFavoriteAction = (favorite) => ({
     type: CREATE_FAVORITE,
@@ -46,3 +55,23 @@ export const deleteFavorite = (favoriteId) => async (dispatch) => {
     }
 };
 
+
+const favoritesReducer = (state = {}, action) => {
+    const newState = { ...state }
+    switch (action.type) {
+        case SET_CURRENT_USER:
+            return action.favorites;
+        case CREATE_FAVORITE:
+            //return {...state, ...action.payload}
+            newState[action.payload.id] = action.payload;
+            return newState;
+        console.log(action.payload);
+        case DELETE_FAVORITE:
+            delete newState[action.payload]
+            return newState;
+        default:
+            return state;
+    }
+};
+
+export default favoritesReducer;

@@ -1,6 +1,11 @@
 json.user do
   json.extract! @user, :id, :email, :username, :created_at, :updated_at
-  json.favorites @user.favorites 
+end
 
-  
+json.favorites do
+    @user.favorites.each do |favorite|
+        json.set! favorite.id do
+            json.(favorite, :id, :user_id, :listing_id)
+        end
+    end
 end

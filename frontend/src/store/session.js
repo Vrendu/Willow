@@ -1,12 +1,13 @@
 import csrfFetch from "./csrf.js";
 import { CREATE_FAVORITE, DELETE_FAVORITE } from "./favoritesActions.js";
 
-const SET_CURRENT_USER = 'session/setCurrentUser';
+export const SET_CURRENT_USER = 'session/setCurrentUser';
 const REMOVE_CURRENT_USER = 'session/removeCurrentUser';
 
-const setCurrentUser = (user) => ({
+export const setCurrentUser = (payload) => ({
   type: SET_CURRENT_USER,
-  payload: user
+  user: payload.user,
+  favorites: payload.favorites
 });
 
 const removeCurrentUser = () => ({
@@ -23,6 +24,18 @@ const storeCurrentUser = user => {
   else sessionStorage.removeItem("currentUser");
 }
 
+export const fetchUser = (userID) => {
+  return (dispatch) => {
+    fetch(`/api/users/${userID}`)
+    .then((response) => response.json())
+    .then((user) => {
+     //console.log(user, "user")
+       dispatch(setCurrentUser(user)); 
+    })
+  }
+}
+
+
 export const login = ({ credential, password }) => async dispatch => {
   const response = await csrfFetch("/api/session", {
     method: "POST",
@@ -30,7 +43,7 @@ export const login = ({ credential, password }) => async dispatch => {
   });
   const data = await response.json();
   storeCurrentUser(data.user);
-  dispatch(setCurrentUser(data.user));
+  dispatch(setCurrentUser(data));
   return response;
 };
 
@@ -39,7 +52,7 @@ export const restoreSession = () => async dispatch => {
   storeCSRFToken(response);
   const data = await response.json();
   storeCurrentUser(data.user);
-  dispatch(setCurrentUser(data.user));
+  dispatch(setCurrentUser(data));
   return response;
 };
 
@@ -55,7 +68,7 @@ export const signup = (user) => async (dispatch) => {
   });
   const data = await response.json();
   storeCurrentUser(data.user);
-  dispatch(setCurrentUser(data.user));
+  dispatch(setCurrentUser(data));
   return response;
 };
 
@@ -76,28 +89,10 @@ const sessionReducer = (state = initialState, action) => {
   let newState = {...state}
   switch (action.type) {
     case SET_CURRENT_USER:
-      return { ...state, user: action.payload };
+      return { ...state, user: action.user };
     case REMOVE_CURRENT_USER:
       return { ...state, user: null };
-    case CREATE_FAVORITE:
-      //console.log(action, "this is my action")
-     // newState.user.favorites.push(action.payload);
-      return {
-        ...state, 
-        user: {
-            ...state.user, 
-            favorites: [...state.user.favorites, action.payload]
-        }
-      }
-      //return newState;
-    case DELETE_FAVORITE:
-      //console.log(newState, "before delete")
-      newState.user.favorites.forEach((favorite, idx)=> {
-        if (favorite.id === action.payload){
-          delete newState.user.favorites[idx]
-        }
-      })
-      return newState;
+    
     default:
       return state;
   }

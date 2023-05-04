@@ -135,7 +135,7 @@ const ListingForm = () => {
             </label>
             <label>
                 Description:
-                <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+                <textarea className="textarea" value={description} onChange={(e) => setDescription(e.target.value)} />
             </label>
             <label>
                 Square Feet:

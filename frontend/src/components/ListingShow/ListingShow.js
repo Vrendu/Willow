@@ -6,24 +6,36 @@ import { createFavorite, deleteFavorite } from "../../store/favoritesActions";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import "./ListingShow.css";
 import { Link } from "react-router-dom/cjs/react-router-dom";
-
+import { getFavorites } from "../../store/favoritesActions";
+import { fetchUser } from "../../store/session";
 const ListingShow = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const listing = useSelector((state) => state.listings[id]);
     const currentUser = useSelector((state) => state.session.user);
-    let favorites;
-    if (currentUser){
-        favorites = currentUser.favorites;
-    }
+    // let favorites;
+    // if (currentUser){
+    //     favorites = currentUser.favorites;
+    // }
+    const favorites = useSelector(getFavorites)
+    console.log(favorites);
     const [currentFavorite, setCurrentFavorite] = useState({})
     const [isFavorite, setIsFavorite] = useState(false);
     //console.log(currentUser.favorited_listings)
     useEffect(() => {
         dispatch(fetchListing(id));
-        
+        if (currentUser){
+            dispatch(fetchUser(currentUser.id))
+        }
 
     }, [dispatch]);
+
+    // useEffect(() => {
+    //     if (currentUser){
+    //         console.log("dispatching")
+            
+    //     }
+    // }, )
 
     useEffect(() => {
         if(currentUser && listing){
