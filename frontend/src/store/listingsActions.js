@@ -27,6 +27,16 @@ export const fetchDataForSearch = async () => {
     return data;
 }
 
+// export const searchListings = (query) => {
+//     return (dispatch) => {
+//         fetch("/api/listings?query=")
+//             .then((response) => response.json())
+//             .then((listings) => {
+//                 dispatch(setListings(listings));
+//             });
+//     };
+// }
+
 export const fetchListings = () => {
     return (dispatch) => {
         fetch("/api/listings")

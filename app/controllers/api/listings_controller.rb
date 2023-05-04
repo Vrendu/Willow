@@ -3,8 +3,16 @@ class Api::ListingsController < ApplicationController
 wrap_parameters :listing, include: Listing.attribute_names + [:photos]
 
     def index
-        @listings = Listing.all
-        render :index
+       # @query = params[:query]
+
+        # if @query 
+        #     @listings = Listing.joins(:tags)
+        #         .where("name ILIKE ? OR tags.tag_name ILIKE ?", "%#{query}%")
+        #     render: index
+        # else 
+            @listings = Listing.all
+            render :index
+       # end 
     end
   
     def show
