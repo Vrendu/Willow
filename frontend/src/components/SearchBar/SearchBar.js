@@ -1,18 +1,33 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux';
-import "./SearchBar.css"
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-function SearchBar({placeholder, data}) {
+function SearchBar({ placeholder, data, setSearchResults }) {
+    const [query, setQuery] = useState('');
+    const history = useHistory();
 
-    return(
-        <div className="search"> 
-            <div className="search-bar"action="/search" method="get">
-                <input type="text" name="q" placeholder={placeholder}></input>
-                <div className="searchIcon"></div>
-            </div>
-            <div className="dataResult"></div>
-         </div>
-        
+    const handleSearch = async (e) => {
+        e.preventDefault();
+        const response = await fetch(`/api/search?q=${query}`);
+        const results = await response.json();
+        setSearchResults(results);
+        history.push('/searchresults');
+    };
+
+    return (
+        <div className='search'>
+            <form onSubmit={handleSearch}>
+                <input
+                    type='text'
+                    name='q'
+                    placeholder={placeholder}
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                />
+                <button type='submit'>
+                    <i className='fa fa-search'></i>
+                </button>
+            </form>
+        </div>
     );
 }
 
