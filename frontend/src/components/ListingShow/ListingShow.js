@@ -37,7 +37,7 @@ const ListingShow = () => {
            if (favorite && (favorite.listing_id === listing.id)){
             setIsFavorite(true);
             setCurrentFavorite(favorite);
-            console.log(currentFavorite)
+            //console.log(currentFavorite)
            }
         })
     }

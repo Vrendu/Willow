@@ -15,8 +15,6 @@ function Navigation() {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
  
-  const data = fetchDataForSearch();
-  console.log(data);
 
   const handleDemoLogin = async () => {
     try {
@@ -51,7 +49,7 @@ function Navigation() {
       </>
     );
   }
-
+  const data = fetchDataForSearch();
   return (
     <div className='navbar'>
       <div className='searchbar'>

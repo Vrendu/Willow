@@ -97,7 +97,7 @@ const UpdateForm = ({listing}) => {
         else setImageUrls([]);
     };
 
-    console.log(images)
+    //console.log(images)
 
     return (
         <form onSubmit={handleSubmit} className="form">

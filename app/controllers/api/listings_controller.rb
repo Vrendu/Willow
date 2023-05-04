@@ -37,7 +37,6 @@ wrap_parameters :listing, include: Listing.attribute_names + [:photos]
     end
     
     def destroy
-        # debugger
         @listing = Listing.find(params[:id])
         @listingID = @listing.id 
         @listing.destroy

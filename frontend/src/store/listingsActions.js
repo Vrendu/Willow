@@ -61,7 +61,7 @@ export const createListing = (listing) => {
             .then((newListing) => {
                 dispatch(postListing(newListing));
             })
-            .catch((error) => console.log(error));
+            //.catch((error) => //console.log(error));
     };
 }
 

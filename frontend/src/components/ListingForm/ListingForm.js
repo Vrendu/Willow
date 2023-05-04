@@ -23,7 +23,6 @@ const ListingForm = () => {
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
-        //debugger;
         e.preventDefault();
 
        
@@ -83,7 +82,6 @@ const ListingForm = () => {
     const handleImage = (e) => {
         const newImages = Array.from(e.target.files);
         setImages(newImages);
-       // debugger 
         if (images.length !== 0){
             let imagesLoaded = 0;
             const urls = [];
