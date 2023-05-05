@@ -12,10 +12,13 @@ This app will allow users to search for, create, update, destroy and manage like
 1. User Auth 
 user can log in, log out, and create account
 user can demo login
+<img width="500" src="https://user-images.githubusercontent.com/93363393/236381580-9ba7f1b5-552f-4d62-840a-15526310bf37.png">
 
 
-![sign in](https://user-images.githubusercontent.com/93363393/236381580-9ba7f1b5-552f-4d62-840a-15526310bf37.png)
 
+![sign up](https://user-images.githubusercontent.com/93363393/236381697-63af120f-7685-4d50-8acb-07bcc2adb2a7.png)
+
+![log out](https://user-images.githubusercontent.com/93363393/236381710-ef8dc139-df5b-4c1e-b568-1b8b858e73ac.png)
 
 
 2. Listings - CRUD 
