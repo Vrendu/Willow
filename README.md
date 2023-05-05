@@ -63,7 +63,8 @@ React library used to organize code into functional components, each with their 
 
 Application state was saved into redux store in order to manage state of relevant data, both globally and local state of each functional component 
 
-`const rootReducer = combineReducers({
+``` js
+const rootReducer = combineReducers({
   session,
   listings,
   favorites
@@ -73,11 +74,12 @@ export const configureStore = (preloadedState) => {
   return createStore(rootReducer, preloadedState, enhancer);
 };
 
-export default configureStore;`
+export default configureStore;```
 
 Reducers for Listings, Session and Favorites handled state changes as necessary: 
 
-`const favoritesReducer = (state = {}, action) => {
+``` js
+const favoritesReducer = (state = {}, action) => {
     const newState = { ...state }
     switch (action.type) {
         case SET_CURRENT_USER:
@@ -93,9 +95,10 @@ Reducers for Listings, Session and Favorites handled state changes as necessary:
         default:
             return state;
     }
-};` 
+};``` 
 
-`const listingsReducer = (state = {}, action) => {
+``` js
+const listingsReducer = (state = {}, action) => {
     const newState = {...state}
     switch (action.type) {
         case "SET_LISTINGS":
@@ -113,9 +116,10 @@ Reducers for Listings, Session and Favorites handled state changes as necessary:
         default:
             return state;
     }
-};` 
+};``` 
 
-`const sessionReducer = (state = initialState, action) => {
+``` js
+const sessionReducer = (state = initialState, action) => {
   let newState = {...state}
   switch (action.type) {
     case SET_CURRENT_USER:
@@ -126,7 +130,7 @@ Reducers for Listings, Session and Favorites handled state changes as necessary:
     default:
       return state;
   }
-};` 
+};``` 
 
 
 
