@@ -52,3 +52,201 @@ Coming soon is text based search
 
 ![search](https://user-images.githubusercontent.com/93363393/236382153-e2e67ee3-93a0-4443-82fe-0344408b895a.png)
 
+
+Technologies and Libraries Used: 
+
+React and Redux 
+
+React library used to organize code into functional components, each with their own unique behavior on render, and their own logic to manage the local state.
+
+For example, Listings Index was designed as shown here: 
+
+`function ListingIndex() {
+    const dispatch = useDispatch();
+    const listings = useSelector(getListings);
+
+    const [bedrooms, setBedrooms] = useState(null);
+    const [bathrooms, setBathrooms] = useState(null);
+    const [price, setPrice] = useState(null);
+    const [state, setState] = useState(null);
+    const [city, setCity] = useState(null);
+
+    useEffect(() => {
+        // dispatch action to fetch listings with selected filters
+        //dispatch(fetchListings({ bedrooms, bathrooms, price, state, city }));
+        dispatch(fetchListings())
+    }, [dispatch, bedrooms, bathrooms, price, state, city]);
+
+
+    const filteredListings = listings.filter(listing => {
+        // Check if the listing matches the selected filter options
+        if (bedrooms && listing.bedrooms <= bedrooms) {
+            return false;
+        }
+        if (bathrooms && listing.bathrooms <= bathrooms) {
+            return false;
+        }
+        if (price && listing.price <= parseInt(price)) {
+            return false;
+        }
+        if (city && listing.city !== city) {
+            return false;
+        }
+        if (state && listing.state !== state) {
+            return false;
+        }
+        // If all filter options are null or match the listing, include the listing
+        return true;
+    });
+
+    if (!listings){
+        return null;
+    }
+    return (
+        <div>
+            <div className="filters">
+                <div>
+                    <label>Bedrooms:</label>
+                    <select onChange={(e) => setBedrooms(e.target.value)}>
+                        <option value="">Any</option>
+                        <option value="1">1+</option>
+                        <option value="2">2+</option>
+                        <option value="3">3+</option>
+                        <option value="4">4+</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Bathrooms:</label>
+                    <select onChange={(e) => setBathrooms(e.target.value)}>
+                        <option value="">Any</option>
+                        <option value="1">1+</option>
+                        <option value="2">2+</option>
+                        <option value="3">3+</option>
+                        <option value="4">4+</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Price:</label>
+                    <select onChange={(e) => setPrice(e.target.value)}>
+                        <option value="">Any</option>
+                        <option value="500000">$500,000+</option>
+                        <option value="1000000">$1,000,000+</option>
+                        <option value="2000000">$2,000,000+</option>
+                    </select>
+                </div>
+               
+                <div>
+                    <label>City:</label>
+                    <select onChange={(e) => setCity(e.target.value)}>
+                        <option value="">Any</option>
+                        <option value="Los Angeles">Los Angeles</option>
+                        <option value="New York">New York City</option>
+                        <option value="Houston">Houston</option>
+                        <option value="Miami">Miami</option>
+                    </select>
+                </div>
+                <div>
+                    <label>State:</label>
+                    <select onChange={(e) => setState(e.target.value)}>
+                        <option value="">Any</option>
+                        <option value="CA">California</option>
+                        <option value="NY">New York</option>
+                        <option value="TX">Texas</option>
+                        <option value="FL">Florida</option>
+                    </select>
+                </div>
+            </div>
+        <div className="container">
+
+                {filteredListings.map(listing => (
+                    <Link to={`/listings/${listing.id}`} key={listing.id} className="card-link">
+                        <div className="card">
+                            <img src={listing.photos[0]} alt={listing.title} />
+                            <div className="card-body">
+                                <h3>${Math.floor(listing.price).toLocaleString()}</h3>
+                                <p>{listing.bedrooms} bd <span>|</span> {listing.bathrooms} ba <span>|</span> {listing.square_feet} sqft</p>
+                                <p>{listing.address}</p>
+                            </div>
+                        </div>
+                    </Link>
+                ))}
+        </div>
+    </div>
+    );
+}
+
+export default ListingIndex;`
+
+Application state was saved into redux store in order to manage state of relevant data, both globally and local state of each functional component 
+
+'const rootReducer = combineReducers({
+  session,
+  listings,
+  favorites
+});
+
+export const configureStore = (preloadedState) => {
+  return createStore(rootReducer, preloadedState, enhancer);
+};
+
+export default configureStore;'
+
+Reducers for Listings, Session and Favorites handled state changes as necessary: 
+
+'const favoritesReducer = (state = {}, action) => {
+    const newState = { ...state }
+    switch (action.type) {
+        case SET_CURRENT_USER:
+            return action.favorites ? action.favorites : {};
+        case CREATE_FAVORITE:
+            //return {...state, ...action.payload}
+            newState[action.payload.id] = action.payload;
+            return newState;
+        //console.log(action.payload);
+        case DELETE_FAVORITE:
+            delete newState[action.payload]
+            return newState;
+        default:
+            return state;
+    }
+};' 
+
+'const listingsReducer = (state = {}, action) => {
+    const newState = {...state}
+    switch (action.type) {
+        case "SET_LISTINGS":
+           return { ...state,  ...action.payload };
+        case "RECEIVE_LISTING":
+            newState[action.listing.id] = action.listing
+            return newState;
+        case "POST_LISTING":
+            return {...state, [action.listing.id]: action.listing};
+        case "UPDATE_LISTING":
+            return {...state, [action.listing.id]: action.listing};
+        case "DELETE_LISTING":
+            delete newState[action.listingID];
+            return newState;
+        default:
+            return state;
+    }
+};' 
+
+'const sessionReducer = (state = initialState, action) => {
+  let newState = {...state}
+  switch (action.type) {
+    case SET_CURRENT_USER:
+      return { ...state, user: action.user };
+    case REMOVE_CURRENT_USER:
+      return { ...state, user: null };
+    
+    default:
+      return state;
+  }
+};' 
+
+
+
+
+
+
+
