@@ -57,11 +57,128 @@ Technologies and Libraries Used:
 
 React and Redux 
 
-React library used to organize code into functional components, each with their own unique behavior on render, and their own logic to manage the local state.
+React library used to organize code into functional components, each with their own unique behavior on render, and their own logic to manage the local state. For example, the listing index below keeps track of state variables (bedrooms, bathrooms, price, state, city) used to filter results by the user's choice. 
+```js
+function ListingIndex() {
+    const dispatch = useDispatch();
+    const listings = useSelector(getListings);
+
+    const [bedrooms, setBedrooms] = useState(null);
+    const [bathrooms, setBathrooms] = useState(null);
+    const [price, setPrice] = useState(null);
+    const [state, setState] = useState(null);
+    const [city, setCity] = useState(null);
+
+    useEffect(() => {
+        // dispatch action to fetch listings with selected filters
+        //dispatch(fetchListings({ bedrooms, bathrooms, price, state, city }));
+        dispatch(fetchListings())
+    }, [dispatch, bedrooms, bathrooms, price, state, city]);
 
 
+    const filteredListings = listings.filter(listing => {
+        // Check if the listing matches the selected filter options
+        if (bedrooms && listing.bedrooms <= bedrooms) {
+            return false;
+        }
+        if (bathrooms && listing.bathrooms <= bathrooms) {
+            return false;
+        }
+        if (price && listing.price <= parseInt(price)) {
+            return false;
+        }
+        if (city && listing.city !== city) {
+            return false;
+        }
+        if (state && listing.state !== state) {
+            return false;
+        }
+        // If all filter options are null or match the listing, include the listing
+        return true;
+    });
 
-Application state was saved into redux store in order to manage state of relevant data, both globally and local state of each functional component 
+    if (!listings){
+        return null;
+    }
+    return (
+        <div>
+            <div className="filters">
+                <div>
+                    <label>Bedrooms:</label>
+                    <select onChange={(e) => setBedrooms(e.target.value)}>
+                        <option value="">Any</option>
+                        <option value="1">1+</option>
+                        <option value="2">2+</option>
+                        <option value="3">3+</option>
+                        <option value="4">4+</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Bathrooms:</label>
+                    <select onChange={(e) => setBathrooms(e.target.value)}>
+                        <option value="">Any</option>
+                        <option value="1">1+</option>
+                        <option value="2">2+</option>
+                        <option value="3">3+</option>
+                        <option value="4">4+</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Price:</label>
+                    <select onChange={(e) => setPrice(e.target.value)}>
+                        <option value="">Any</option>
+                        <option value="500000">$500,000+</option>
+                        <option value="1000000">$1,000,000+</option>
+                        <option value="2000000">$2,000,000+</option>
+                    </select>
+                </div>
+               
+                <div>
+                    <label>City:</label>
+                    <select onChange={(e) => setCity(e.target.value)}>
+                        <option value="">Any</option>
+                        <option value="Los Angeles">Los Angeles</option>
+                        <option value="New York">New York City</option>
+                        <option value="Houston">Houston</option>
+                        <option value="Miami">Miami</option>
+                    </select>
+                </div>
+                <div>
+                    <label>State:</label>
+                    <select onChange={(e) => setState(e.target.value)}>
+                        <option value="">Any</option>
+                        <option value="CA">California</option>
+                        <option value="NY">New York</option>
+                        <option value="TX">Texas</option>
+                        <option value="FL">Florida</option>
+                    </select>
+                </div>
+            </div>
+        <div className="container">
+
+                {filteredListings.map(listing => (
+                    <Link to={`/listings/${listing.id}`} key={listing.id} className="card-link">
+                        <div className="card">
+                            <img src={listing.photos[0]} alt={listing.title} />
+                            <div className="card-body">
+                                <h3>${Math.floor(listing.price).toLocaleString()}</h3>
+                                <p>{listing.bedrooms} bd <span>|</span> {listing.bathrooms} ba <span>|</span> {listing.square_feet} sqft</p>
+                                <p>{listing.address}</p>
+                            </div>
+                        </div>
+                    </Link>
+                ))}
+        </div>
+    </div>
+    );
+}
+
+export default ListingIndex;
+
+```
+
+
+Application state was saved into redux store in order to manage state of relevant data, both globally and local state of each functional component. Utilized thunk middleware to connect Ruby on Rails backend to React-Redux frontend.  
 
 ``` js
 const rootReducer = combineReducers({
@@ -74,7 +191,8 @@ export const configureStore = (preloadedState) => {
   return createStore(rootReducer, preloadedState, enhancer);
 };
 
-export default configureStore;```
+export default configureStore;
+```
 
 Reducers for Listings, Session and Favorites handled state changes as necessary: 
 
@@ -136,7 +254,42 @@ const sessionReducer = (state = initialState, action) => {
 ``` 
 
 
+useEffect hooks used in Listing Show component to render google maps element on page with every render, with marker at given listing location. 
 
+```js
+  useEffect(() => {
+        const script = document.createElement("script");
+        script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAV4WKaME8NfVDjcMKlZtvSKn3oe-MiyXU`;
+        script.onload = () => {
+            const map = new window.google.maps.Map(document.getElementById("map"), {
+                center: { lat: 37.7749, lng: -122.4194 }, // San Francisco as default center
+                zoom: 13, // Default zoom level
+            });
+            setMap(map);
+        };
+        document.body.appendChild(script);
+    }, []);
+
+    useEffect(() => {
+        if (map && listing) {
+            const geocoder = new window.google.maps.Geocoder();
+            geocoder.geocode(
+                { address: `${listing.address} ${listing.city} ${listing.state}` },
+                (results, status) => {
+                    if (status === "OK") {
+                        const marker = new window.google.maps.Marker({
+                            position: results[0].geometry.location,
+                            map,
+                        });
+                        map.setCenter(marker.getPosition());
+                    } else {
+                        console.error("Geocode was not successful for the following reason:", status);
+                    }
+                }
+            );
+        }
+    }, [map, listing]);
+  ```
 
 
 
