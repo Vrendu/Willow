@@ -74,7 +74,7 @@ function Navigation() {
               <img src="/logo.png" className="logo" alt="Zillow logo"/>
             </NavLink>
           </div>
-      <div class="navbar-links">
+      <div className="navbar-links">
          {sessionLinks}
       </div>
      

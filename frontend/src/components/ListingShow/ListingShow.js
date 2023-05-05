@@ -17,7 +17,7 @@ const ListingShow = () => {
     console.log(favorites);
     const [currentFavorite, setCurrentFavorite] = useState({})
     const [isFavorite, setIsFavorite] = useState(false);
-    
+    const [map, setMap] = useState(null);
     useEffect(() => {
         dispatch(fetchListing(id));
         if (currentUser){
@@ -32,6 +32,41 @@ const ListingShow = () => {
             checkIsFavorite(); 
         }
     }, [listing, currentUser, ])
+
+    
+
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAV4WKaME8NfVDjcMKlZtvSKn3oe-MiyXU`;
+        script.onload = () => {
+            const map = new window.google.maps.Map(document.getElementById("map"), {
+                center: { lat: 37.7749, lng: -122.4194 }, // San Francisco as default center
+                zoom: 13, // Default zoom level
+            });
+            setMap(map);
+        };
+        document.body.appendChild(script);
+    }, []);
+
+    useEffect(() => {
+        if (map && listing) {
+            const geocoder = new window.google.maps.Geocoder();
+            geocoder.geocode(
+                { address: `${listing.address} ${listing.city} ${listing.state}` },
+                (results, status) => {
+                    if (status === "OK") {
+                        const marker = new window.google.maps.Marker({
+                            position: results[0].geometry.location,
+                            map,
+                        });
+                        map.setCenter(marker.getPosition());
+                    } else {
+                        console.error("Geocode was not successful for the following reason:", status);
+                    }
+                }
+            );
+        }
+    }, [map, listing]);
    
     const checkIsFavorite = () => {
         favorites.forEach((favorite) => {
@@ -107,7 +142,9 @@ const ListingShow = () => {
                         </button>
                     )}
                 </div>
+                <div id="map"></div>
             </div>
+            
         </div>
     );
 };
