@@ -39,7 +39,10 @@ function App() {
           }}>
             Find a Home Today
           </div>
-          <Listings></Listings>
+          <div className="listings">
+            <Listings></Listings>
+          </div>
+          
         </Route>
         <Route exact path="/listings/:id">
           <ListingShow></ListingShow>
