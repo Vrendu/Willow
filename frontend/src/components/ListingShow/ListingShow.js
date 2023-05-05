@@ -141,8 +141,9 @@ const ListingShow = () => {
                             {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
                         </button>
                     )}
+                    <div id="map"></div>
                 </div>
-                <div id="map"></div>
+                
             </div>
             
         </div>

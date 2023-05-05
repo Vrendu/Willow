@@ -35,6 +35,11 @@ const ListingForm = () => {
             return;
         }
 
+        if (state.length != 2){
+            alert("Please enter state name as abbreviation (eg. CA, NY, FL)")
+            return;
+        }
+
         // Check that price, bedrooms, bathrooms, and square feet are valid integers
         if (isNaN(parseInt(price)) || isNaN(parseInt(bedrooms)) || isNaN(parseInt(bathrooms)) || isNaN(parseInt(squareFeet))) {
             alert("Please enter valid numbers for price, bedrooms, bathrooms, and square feet.");
