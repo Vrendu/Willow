@@ -30,7 +30,7 @@ function ListingIndex() {
         if (bathrooms && listing.bathrooms <= bathrooms) {
             return false;
         }
-        if (price && listing.price <= price) {
+        if (price && listing.price <= parseInt(price)) {
             return false;
         }
         if (city && listing.city !== city) {
