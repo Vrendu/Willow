@@ -95,7 +95,8 @@ const favoritesReducer = (state = {}, action) => {
         default:
             return state;
     }
-};``` 
+};
+``` 
 
 ``` js
 const listingsReducer = (state = {}, action) => {
@@ -116,7 +117,8 @@ const listingsReducer = (state = {}, action) => {
         default:
             return state;
     }
-};``` 
+};
+``` 
 
 ``` js
 const sessionReducer = (state = initialState, action) => {
@@ -130,7 +132,8 @@ const sessionReducer = (state = initialState, action) => {
     default:
       return state;
   }
-};``` 
+};
+``` 
 
 
 
