@@ -24,6 +24,11 @@ user can demo login
 2. Listings - CRUD 
 Displays listings of homes
 listings can be added, updated, and removed
+![listings](https://user-images.githubusercontent.com/93363393/236381939-6c2307c6-207b-47f6-99d5-7eb19c2afa40.png)
+
+![create](https://user-images.githubusercontent.com/93363393/236381955-7946f148-aea8-408f-a463-a5709754cc01.png)
+![update](https://user-images.githubusercontent.com/93363393/236381960-3ad8d717-b6b5-46ab-9c7c-4ddcf03b9182.png)
+
 
 3. Favorites - CRUD 
 favorites can be created and destroyed
