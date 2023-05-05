@@ -30,6 +30,7 @@ function Navigation() {
   if (sessionUser) {
     sessionLinks = (
       <>
+      
         <Link to = "/newlisting">
           <span className='create-listing'>
             Create Listing
@@ -65,9 +66,7 @@ function Navigation() {
         <SearchBar placeholder="Enter an address, city or zip code" data={data} setSearchResults={setSearchResults} setQuery={setQuery} />
       </div> */}
 
-      <Link to="/searchresults" className="searchbar">
-        Search Listings
-      </Link>
+      
       {/* <ListingIndex listings={searchResults} /> */}
           <div className="home">
             <NavLink to="/">
@@ -75,6 +74,9 @@ function Navigation() {
             </NavLink>
           </div>
       <div className="navbar-links">
+        <Link to="/searchresults" className="searchbar">
+        Search Listings
+      </Link>
          {sessionLinks}
       </div>
      

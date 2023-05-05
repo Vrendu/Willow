@@ -143,12 +143,12 @@
 }
 
 .searchbar{
-  position: fixed;
-  margin-top: 3%;
-  margin-left: 15%;
+  position: absolute;
+  top: calc(3vh + 10px);
+  left: calc(10vw + 10px);
   font-family: sans-serif;
   cursor: pointer;
-    transition: color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out;
 }
 
 .filters{
