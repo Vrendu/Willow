@@ -291,6 +291,6 @@ useEffect hooks used in Listing Show component to render google maps element on 
     }, [map, listing]);
   ```
 
-
+Future Features are to include text based search, and include google maps element on search results page showing location of all listings in a given area.
 
 
