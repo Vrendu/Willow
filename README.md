@@ -59,7 +59,7 @@ React and Redux
 
 React library used to organize code into functional components, each with their own unique behavior on render, and their own logic to manage the local state.
 
-For example, Listings Index was designed as shown here: 
+For example, Listings Index was designed as shown here 
 
 `function ListingIndex() {
     const dispatch = useDispatch();
@@ -179,7 +179,7 @@ export default ListingIndex;`
 
 Application state was saved into redux store in order to manage state of relevant data, both globally and local state of each functional component 
 
-'const rootReducer = combineReducers({
+`const rootReducer = combineReducers({
   session,
   listings,
   favorites
@@ -189,7 +189,7 @@ export const configureStore = (preloadedState) => {
   return createStore(rootReducer, preloadedState, enhancer);
 };
 
-export default configureStore;'
+export default configureStore;`
 
 Reducers for Listings, Session and Favorites handled state changes as necessary: 
 
