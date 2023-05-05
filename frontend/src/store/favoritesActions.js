@@ -65,7 +65,7 @@ const favoritesReducer = (state = {}, action) => {
             //return {...state, ...action.payload}
             newState[action.payload.id] = action.payload;
             return newState;
-        console.log(action.payload);
+        //console.log(action.payload);
         case DELETE_FAVORITE:
             delete newState[action.payload]
             return newState;

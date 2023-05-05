@@ -14,7 +14,7 @@ const ListingShow = () => {
     const listing = useSelector((state) => state.listings[id]);
     const currentUser = useSelector((state) => state.session.user);
     const favorites = useSelector(getFavorites)
-    console.log(favorites);
+   // console.log(favorites);
     const [currentFavorite, setCurrentFavorite] = useState({})
     const [isFavorite, setIsFavorite] = useState(false);
     const [map, setMap] = useState(null);
