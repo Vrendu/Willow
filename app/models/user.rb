@@ -32,6 +32,11 @@ class User < ApplicationRecord
     through: :favorites,
     source: :listing 
 
+    has_many :bookings,
+    class_name: :Booking,
+    foreign_key: :user_id,
+    dependent: :destroy
+
 
     def self.find_by_credentials(credential, password)
         field = credential =~ URI::MailTo::EMAIL_REGEXP ? :email : :username

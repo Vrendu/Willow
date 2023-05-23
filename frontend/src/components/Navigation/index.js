@@ -62,22 +62,16 @@ function Navigation() {
   const data = fetchDataForSearch();
   return (
     <div className='navbar'>
-      {/* <div className='searchbar'>
-        <SearchBar placeholder="Enter an address, city or zip code" data={data} setSearchResults={setSearchResults} setQuery={setQuery} />
-      </div> */}
-
-      
-      {/* <ListingIndex listings={searchResults} /> */}
-          <div className="home">
-            <NavLink to="/">
-              <img src="/logo.png" className="logo" alt="Zillow logo"/>
-            </NavLink>
-          </div>
+      <div className="home">
+          <NavLink to="/">
+            <img src="/logo.png" className="logo" alt="Zillow logo"/>
+          </NavLink>
+      </div>
       <div className="navbar-links">
-        <Link to="/searchresults" className="searchbar">
-        Search Listings
-      </Link>
-         {sessionLinks}
+        <div className="searchbar">
+          <SearchBar/>
+        </div>
+        {sessionLinks}
       </div>
      
     </div>

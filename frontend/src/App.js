@@ -24,7 +24,6 @@ function App() {
           <img
             src="/home_page_background.jpeg"
             className="home_page_background"
-            style={{ width: "100%", height: "60vh", transform: "translateY(15%)" }}
           />
           <div className= "banner-text" style={{
             position: "absolute",

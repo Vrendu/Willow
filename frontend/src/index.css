@@ -6,3 +6,9 @@
 .listings{
     margin-top: 5%;
 }
+
+.home_page_background{
+    width: 100%;
+    height: 60vh;
+    transform: translateY(15%);
+}

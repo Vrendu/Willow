@@ -108,6 +108,11 @@ const ListingShow = () => {
 
             <div className="details">
                 <div className="top">
+                    {currentUser && currentUser.id !== listing.poster_id && (
+                        <button className="favorite" onClick={toggleFavorite}>
+                            {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+                        </button>
+                    )}
                     <h1 className="show-header">
                         ${Math.floor(listing.price).toLocaleString()}{" "}
                     </h1>
@@ -123,7 +128,7 @@ const ListingShow = () => {
                     </div>
 
                     <p>{listing.description}</p>
-                    <p>Posted by {listing.poster_id}</p>
+                    <br></br>
                     {currentUser?.id === listing.poster_id && (
                         <p className="updateanddestroy">
                             <Link to={{ pathname: "/updatelisting", state: { listing } }}>
@@ -136,11 +141,7 @@ const ListingShow = () => {
                             </Link>
                         </p>
                     )}
-                    {currentUser && currentUser.id !== listing.poster_id && (
-                        <button className="favorite" onClick={toggleFavorite}>
-                            {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-                        </button>
-                    )}
+                    
                     <div id="map"></div>
                 </div>
                 

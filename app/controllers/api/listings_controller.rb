@@ -3,16 +3,8 @@ class Api::ListingsController < ApplicationController
 wrap_parameters :listing, include: Listing.attribute_names + [:photos]
 
     def index
-       # @query = params[:query]
-
-        # if @query 
-        #     @listings = Listing.joins(:tags)
-        #         .where("name ILIKE ? OR tags.tag_name ILIKE ?", "%#{query}%")
-        #     render: index
-        # else 
-            @listings = Listing.all
-            render :index
-       # end 
+        @listings = Listing.all
+        render :index
     end
   
     def show
@@ -30,6 +22,11 @@ wrap_parameters :listing, include: Listing.attribute_names + [:photos]
             render json: { errors: @listing.errors.full_messages }, status: :unprocessable_entity
         end
     end
+
+    def search 
+        @listings = Listing.where("city ILIKE ? OR state ILIKE ?", "%#{params[:search]}%")
+        render :index
+    end 
 
     def edit
         @listing = Listing.find(params[:id])

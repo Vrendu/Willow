@@ -36,6 +36,8 @@ class Listing < ApplicationRecord
     through: :favorites, 
     source: :user 
     
-    
+    has_many :bookings,
+    foreign_key: :listing_id,
+    class_name: :Booking
 
 end
