@@ -68,3 +68,43 @@
     height: 45vh;
     width: 95%;
 }
+
+.header-tools{
+    display: flex;
+    font-family: sans-serif;
+    font-weight: lighter;
+    justify-content: space-around;
+}
+
+.heart-filled {
+    color: red;
+    width: 25px;
+    height: 25px;
+}
+
+.heart-empty {
+    color: red;
+    font-size: 25px;
+}
+
+.tour-icon {
+    margin-right: 5px;
+    font-size: 25px;
+}
+
+.tour-icon.booked {
+    color: blue;
+}
+
+.tour-booked {
+    font-size: 16px;
+    cursor: pointer;
+    hover: {
+        text-decoration: underline;
+    }
+}
+
+.favorite{
+    cursor: pointer;
+}
+

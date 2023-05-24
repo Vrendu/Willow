@@ -2,13 +2,15 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session';
 import listings from './listingsActions';
-import favorites from './favoritesActions'
+import favorites from './favoritesActions';
+import bookings from './bookingsActions';
 // import favorites from './favoritesActions';
 
 const rootReducer = combineReducers({
   session,
   listings,
-  favorites
+  favorites,
+  bookings
 });
 
 let enhancer;

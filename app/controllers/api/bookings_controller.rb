@@ -1,10 +1,12 @@
 class Api::BookingsController < ApplicationController
+
+    #wrap_parameters :booking, include: Booking.attribute_names
     def create
         @booking = Booking.new(booking_params)
         if @booking.save
-        render :show
+            render :show
         else
-        render json: { errors: @booking.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: @booking.errors.full_messages }, status: :unprocessable_entity
         end
     end
     

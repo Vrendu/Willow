@@ -47,17 +47,20 @@ export const fetchBooking = (bookingID) => {
     }
 }
 
+
 export const createBooking = (booking) => {
+    console.log(booking);
     return async (dispatch) => {
         const response = await csrfFetch("/api/bookings", {
             method: "POST",
-            body: JSON.stringify(booking)
+            body: booking  // Pass the formData object as the body
         });
         const data = await response.json();
+
         dispatch(postBooking(data));
         return response;
-    }
-}
+    };
+};
 
 export const updateBooking = (booking) => {
     return async (dispatch) => {
@@ -84,7 +87,7 @@ export const deleteBooking = (bookingID) => {
 const initialState = {};
 
 const bookingsReducer = (state = initialState, action) => {
-    const newState = {...state}};
+    const newState = {...state};
     switch (action.type) {
         case "SET_BOOKINGS":
             return { ...state, ...action.payload };
@@ -92,7 +95,6 @@ const bookingsReducer = (state = initialState, action) => {
             newState[action.booking.id] = action.booking;
             return newState;
         case "POST_BOOKING":
-            newState = Object.assign({}, state);
             newState[action.booking.id] = action.booking;
             return newState;
         case "UPDATE_BOOKING":
@@ -104,6 +106,6 @@ const bookingsReducer = (state = initialState, action) => {
         default:
             return state;
     }
-}
+} 
 
 export default bookingsReducer;

@@ -3,8 +3,8 @@
 # Table name: bookings
 #
 #  id           :bigint           not null, primary key
-#  listing_id   :bigint           not null
-#  user_id      :bigint           not null
+#  listing_id   :integer          not null
+#  user_id      :integer          not null
 #  date         :date
 #  time         :time
 #  participants :integer
@@ -22,8 +22,9 @@ class Booking < ApplicationRecord
     foreign_key: :user_id
 
     validates :listing_id, :user_id, :date, :time, :participants, presence: true
-    
 
+    validates :user_id, uniqueness: { scope: :listing_id, message: "has already booked this listing" }
+    
   
         
     

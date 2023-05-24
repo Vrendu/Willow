@@ -8,16 +8,21 @@ import "./ListingShow.css";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { getFavorites } from "../../store/favoritesActions";
 import { fetchUser } from "../../store/session";
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { IoMdCalendar, IoMdAddCircle } from 'react-icons/io';
+import BookingFormModal from "../BookingFormModal";
+
 const ListingShow = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const listing = useSelector((state) => state.listings[id]);
     const currentUser = useSelector((state) => state.session.user);
     const favorites = useSelector(getFavorites)
-   // console.log(favorites);
     const [currentFavorite, setCurrentFavorite] = useState({})
     const [isFavorite, setIsFavorite] = useState(false);
     const [map, setMap] = useState(null);
+    const [tourBooked, setTourBooked] = useState(false);
+
     useEffect(() => {
         dispatch(fetchListing(id));
         if (currentUser){
@@ -95,6 +100,7 @@ const ListingShow = () => {
             }
         }
     };
+
     if (!listing){
         return null;
     }
@@ -109,9 +115,27 @@ const ListingShow = () => {
             <div className="details">
                 <div className="top">
                     {currentUser && currentUser.id !== listing.poster_id && (
-                        <button className="favorite" onClick={toggleFavorite}>
-                            {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-                        </button>
+                        <div className="header-tools">
+                            <div className="favorite" onClick={toggleFavorite}>
+                                {isFavorite ? <div> <FaHeart className="heart-filled" /> Saved to Favorites </div>: 
+                                    <div> <FaRegHeart className="heart-empty" /> Save to Favorites </div>
+                                }  
+                                
+                            </div> 
+                            <div className="booking" > 
+                                {tourBooked ? (
+                                    <div>
+                                        <IoMdCalendar className="tour-icon booked" />
+                                        <span className="tour-booked">Tour Booked!</span>
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <IoMdAddCircle className="tour-icon" />
+                                        <span className="tour-booked"><BookingFormModal/></span>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
                     )}
                     <h1 className="show-header">
                         ${Math.floor(listing.price).toLocaleString()}{" "}
