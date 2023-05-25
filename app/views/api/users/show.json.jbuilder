@@ -9,3 +9,11 @@ json.favorites do
         end
     end
 end
+
+json.bookings do
+    @user.bookings.each do |booking|
+        json.set! booking.id do 
+            json.(booking, :id, :user_id, :listing_id, :date, :time, :participants)
+        end  
+    end 
+end 

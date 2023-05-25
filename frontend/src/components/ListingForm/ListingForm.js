@@ -104,6 +104,7 @@ const ListingForm = () => {
     };
 
     return (
+        <div className="form-container">
         <form onSubmit={handleSubmit} className="form">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"></input>
             <label>
@@ -151,11 +152,12 @@ const ListingForm = () => {
                 <input type="file" onChange={(e) => handleImage(e)} multiple  />
             </label>
             {/* <Link to="/"> */}
-                <button type="submit">Create Listing</button>
+                <button type="submit" className="submit">Create Listing</button>
             {/* </Link> */}
             
             
         </form>
+        </div>
     );
 };
 

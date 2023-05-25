@@ -1,5 +1,11 @@
 import csrfFetch from "./csrf";
 
+// export const getBookings = (state) => {
+//     return state.bookings ? Object.values(state.bookings) : [];
+// }
+
+
+
 export const setBookings = (bookings) => {
     return { type: "SET_BOOKINGS", payload: bookings };
 }
@@ -18,12 +24,6 @@ export const changeBooking = (booking) => {
 
 export const destroyBooking = (bookingID) => {
     return {type: "DELETE_BOOKING", bookingID};
-}
-
-export const fetchDataForSearch = async () => {
-    const response = await fetch('/api/bookings');
-    const data = await response.json();
-    return data;
 }
 
 
@@ -53,11 +53,11 @@ export const createBooking = (booking) => {
     return async (dispatch) => {
         const response = await csrfFetch("/api/bookings", {
             method: "POST",
-            body: booking  // Pass the formData object as the body
+            body: JSON.stringify(booking)  // Pass the formData object as the body
         });
         const data = await response.json();
 
-        dispatch(postBooking(data));
+       // dispatch(postBooking(data));
         return response;
     };
 };
@@ -69,7 +69,7 @@ export const updateBooking = (booking) => {
             body: JSON.stringify(booking)
         });
         const data = await response.json();
-        dispatch(changeBooking(data));
+       // dispatch(changeBooking(data));
         return response;
     }
 }
@@ -79,7 +79,8 @@ export const deleteBooking = (bookingID) => {
         const response = await csrfFetch(`/api/bookings/${bookingID}`, {
             method: "DELETE"
         });
-        dispatch(destroyBooking(bookingID));
+        const data = await response.json();
+        dispatch(destroyBooking(data));
         return response;
     }
 }
@@ -100,7 +101,6 @@ const bookingsReducer = (state = initialState, action) => {
         case "UPDATE_BOOKING":
            
         case "DELETE_BOOKING":
-            newState = Object.assign({}, state);
             delete newState[action.bookingID];
             return newState;
         default:

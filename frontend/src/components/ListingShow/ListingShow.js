@@ -11,6 +11,7 @@ import { fetchUser } from "../../store/session";
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { IoMdCalendar, IoMdAddCircle } from 'react-icons/io';
 import BookingFormModal from "../BookingFormModal";
+import { fetchBookings } from "../../store/bookingsActions";
 
 const ListingShow = () => {
     const dispatch = useDispatch();
@@ -22,11 +23,13 @@ const ListingShow = () => {
     const [isFavorite, setIsFavorite] = useState(false);
     const [map, setMap] = useState(null);
     const [tourBooked, setTourBooked] = useState(false);
-
+    const bookings = useSelector((state) => state.bookings);
+    //console.log(bookings);
     useEffect(() => {
         dispatch(fetchListing(id));
+        
         if (currentUser){
-            dispatch(fetchUser(currentUser.id))
+            dispatch(fetchUser(currentUser.id))  
         }
 
     }, [dispatch]);
@@ -35,10 +38,29 @@ const ListingShow = () => {
     useEffect(() => {
         if(currentUser && listing){
             checkIsFavorite(); 
+            dispatch(fetchBookings());
         }
     }, [listing, currentUser, ])
 
-    
+    useEffect(() => {
+        if (currentUser && listing){
+            checkIsBooked();
+        }
+        
+    }, [bookings, currentUser, listing]);
+
+    const checkIsBooked = () => {
+        console.log(bookings, "bookings");
+
+        Object.keys(bookings).forEach((bookingKey) => {
+            const booking = bookings[bookingKey];
+            if (booking && currentUser && booking.listing_id === listing.id && booking.user_id === currentUser.id) {
+                setTourBooked(true);
+                console.log("found a match");
+            }
+        });
+    }
+
 
     useEffect(() => {
         const script = document.createElement("script");

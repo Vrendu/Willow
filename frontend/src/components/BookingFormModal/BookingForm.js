@@ -4,26 +4,22 @@ import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { createBooking } from "../../store/bookingsActions";
 import './BookingForm.css';
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function BookingForm() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [date, setDate] = useState();
     const [time, setTime] = useState();
     const [participants, setParticipants] = useState();
     const [errors, setErrors] = useState([]);
     const currentUser = useSelector((state) => state.session.user);
-    const listingID = useParams(); // Replace with the actual listing ID
+    const listingID = useParams(); 
 
     console.log(listingID);
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
-        // formData.append("booking[listing_id]", parseInt(listingID.id));
-        // formData.append("booking[date]", date);
-        // formData.append("booking[time]", time);
-        // formData.append("booking[participants]", participants);
-        // formData.append("booking[user_id]", currentUser.id);
 
         formData.append("listing_id", parseInt(listingID.id));
         formData.append("date", date);
@@ -34,8 +30,9 @@ function BookingForm() {
         // TODO: Perform validation on the form fields here
         // You can use the `setErrors` function to set any validation errors
 
-      
+        
         dispatch(createBooking(Object.fromEntries(formData.entries())))
+        history.go(0);
         //dispatch(createBooking(formData));
     };
 

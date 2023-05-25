@@ -105,6 +105,7 @@ const UpdateForm = ({listing}) => {
     //console.log(images)
 
     return (
+        <div className="form-container">
         <form onSubmit={handleSubmit} className="form">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"></input>
             <label>
@@ -155,6 +156,7 @@ const UpdateForm = ({listing}) => {
             <button type="submit">Update Listing</button>
 
         </form>
+        </div>
     );
 };
 

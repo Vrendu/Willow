@@ -8,6 +8,7 @@ import ListingShow from "./components/ListingShow/ListingShow";
 import ListingForm from "./components/ListingForm/ListingForm";
 import UpdateForm from "./components/UpdateForm/UpdateForm";
 import ListingIndex from "./components/ListingIndex/ListingIndex";
+import Profile from "./components/Profile/Profile";
 // import { ToastContainer } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 // import { ToastProvider } from 'react-toast-notifications';
@@ -42,6 +43,9 @@ function App() {
             <Listings></Listings>
           </div>
           
+        </Route>
+        <Route exact path="/profile">
+          <Profile></Profile>
         </Route>
         <Route exact path="/listings/:id">
           <ListingShow></ListingShow>
