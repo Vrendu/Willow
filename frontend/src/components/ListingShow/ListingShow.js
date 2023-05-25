@@ -56,7 +56,6 @@ const ListingShow = () => {
             const booking = bookings[bookingKey];
             if (booking && currentUser && booking.listing_id === listing.id && booking.user_id === currentUser.id) {
                 setTourBooked(true);
-                console.log("found a match");
             }
         });
     }
@@ -73,7 +72,7 @@ const ListingShow = () => {
             setMap(map);
         };
         document.body.appendChild(script);
-    }, []);
+    }, [listing, currentUser, ]);
 
     useEffect(() => {
         if (map && listing) {
