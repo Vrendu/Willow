@@ -1,0 +1,16 @@
+.booking-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 10%;
+}
+
+.book-now{
+    margin-top: 10%;
+}
+
+.error{
+    color: red;
+    font-family: sans-serif;
+}

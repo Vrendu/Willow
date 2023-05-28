@@ -8,6 +8,7 @@ import { fetchUser } from "../../store/session";
 import { fetchListings, getListings } from "../../store/listingsActions";
 import { Link } from "react-router-dom";
 import { FaCalendarAlt, FaClock, FaTimes } from "react-icons/fa";
+import UpdateBookingFormModal from "../UpdateBookingFormModal";
 
 function Profile() {
     const [activeTab, setActiveTab] = useState("bookings");
@@ -23,7 +24,7 @@ function Profile() {
     const [bookingToDelete, setBookingToDelete] = useState(null);
 
     useEffect(() => {
-        dispatch(fetchBookings());
+        dispatch(fetchBookings(currentUser.id));
         dispatch(fetchListings());
         if (currentUser) {
             dispatch(fetchUser(currentUser.id));
@@ -36,25 +37,25 @@ function Profile() {
     };
 
     const handleConfirmDelete = () => {
-        // Implement your logic to delete the booking with the given bookingId
-        // For example, you can dispatch an action to delete the booking from the store
-        console.log("Delete booking with id: ", bookingToDelete);
+       
         dispatch(deleteBooking(bookingToDelete));
 
-        // Reset the confirmation state
         setBookingToDelete(null);
         setShowConfirmation(false);
     };
 
     const handleCancelDelete = () => {
-        // Reset the confirmation state
         setBookingToDelete(null);
         setShowConfirmation(false);
     };
 
     function renderBookings() {
         if (Object.keys(bookings).length === 0) {
-            return <h1 className="no-bookings-message">No Tours Currently Booked</h1>;
+            return (
+                <div className="no-bookings-message">
+                    <h2>You have no bookings.</h2>
+                </div>
+            );
         }
         return (
             <div className="bookings">
@@ -82,6 +83,9 @@ function Profile() {
                                             <FaTimes className="delete-icon" onClick={() => handleDeleteBooking(booking.id)} />
                                             <span className="cancel-booking">Cancel Booking</span>
                                         </p>
+                                        <p className="update-booking">
+                                            <UpdateBookingFormModal listingId={listing.id} bookingId={booking.id} /> 
+                                        </p> 
                                         
                                     </div>
                                 </div>
@@ -114,7 +118,14 @@ function Profile() {
     }
 
     function renderFavorites() {
-        return (
+        if (Object.keys(favorites).length === 0) {
+            return (
+                <div className="no-favorites-message">
+                    <h2>You have no favorites.</h2>
+                </div>
+            );
+        }
+        return (  
             <div className="favorites">
                 {Object.keys(favorites).map((favoriteKey) => {
                     const favorite = favorites[favoriteKey];
@@ -146,7 +157,11 @@ function Profile() {
     }
 
     if (!currentUser) {
-        return null;
+        return (
+            <div className="profile-page">
+                <h1 className="log-in-message">Log in to View Profile</h1>
+            </div>
+        )
     }
 
     return (
@@ -163,7 +178,7 @@ function Profile() {
                 {showConfirmation && (
                     <div className="confirmation-modal">
                         <div className="confirmation-content">
-                            <p>Are you sure?</p>
+                            <p>Confirm Tour Delete?</p>
                             <div className="confirmation-buttons">
 
                                 <button onClick={handleConfirmDelete}>Yes</button>

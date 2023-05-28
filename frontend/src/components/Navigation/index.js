@@ -69,7 +69,9 @@ function Navigation() {
       </div>
       <div className="navbar-links">
         <div className="searchbar">
-          <SearchBar/>
+          <Link to ="/searchresults">
+            Search Listings
+            </Link>
         </div>
         {sessionLinks}
       </div>

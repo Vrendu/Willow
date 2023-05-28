@@ -137,21 +137,29 @@
     color: inherit;
     text-decoration: none;
 }
-.delete-icon{
+.delete-icon, .update-icon{
     width: 30px;
     height: 30px;
     color: black;
 }
 
-.delete-icon:hover{
+.delete-icon:hover, .update-icon:hover{
     color: red;
     cursor: pointer;
 }
 
-.cancel-booking{
+.cancel-booking, .update-booking2{
     font-size: 16px;
     color: black;
 }
+
+.update-booking2{
+    cursor: pointer;
+}
+
+ .update-booking:hover{
+    transform: translate(-3px, -3px);
+ }
 
 .delete-booking:hover{
     transform: translate(-3px, -3px);
@@ -165,13 +173,14 @@
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.2);
     z-index: 9999;
     /* Adjust the z-index as needed to ensure the modal appears above other elements */
 }
 
 .confirmation-content {
     text-align: center;
+    font-family: sans-serif;
 }
 
 .confirmation-content p {
@@ -188,8 +197,15 @@
     margin: 0 10px;
 }
 
-.no-bookings-message{
+.no-bookings-message, .no-favorites-message{
     font-family: sans-serif;
     position: relative;
     left: 35%;
+}
+
+.log-in-message{
+    font-family: sans-serif;
+    position: absolute;
+    left: 40%;
+    top: 30%;
 }

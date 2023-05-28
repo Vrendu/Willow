@@ -4,6 +4,7 @@ import { fetchListings, getListings } from '../../store/listingsActions';
 import { Link } from "react-router-dom";
 import { searchListings } from "../../store/listingsActions";
 import "./ListingIndex.css";
+import SearchBar from "../SearchBar/SearchBar";
 
 function ListingIndex() {
     const dispatch = useDispatch();
@@ -49,6 +50,7 @@ function ListingIndex() {
     return (
         <div>
             <div className="filters">
+                <SearchBar />
                 <div>
                     <label>Bedrooms:</label>
                     <select onChange={(e) => setBedrooms(e.target.value)}>

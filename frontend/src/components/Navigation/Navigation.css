@@ -55,12 +55,7 @@
   padding: 5px 0;
 }
 
-.profile-dropdown a:hover {
-  background-color: #0074E4;
-  color: #fff;
-}
-
-.profile-dropdown button {
+.profile-dropdown button{
   display: block;
   width: 100%;
   padding: 5px;
@@ -72,7 +67,7 @@
   text-align: left;
 }
 
-.profile-dropdown button:hover {
+.profile-dropdown button:hover{
   text-decoration: underline;
 }
 

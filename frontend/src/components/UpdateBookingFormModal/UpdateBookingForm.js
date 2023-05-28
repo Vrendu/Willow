@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import { createBooking } from "../../store/bookingsActions";
-import './BookingForm.css';
-import { useParams, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { updateBooking } from "../../store/bookingsActions";
+import './UpdateBookingForm.css';
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-function BookingForm() {
+function UpdateBookingForm({listingId, bookingId}) {
     const dispatch = useDispatch();
     const history = useHistory();
     const [date, setDate] = useState();
@@ -14,36 +14,37 @@ function BookingForm() {
     const [participants, setParticipants] = useState();
     const [errors, setErrors] = useState([]);
     const currentUser = useSelector((state) => state.session.user);
-    const listingID = useParams();
+    //const listingID = listingID;
 
-    console.log(listingID);
+    console.log(bookingId);
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         setErrors([]);
         const formData = new FormData();
-
-        formData.append("listing_id", parseInt(listingID.id));
+        formData.append("id", parseInt(bookingId));
+        formData.append("listing_id", parseInt(listingId));
         formData.append("date", date);
         formData.append("time", time);
         formData.append("participants", parseInt(participants));
         formData.append("user_id", parseInt(currentUser.id));
-        return(dispatch(createBooking(Object.fromEntries(formData.entries())))
-        .catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) {
-                setErrors(data.errors);
-            }
-            throw res;
-        }))
-        .then(() => history.go(0));
+        return (dispatch(updateBooking(Object.fromEntries(formData.entries())))
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) {
+                    setErrors(data.errors);
+                    console.log(data.errors);
+                }
+                throw res;
+            }))
+            .then(() => history.go(0));
 
-        
+
     };
 
     return (
         <div className="booking-form">
-            <h1>Booking Form</h1>
+            <h1>Update Booking Details</h1>
             <form onSubmit={handleSubmit}>
                 {/* Render form fields and error messages */}
                 <div>
@@ -72,7 +73,7 @@ function BookingForm() {
                         onChange={(e) => setParticipants(e.target.value)}
                     />
                 </div>
-                <button type="submit" className="book-now">Book Now</button>
+                <button type="submit" className="book-now">Update</button>
                 {/* Render error messages */}
                 {errors.map((error, index) => (
                     <p key={index} className="error">{error}</p>
@@ -82,4 +83,4 @@ function BookingForm() {
     );
 }
 
-export default BookingForm;
+export default UpdateBookingForm;

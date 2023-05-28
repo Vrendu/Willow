@@ -25,7 +25,15 @@ class Booking < ApplicationRecord
 
     validates :user_id, uniqueness: { scope: :listing_id, message: "has already booked this listing" }
     
-  
+    validates :participants, numericality: { greater_than_or_equal_to: 1, message: "cannot be less than 1"}
+
+    validate :unique_date_and_time_combination
+
+    def unique_date_and_time_combination
+      if Booking.exists?(listing_id: listing_id, date: date, time: time)
+        errors.add(:base, "This date and time combination is already booked")
+      end
+    end
         
     
 end

@@ -16,6 +16,7 @@ import { fetchBookings } from "../../store/bookingsActions";
 const ListingShow = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
+    
     const listing = useSelector((state) => state.listings[id]);
     const currentUser = useSelector((state) => state.session.user);
     const favorites = useSelector(getFavorites)
@@ -29,7 +30,8 @@ const ListingShow = () => {
         dispatch(fetchListing(id));
         
         if (currentUser){
-            dispatch(fetchUser(currentUser.id))  
+            dispatch(fetchUser(currentUser.id)) 
+             
         }
 
     }, [dispatch]);
@@ -38,7 +40,8 @@ const ListingShow = () => {
     useEffect(() => {
         if(currentUser && listing){
             checkIsFavorite(); 
-            dispatch(fetchBookings());
+            dispatch(fetchBookings(currentUser.id));
+            console.log(currentUser.id)
         }
     }, [listing, currentUser, ])
 
@@ -50,8 +53,6 @@ const ListingShow = () => {
     }, [bookings, currentUser, listing]);
 
     const checkIsBooked = () => {
-        console.log(bookings, "bookings");
-
         Object.keys(bookings).forEach((bookingKey) => {
             const booking = bookings[bookingKey];
             if (booking && currentUser && booking.listing_id === listing.id && booking.user_id === currentUser.id) {

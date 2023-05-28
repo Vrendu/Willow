@@ -16,8 +16,13 @@ class Api::BookingsController < ApplicationController
         render json: params[:id]
     end
 
-    def index 
-        @bookings = Booking.all
+    def index
+        if params[:user_id].present?
+            @bookings = Booking.where(user_id: params[:user_id])
+        else
+            @bookings = Booking.all
+        end
+
         render :index
     end
     
@@ -26,7 +31,7 @@ class Api::BookingsController < ApplicationController
         if @booking.update(booking_params)
             render :show
         else
-            render json: @booking.errors.full_messages, status: 422
+            render json: { errors: @booking.errors.full_messages },  status: 422
         end
     end
 

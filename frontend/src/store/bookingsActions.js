@@ -1,4 +1,5 @@
 import csrfFetch from "./csrf";
+import { SET_CURRENT_USER } from "./session";
 
 // export const getBookings = (state) => {
 //     return state.bookings ? Object.values(state.bookings) : [];
@@ -27,19 +28,22 @@ export const destroyBooking = (bookingID) => {
 }
 
 
-export const fetchBookings = () => {
+export const fetchBookings = (userID) => {
+   // console.log(userID);
     return (dispatch) => {
-        fetch("/api/bookings")
+        csrfFetch(`/api/bookings?user_id=${userID}`)
             .then((response) => response.json())
             .then((bookings) => {
+                console.log(bookings);
                 dispatch(setBookings(bookings));
+                
             });
     };
-}
+};
 
 export const fetchBooking = (bookingID) => {
     return (dispatch) => {
-        fetch(`/api/bookings/${bookingID}`)
+        csrfFetch(`/api/bookings/${bookingID}`)
         .then ((response) => response.json())
         .then((booking) => {
             dispatch(receiveBooking(booking))
@@ -49,28 +53,48 @@ export const fetchBooking = (bookingID) => {
 
 
 export const createBooking = (booking) => {
-    console.log(booking);
     return async (dispatch) => {
-        const response = await csrfFetch("/api/bookings", {
-            method: "POST",
-            body: JSON.stringify(booking)  // Pass the formData object as the body
-        });
-        const data = await response.json();
+        try {
+            const response = await csrfFetch("/api/bookings", {
+                method: "POST",
+                body: JSON.stringify(booking),
+            });
+            const data = await response.json();
+            return response;
+        } catch (error) {
+            let errors = [];
 
-       // dispatch(postBooking(data));
-        return response;
+            if (error.response && error.response.data && error.response.data.errors) {
+                errors = error.response.data.errors;
+            } else {
+                errors = [error.message];
+            }
+
+            throw error; // Rethrow the error to be caught by the caller
+        }
     };
 };
 
 export const updateBooking = (booking) => {
     return async (dispatch) => {
-        const response = await csrfFetch(`/api/bookings/${booking.id}`, {
+        try{
+            const response = await csrfFetch(`/api/bookings/${booking.id}`, {
             method: "PUT",
             body: JSON.stringify(booking)
-        });
-        const data = await response.json();
-       // dispatch(changeBooking(data));
-        return response;
+            });
+            const data = await response.json();
+            return response;
+        }
+        catch (error) {
+            let errors = [];
+            if (error.response && error.response.data && error.response.data.errors) {
+                errors = error.response.data.errors;
+            } else {
+                errors = [error.message];
+            }
+            console.log(errors);
+            throw error; // Rethrow the error to be caught by the caller
+        }       
     }
 }
 
