@@ -50,7 +50,7 @@ function ListingIndex() {
     return (
         <div>
             <div className="filters">
-                <SearchBar />
+                {/* <SearchBar /> */}
                 <div>
                     <label>Bedrooms:</label>
                     <select onChange={(e) => setBedrooms(e.target.value)}>

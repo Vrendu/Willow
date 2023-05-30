@@ -28,10 +28,17 @@ class Booking < ApplicationRecord
     validates :participants, numericality: { greater_than_or_equal_to: 1, message: "cannot be less than 1"}
 
     validate :unique_date_and_time_combination
+    validate :date_not_in_past
 
     def unique_date_and_time_combination
       if Booking.exists?(listing_id: listing_id, date: date, time: time)
         errors.add(:base, "This date and time combination is already booked")
+      end
+    end
+
+    def date_not_in_past
+      if date && date < Date.today
+        errors.add(:date, "is already past, please choose another date")
       end
     end
         
