@@ -131,7 +131,7 @@ const ListingForm = () => {
             <form onSubmit={handleSubmit} className="form">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"></input>
                 <label>
-                    Title:
+                    Title
                     <input type="text2" value={title} onChange={(e) => setTitle(e.target.value)} />
                 </label>
                 <label>
@@ -140,42 +140,42 @@ const ListingForm = () => {
                 </label>
                 <div className="address">
                     <label>
-                        Address:
+                        Address
                         <input type="text2" value={address} onChange={(e) => setAddress(e.target.value)} />
                     </label>
                     <label>
-                        City:
+                        City
                         <input type="text" value={city} onChange={(e) => setCity(e.target.value)} />
                     </label>
                     <label>
-                        State:
+                        State
                         <input type="text" value={state} onChange={(e) => setState(e.target.value)} />
                     </label>
                     <label>
-                        Zip Code:
+                        Zip Code
                         <input type="text" value={zipCode} onChange={(e) => setZipCode(e.target.value)} />
                     </label>
                 </div>
                 <div className="other-details">
                     <label>
-                        Price:
+                        Price
                         <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
                     </label>
                     <label>
-                        Bedrooms:
+                        Bedrooms
                         <input type="text" value={bedrooms} onChange={(e) => setBedrooms(e.target.value)} />
                     </label>
                     <label>
-                        Bathrooms:
+                        Bathrooms
                         <input type="text" value={bathrooms} onChange={(e) => setBathrooms(e.target.value)} />
                     </label>
                     <label>
-                        Square Feet:
+                        Square Feet
                         <input type="text" value={squareFeet} onChange={(e) => setSquareFeet(e.target.value)} />
                     </label>
                 </div>
                 <label>
-                    Images:
+                    Images
                     <input type="file" onChange={(e) => handleImage(e)} multiple  />
                 </label>
                 {/* <Link to="/"> */}
