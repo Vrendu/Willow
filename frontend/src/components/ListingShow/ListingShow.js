@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchListing, deleteListing } from "../../store/listingsActions";
 import { createFavorite, deleteFavorite } from "../../store/favoritesActions";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import "./ListingShow.css";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { getFavorites } from "../../store/favoritesActions";
@@ -15,8 +15,9 @@ import { fetchBookings } from "../../store/bookingsActions";
 
 const ListingShow = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const { id } = useParams();
-    
+    const [showConfirmation, setShowConfirmation] = useState(false);
     const listing = useSelector((state) => state.listings[id]);
     const currentUser = useSelector((state) => state.session.user);
     const favorites = useSelector(getFavorites)
@@ -106,8 +107,20 @@ const ListingShow = () => {
     
    
     const removeListing = () => {
-        dispatch(deleteListing(listing.id));
-        alert("Listing deleted")
+        //dispatch(deleteListing(listing.id));
+       // alert("Listing deleted")
+       setShowConfirmation(true);
+    };
+
+    const handleConfirmDelete = () => {
+        //removeListing();
+        dispatch(deleteListing(listing.id))
+        setShowConfirmation(false)
+        history.push("/");
+    };
+
+    const handleCancelDelete = () => {
+        setShowConfirmation(false);
     };
 
     const toggleFavorite = () => {
@@ -124,7 +137,14 @@ const ListingShow = () => {
     };
 
     if (!listing){
-        return null;
+        return (
+            <div className="no-listing-message">
+                <h2>Listing not found/deleted</h2>
+                {/* Link to home page, with label click to redirect to home page if 
+                it hasn't automatically happened */}
+                <Link to="/">Click to redirect to home page</Link>
+            </div>
+        );
     }
     return (
         <div className="show-page">
@@ -180,14 +200,24 @@ const ListingShow = () => {
                             <Link to={{ pathname: "/updatelisting", state: { listing } }}>
                                 <button className="update">Update Listing</button>
                             </Link>
-                            <Link to="/">
+                            {/* <Link to="/"> */}
                                 <button className="delete" onClick={() => removeListing()}>
                                     Delete Listing
                                 </button>
-                            </Link>
+                            {/* </Link> */}
                         </p>
                     )}
-                    
+                    {showConfirmation && (
+                    <div className="confirmation-modal">
+                        <div className="confirmation-content">
+                            <p>Confirm Listing Delete?</p>
+                            <div className="confirmation-buttons">
+
+                                <button onClick={handleConfirmDelete}>Yes</button>
+                                <button onClick={handleCancelDelete}>No</button>
+                            </div>
+                        </div>
+                    </div>)}
                     <div id="map"></div>
                 </div>
                 
