@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
 import { fetchListings, getListings } from '../../store/listingsActions';
 import "./Listings.css";
 import 'swiper/css/bundle';
@@ -14,11 +13,15 @@ const Listings = () => {
 
     useEffect(() => {
         dispatch(fetchListings());
-    },[dispatch]);
-    
-    if (!listings){
+    }, [dispatch]);
+
+    if (!listings) {
         return null;
     }
+
+    const reversedListings = [...listings].reverse();
+    const displayedListings = reversedListings.slice(0, 9);
+
     return (
         <div className="container">
             <Swiper
@@ -28,30 +31,30 @@ const Listings = () => {
                 navigation
                 mousewheel
             >
-                {listings.length > 0 &&
-                    listings.map((listing, index) =>
-                        listing && (
-                            <SwiperSlide key={listing.id}>
-                                <Link to={`/listings/${listing.id}`} className="card-link">
-                                    <div className="card">
-                                        <img src={listing.photos[0]} alt={listing.title} />
-                                        <div className="card-body">
-                                            <h3>${Math.floor(listing.price).toLocaleString()}</h3>
-                                            <p>
-                                                {listing.bedrooms} bd <span className="lighter">|</span>{" "}
-                                                {listing.bathrooms} ba{" "}
-                                                <span className="lighter">|</span>{" "}
-                                                {listing.square_feet} sqft
-                                            </p>
-                                            <p>{listing.address}</p>
-                                        </div>
+                {displayedListings.map((listing, index) =>
+                    listing && (
+                        <SwiperSlide key={listing.id}>
+                            <Link to={`/listings/${listing.id}`} className="card-link">
+                                <div className="card">
+                                    <img src={listing.photos[0]} alt={listing.title} />
+                                    <div className="card-body">
+                                        <h3>${Math.floor(listing.price).toLocaleString()}</h3>
+                                        <p>
+                                            {listing.bedrooms} bd <span className="lighter">|</span>{" "}
+                                            {listing.bathrooms} ba{" "}
+                                            <span className="lighter">|</span>{" "}
+                                            {listing.square_feet} sqft
+                                        </p>
+                                        <p>{listing.address}</p>
                                     </div>
-                                </Link>
-                            </SwiperSlide>
-                        )
-                    )}
+                                </div>
+                            </Link>
+                        </SwiperSlide>
+                    )
+                )}
             </Swiper>
         </div>
     );
 };
+
 export default Listings;

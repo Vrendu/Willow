@@ -58,7 +58,6 @@ export const fetchListing = (listingID) => {
 }
 
 export const createListing = (listing) => {
-
     return (dispatch) => {
         fetch("api/listings", {
             method: "POST",
@@ -67,13 +66,22 @@ export const createListing = (listing) => {
             },
             body: listing,
         })
-            .then((response) => response.json())
-            .then((newListing) => {
-                dispatch(postListing(newListing));
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
             })
-            //.catch((error) => //console.log(error));
+            .then((newListing) => {
+                // Dispatch the action only if there is no 422 error
+                if (!newListing.errors) {
+                    dispatch(postListing(newListing));
+                }
+            });
     };
-}
+};
+
 
 export const deleteListing = (listingID) => {
     return (dispatch) => {

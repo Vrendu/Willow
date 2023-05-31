@@ -21,28 +21,33 @@ function App() {
       
       <Switch>
         <Route exact path="/"> 
-        
-          <img
-            src="/home_page_background.jpeg"
-            className="home_page_background"
-          />
-          <div className= "banner-text" style={{
-            position: "absolute",
-            top: "40%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            textAlign: "center",
-            color: "#fff",
-            fontSize: "2.5rem",
-            fontFamily: "sans-serif",
+        <div className="home-page">
+            <img
+              src="/home_page_background.jpeg"
+              className="home_page_background"
+            />
+            <div className= "banner-text" style={{
+              position: "absolute",
+              top: "40%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              textAlign: "center",
+              color: "#fff",
+              fontSize: "2.5rem",
+              fontFamily: "sans-serif",
+              
+            }}>
+              Find a Home Today
+            </div>
             
-          }}>
-            Find a Home Today
+            <div className="listings">
+              <span className="recently-added-text">Recently Added Listings</span>
+              <div className ="listingsswiper">
+                <Listings></Listings>
+              </div>
+            </div>
+            
           </div>
-          <div className="listings">
-            <Listings></Listings>
-          </div>
-          
         </Route>
         <Route exact path="/profile">
           <Profile></Profile>

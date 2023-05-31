@@ -4,9 +4,10 @@ import { createListing } from "../../store/listingsActions";
 import "./UpdateForm.css";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { updateListing } from "../../store/listingsActions";
-import { useLocation } from "react-router-dom/cjs/react-router-dom";
+import { useLocation,useHistory } from "react-router-dom/cjs/react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useEffect from "react";
 
 const UpdateForm = ({listing}) => {
     const [address, setAddress] = useState("");
@@ -24,6 +25,13 @@ const UpdateForm = ({listing}) => {
     const currentUser = useSelector((state) => state.session.user);
     const listingID = useLocation().state?.listing.id
     const dispatch = useDispatch();
+    const history = useHistory();
+    const [message, setMessage] = useState([]);
+    const stateAbbreviations = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
+        "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+        "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+        "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+        "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -33,18 +41,30 @@ const UpdateForm = ({listing}) => {
         const bathroomsInt = parseInt(bathrooms);
         const squareFeetInt = parseInt(squareFeet);
         if (!address || !city || !state || !zipCode || !price || !bedrooms || !bathrooms || !squareFeet) {
-            alert("Please fill in all required fields.");
+            setMessage(["Please fill in all required fields"]);
             return;
         }
 
-        if (state.length != 2) {
-            alert("Please enter state name as abbreviation (eg. CA, NY, FL)")
+        if (state && stateAbbreviations.indexOf(state) === -1) {
+            setMessage(["Please enter state name as abbreviation (eg. CA, NY, FL)"]);
             return;
         }
 
         // Check that price, bedrooms, bathrooms, and square feet are valid integers
         if (isNaN(parseInt(price)) || isNaN(parseInt(bedrooms)) || isNaN(parseInt(bathrooms)) || isNaN(parseInt(squareFeet))) {
-            alert("Please enter valid numbers for price, bedrooms, bathrooms, and square feet.");
+            setMessage(["Please enter valid numbers for price, bedrooms, bathrooms, and square feet"]);
+            return;
+        }
+
+        //also check that price is at least 50000
+        if (priceInt < 50000) {
+            setMessage(["Please enter a price of at least $50,000"]);
+            return;
+        }
+
+        //Check that zip code is valid
+        if (zipCode.length !== 5 || isNaN(parseInt(zipCode))) {
+            setMessage(["Please enter valid zip code"]);
             return;
         }
 
@@ -80,7 +100,8 @@ const UpdateForm = ({listing}) => {
         setSquareFeet("");
         setImages([]);
         setImageUrls([]);
-        alert("Listing updated successfully!");
+        setMessage("Listing updated successfully! Redirecting to show page...");
+        history.push(`/listings/${listingID}`);
     };
 
     const handleImage = (e) => {
@@ -156,6 +177,11 @@ const UpdateForm = ({listing}) => {
             <button type="submit">Update Listing</button>
 
         </form>
+            <div className="message-container">
+                {message.map((message, index) => (
+                    <p key={index} className="error">{message}</p>
+                ))}
+            </div>
         </div>
     );
 };
