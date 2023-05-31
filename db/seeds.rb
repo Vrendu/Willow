@@ -190,7 +190,7 @@ Listing.create!(
   title: "Sunny Studio in the Mission District",
   description: "Bright and sunny studio apartment located in the heart of San Francisco's vibrant Mission District. Features a fully equipped kitchen, in-unit laundry, and easy access to public transportation.",
   price: 1000000,
-  bedrooms: 0,
+  bedrooms: 1,
   bathrooms: 1,
   address: "123 Mission St",
   city: "San Francisco",
