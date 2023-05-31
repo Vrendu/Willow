@@ -127,62 +127,68 @@ const UpdateForm = ({listing}) => {
 
     return (
         <div className="form-container">
-        <form onSubmit={handleSubmit} className="form">
-            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"></input>
-            <label>
-                Address:
-                <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
-            </label>
-            <label>
-                City:
-                <input type="text" value={city} onChange={(e) => setCity(e.target.value)} />
-            </label>
-            <label>
-                State:
-                <input type="text" value={state} onChange={(e) => setState(e.target.value)} />
-            </label>
-            <label>
-                Zip Code:
-                <input type="text" value={zipCode} onChange={(e) => setZipCode(e.target.value)} />
-            </label>
-            <label>
-                Price:
-                <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
-            </label>
-            <label>
-                Bedrooms:
-                <input type="text" value={bedrooms} onChange={(e) => setBedrooms(e.target.value)} />
-            </label>
-            <label>
-                Bathrooms:
-                <input type="text" value={bathrooms} onChange={(e) => setBathrooms(e.target.value)} />
-            </label>
-            <label>
-                Title:
-                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-            </label>
-            <label>
-                Description:
-                <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
-            </label>
-            <label>
-                Square Feet:
-                <input type="text" value={squareFeet} onChange={(e) => setSquareFeet(e.target.value)} />
-            </label>
-            <label>
-                Images:
-                <input type="file" multiple onChange={(e) => handleImage(e)} />
-            </label>
+            <form onSubmit={handleSubmit} className="form">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"></input>
+                <label>
+                    Title:
+                    <input type="text2" value={title} onChange={(e) => setTitle(e.target.value)} />
+                </label>
+                <label>
+                    Description:
+                    <textarea className="textarea" value={description} onChange={(e) => setDescription(e.target.value)} />
+                </label>
+                <div className="address">
+                    <label>
+                        Address:
+                        <input type="text2" value={address} onChange={(e) => setAddress(e.target.value)} />
+                    </label>
+                    <label>
+                        City:
+                        <input type="text" value={city} onChange={(e) => setCity(e.target.value)} />
+                    </label>
+                    <label>
+                        State:
+                        <input type="text" value={state} onChange={(e) => setState(e.target.value)} />
+                    </label>
+                    <label>
+                        Zip Code:
+                        <input type="text" value={zipCode} onChange={(e) => setZipCode(e.target.value)} />
+                    </label>
+                </div>
+                <div className="other-details">
+                    <label>
+                        Price:
+                        <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
+                    </label>
+                    <label>
+                        Bedrooms:
+                        <input type="text" value={bedrooms} onChange={(e) => setBedrooms(e.target.value)} />
+                    </label>
+                    <label>
+                        Bathrooms:
+                        <input type="text" value={bathrooms} onChange={(e) => setBathrooms(e.target.value)} />
+                    </label>
+                    <label>
+                        Square Feet:
+                        <input type="text" value={squareFeet} onChange={(e) => setSquareFeet(e.target.value)} />
+                    </label>
+                </div>
+                <label>
+                    Images:
+                    <input type="file" onChange={(e) => handleImage(e)} multiple />
+                </label>
+                {/* <Link to="/"> */}
+                <button type="submit" className="submit">Update Listing</button>
+                {/* </Link> */}
 
-            <button type="submit">Update Listing</button>
-
-        </form>
+            </form>
             <div className="message-container">
                 {message.map((message, index) => (
                     <p key={index} className="error">{message}</p>
                 ))}
             </div>
         </div>
+
     );
 };
 
