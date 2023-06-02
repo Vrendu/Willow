@@ -188,7 +188,7 @@ const ListingForm = () => {
             </form>
             <div className="message-container"> 
             {message.map((message, index) => (
-                    <p key={index} className="error">{message}</p>
+                    <p key={index} className="lerror">{message}</p>
                 ))}
             </div>
         </div>
