@@ -36,7 +36,7 @@ function ProfileButton({ user }) {
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
-          <li>Welcome {user.username}</li>
+          <li className="welcome">Welcome {user.username}</li>
           <li>
             <button>
               <Link to="/profile">User Profile</Link>

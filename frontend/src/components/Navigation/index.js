@@ -71,7 +71,9 @@ function Navigation() {
         <div className="searchbar">
           <Link to ="/searchresults">
             Search Listings
-            </Link>
+          </Link>
+          <a href=""> Github </a>
+          <a href=""> LinkedIn </a>
         </div>
         {sessionLinks}
       </div>

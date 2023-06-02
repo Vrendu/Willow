@@ -55,6 +55,10 @@
   padding: 5px 0;
 }
 
+.welcome{
+  font-family: sans-serif;
+}
+
 .profile-dropdown button{
   display: block;
   width: 100%;
@@ -144,6 +148,11 @@
   font-family: sans-serif;
   cursor: pointer;
   transition: color 0.3s ease-in-out;
+  width: 70%;
+}
+
+.searchbar a{
+  margin-right: 5%;
 }
 
 .filters{
