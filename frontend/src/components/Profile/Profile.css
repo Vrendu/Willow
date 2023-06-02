@@ -12,7 +12,7 @@
 
 .upcoming-tour:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.375);
-    
+    transition: all 0.4s ease-in-out;
 }
 
 .upcoming-tour img {
@@ -99,6 +99,7 @@
     font-family: sans-serif;
     cursor: pointer;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.307);
+    
 }
 
 .fcard:hover {

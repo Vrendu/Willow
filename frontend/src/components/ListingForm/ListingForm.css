@@ -1,40 +1,44 @@
-
+.background {
+    background-color: #f6f6f6;
+    height: 100vh;
+}
 
 .form-container {
     margin-top: 10%;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.307);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.307);
     border-radius: 20px;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
-    height: 100%;
+    max-width: 50%;
+    max-height: 70vh;
     margin-bottom: auto;
-    overflow: auto;
+    transition: all 0.4s ease-in-out;
+    background-color: white;
 }
 
+.form-container:hover{
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.375);
+    transform: translate(3px, -3px);
+    animation: fadeIn 1s ease-in-out;
+}
 
 
 .form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    /* Center items horizontally */
-    justify-content: center;
-    /* Center items vertically */
-    margin-bottom: 5%;
     margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
     font-family: sans-serif;
+   
 }
 
 label {
     margin-bottom: 10px;
-    font-weight: bold;
+    font-family: sans-serif;
+    
     color: #333;
 }
 
@@ -42,10 +46,11 @@ input[type="text"],
 textarea {
     padding: 8px;
     border: none;
+    border: 1px solid #ccc;
     border-bottom: 2px solid #ccc;
     margin-bottom: 15px;
     margin-right: 5px;
-    background-color: #f6f6f6;
+    /* background-color: #f6f6f6; */
     font-size: 16px;
     color: #333;
     width: 5vw;    
@@ -54,10 +59,11 @@ textarea {
 input[type="text2"]{
     padding: 8px;
     border: none;
+    border: 1px solid #ccc;
     border-bottom: 2px solid #ccc;
     margin-bottom: 15px;
     margin-right: 5px;
-    background-color: #f6f6f6;
+    /* background-color: #f6f6f6; */
     font-size: 16px;
     color: #333;
     width: 10vw;
@@ -66,11 +72,14 @@ input[type="text2"]{
 .textarea {
     width: 20vw;
     height: 20vh;
+    margin-left: 10%;
 }
 .address, .other-details{
     display: flex;
-    justify-content: space-between;
-    
+}
+
+.address{
+    margin-left: 5%;
 }
 
 input[type="file"] {
@@ -87,13 +96,10 @@ input[type="file"] {
     display: inline-block;
     font-size: 16px;
     border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    cursor: pointer;   
+    margin-bottom: 2%;
 }
 
-.submit:hover {
-    /* background-color: blue; */
-}
 
 .message-container {
     margin-top: 10px;
@@ -101,5 +107,5 @@ input[type="file"] {
 
 .error {
     color: red;
-    margin-bottom: 5px;
+    margin-left: 35%;
 }

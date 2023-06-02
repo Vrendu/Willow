@@ -125,9 +125,12 @@ const UpdateForm = ({listing}) => {
 
 
     return (
+        <div className="background">
+            <br></br>
         <div className="form-container">
             <form onSubmit={handleSubmit} className="form">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"></input>
+                <h3>Update Your Listing</h3>
                 <label>
                     Title
                     <input type="text2" value={title} onChange={(e) => setTitle(e.target.value)} />
@@ -177,7 +180,7 @@ const UpdateForm = ({listing}) => {
                     <input type="file" onChange={(e) => handleImage(e)} multiple />
                 </label>
                 {/* <Link to="/"> */}
-                <button type="submit" className="submit">Update Listing</button>
+                <button type="submit" className="submit">Update</button>
                 {/* </Link> */}
 
             </form>
@@ -187,7 +190,7 @@ const UpdateForm = ({listing}) => {
                 ))}
             </div>
         </div>
-
+        </div>
     );
 };
 

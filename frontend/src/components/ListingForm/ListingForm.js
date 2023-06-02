@@ -127,15 +127,18 @@ const ListingForm = () => {
     };
 
     return (
+        <div className="background">
+            <br></br>
         <div className="form-container">
             <form onSubmit={handleSubmit} className="form">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"></input>
+                <h3>Create Your Listing</h3>
                 <label>
                     Title
                     <input type="text2" value={title} onChange={(e) => setTitle(e.target.value)} />
                 </label>
                 <label>
-                    Description:
+                    Description
                     <textarea className="textarea" value={description} onChange={(e) => setDescription(e.target.value)} />
                 </label>
                 <div className="address">
@@ -179,7 +182,7 @@ const ListingForm = () => {
                     <input type="file" onChange={(e) => handleImage(e)} multiple  />
                 </label>
                 {/* <Link to="/"> */}
-                    <button type="submit" className="submit">Create Listing</button>
+                    <button type="submit" className="submit">Create</button>
                 {/* </Link> */}     
                 
             </form>
@@ -189,7 +192,7 @@ const ListingForm = () => {
                 ))}
             </div>
         </div>
-        
+        </div>
     );
 };
 

@@ -82,9 +82,7 @@
   transform: translateX(-50%);
 }
 
-.home:hover{
-  width: 40%;
-}
+
 
 .session-links{
   position: absolute;
