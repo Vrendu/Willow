@@ -137,15 +137,20 @@
     color: inherit;
     text-decoration: none;
 }
-.delete-icon, .update-icon{
+.delete-icon{
     width: 30px;
     height: 30px;
     color: black;
 }
 
-.delete-icon:hover, .update-icon:hover{
+.update-icon{
+    width: 25px;
+    height: 30px;
+    color: black;
+}
+
+.delete-icon:hover{
     color: red;
-    cursor: pointer;
 }
 
 .cancel-booking, .update-booking2{
@@ -163,6 +168,7 @@
 
 .delete-booking:hover{
     transform: translate(-3px, -3px);
+    cursor: pointer;
 }
 
 .confirmation-modal {

@@ -79,8 +79,8 @@ function Profile() {
                                         <br />
                                         <p>{listing.address}, {listing.city}, {listing.state} {listing.zip_code}</p>
                                         <br />
-                                        <p className="delete-booking">
-                                            <FaTimes className="delete-icon" onClick={() => handleDeleteBooking(booking.id)} />
+                                        <p className="delete-booking" onClick={() => handleDeleteBooking(booking.id)}>
+                                            <FaTimes className="delete-icon"  />
                                             <span className="cancel-booking">Cancel Booking</span>
                                         </p>
                                         <p className="update-booking">

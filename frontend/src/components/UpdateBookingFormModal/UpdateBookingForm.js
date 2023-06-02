@@ -16,7 +16,7 @@ function UpdateBookingForm({listingId, bookingId}) {
     const currentUser = useSelector((state) => state.session.user);
     //const listingID = listingID;
 
-    console.log(bookingId);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -33,7 +33,6 @@ function UpdateBookingForm({listingId, bookingId}) {
                 const data = await res.json();
                 if (data && data.errors) {
                     setErrors(data.errors);
-                    console.log(data.errors);
                 }
                 throw res;
             }))

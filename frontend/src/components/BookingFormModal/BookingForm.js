@@ -16,7 +16,7 @@ function BookingForm() {
     const currentUser = useSelector((state) => state.session.user);
     const listingID = useParams();
 
-    console.log(listingID);
+   
     const handleSubmit = async (e) => {
         e.preventDefault();
 

@@ -7,7 +7,7 @@ function UpdateBookingFormModal({ listingId, bookingId }) {
     const [showModal, setShowModal] = useState(false);
     return (
         <>
-            <span className="update-booking2" onClick={() => setShowModal(true)}> <AiOutlineCheckCircle className="delete-icon"/> Update Booking </span>
+            <span className="update-booking2" onClick={() => setShowModal(true)}> <AiOutlineCheckCircle className="update-icon"/> Update Booking </span>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <UpdateBookingForm listingId={listingId} bookingId={bookingId} />

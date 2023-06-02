@@ -82,6 +82,10 @@
   transform: translateX(-50%);
 }
 
+.home:hover{
+  width: 40%;
+}
+
 .session-links{
   position: absolute;
   top: calc(3vh + 10px);
@@ -138,13 +142,16 @@
   font-size: 16px;
   font-family: sans-serif;
   cursor: pointer;
-  transition: color 0.3s ease-in-out;
 }
 
+.create-listing:hover{
+  color: #007ac9;
+  transition: color 0.3s ease-in-out;
+}
 .searchbar{
   position: absolute;
   top: calc(3vh + 10px);
-  left: calc(10vw + 10px);
+  left: calc(6vw + 10px);
   font-family: sans-serif;
   cursor: pointer;
   transition: color 0.3s ease-in-out;
@@ -153,6 +160,14 @@
 
 .searchbar a{
   margin-right: 5%;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+  color: black;
+}
+
+.searchbar a:hover{
+  color: #007ac9;
+  transition: color 0.3s ease-in-out;
 }
 
 .filters{

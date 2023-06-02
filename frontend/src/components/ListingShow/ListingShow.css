@@ -53,6 +53,10 @@
     position: fixed;
 }
 
+.listing-description{
+    font-family: sans-serif;
+}
+
 .updateanddestroy{
     display: block;
 }

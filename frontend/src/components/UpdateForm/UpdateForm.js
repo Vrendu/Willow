@@ -123,7 +123,6 @@ const UpdateForm = ({listing}) => {
         else setImageUrls([]);
     };
 
-    //console.log(images)
 
     return (
         <div className="form-container">

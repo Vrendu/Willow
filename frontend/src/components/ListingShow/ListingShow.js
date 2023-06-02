@@ -26,7 +26,7 @@ const ListingShow = () => {
     const [map, setMap] = useState(null);
     const [tourBooked, setTourBooked] = useState(false);
     const bookings = useSelector((state) => state.bookings);
-    //console.log(bookings);
+   
     useEffect(() => {
         dispatch(fetchListing(id));
         
@@ -42,7 +42,6 @@ const ListingShow = () => {
         if(currentUser && listing){
             checkIsFavorite(); 
             dispatch(fetchBookings(currentUser.id));
-            console.log(currentUser.id)
         }
     }, [listing, currentUser, ])
 
@@ -172,7 +171,7 @@ const ListingShow = () => {
                                     </div>
                                 ) : (
                                     <div>
-                                        <IoMdAddCircle className="tour-icon" />
+                                        
                                         <span className="tour-booked"><BookingFormModal/></span>
                                     </div>
                                 )}
@@ -193,7 +192,7 @@ const ListingShow = () => {
                         {listing.city} {", "} {listing.state} {" "} {listing.zip_code}
                     </div>
 
-                    <p>{listing.description}</p>
+                    <p className="listing-description">{listing.description}</p>
                     <br></br>
                     {currentUser?.id === listing.poster_id && (
                         <p className="updateanddestroy">

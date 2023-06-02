@@ -10,6 +10,7 @@ import * as sessionActions from "../../store/session";
 import SearchBar from '../SearchBar/SearchBar';
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { fetchDataForSearch } from '../../store/listingsActions';
+import { FaSearch, FaGithub, FaLinkedin } from 'react-icons/fa';
 
 function Navigation() {
   const sessionUser = useSelector(state => state.session.user);
@@ -69,11 +70,15 @@ function Navigation() {
       </div>
       <div className="navbar-links">
         <div className="searchbar">
-          <Link to ="/searchresults">
-            Search Listings
+          <Link to="/searchresults">
+            <FaSearch className="icon" /> Search Listings
           </Link>
-          <a href=""> Github </a>
-          <a href=""> LinkedIn </a>
+          <a href="https://github.com/Vrendu">
+            <FaGithub className="icon" /> Github
+          </a>
+          <a href="https://www.linkedin.com/in/vamshi-renduchintala-216571271/">
+            <FaLinkedin className="icon" /> LinkedIn
+          </a>
         </div>
         {sessionLinks}
       </div>

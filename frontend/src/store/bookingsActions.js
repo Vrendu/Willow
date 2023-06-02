@@ -29,12 +29,10 @@ export const destroyBooking = (bookingID) => {
 
 
 export const fetchBookings = (userID) => {
-   // console.log(userID);
     return (dispatch) => {
         csrfFetch(`/api/bookings?user_id=${userID}`)
             .then((response) => response.json())
             .then((bookings) => {
-                console.log(bookings);
                 dispatch(setBookings(bookings));
                 
             });
@@ -92,7 +90,6 @@ export const updateBooking = (booking) => {
             } else {
                 errors = [error.message];
             }
-            console.log(errors);
             throw error; // Rethrow the error to be caught by the caller
         }       
     }
