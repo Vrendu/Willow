@@ -85,6 +85,7 @@ function ListingIndex() {
                     <label>City:</label>
                     <select onChange={(e) => setCity(e.target.value)}>
                         <option value="">Any</option>
+                        <option value="San Francisco">San Francisco</option>
                         <option value="Los Angeles">Los Angeles</option>
                         <option value="New York">New York City</option>
                         <option value="Houston">Houston</option>

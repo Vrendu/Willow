@@ -60,6 +60,10 @@
 }
 
 .filters{
+    top: 0%;
+    left: 10%;
     display: flex;
     justify-content: space-between;
 }
+
+
