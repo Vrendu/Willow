@@ -27,16 +27,6 @@ export const fetchDataForSearch = async () => {
     return data;
 }
 
-// export const searchListings = (query) => {
-//     return (dispatch) => {
-//         fetch("/api/listings?query=")
-//             .then((response) => response.json())
-//             .then((listings) => {
-//                 dispatch(setListings(listings));
-//             });
-//     };
-// }
-
 export const fetchListings = () => {
     return (dispatch) => {
         fetch("/api/listings")
@@ -120,6 +110,7 @@ export const getListings = (state) => {
 }
 
 
+
 const listingsReducer = (state = {}, action) => {
     const newState = {...state}
     switch (action.type) {
@@ -141,3 +132,4 @@ const listingsReducer = (state = {}, action) => {
 };
 
 export default listingsReducer;
+

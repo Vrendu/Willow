@@ -9,6 +9,10 @@ import SearchBar from "../SearchBar/SearchBar";
 function ListingIndex() {
     const dispatch = useDispatch();
     const listings = useSelector(getListings);
+    const cities = listings.map(listing => listing.city)
+        .filter((city, index, self) => self.indexOf(city) === index);
+    const states = listings.map(listing => listing.state)
+        .filter((state, index, self) => self.indexOf(state) === index);
 
     const [bedrooms, setBedrooms] = useState(null);
     const [bathrooms, setBathrooms] = useState(null);
@@ -17,14 +21,12 @@ function ListingIndex() {
     const [city, setCity] = useState(null);
 
     useEffect(() => {
-        // dispatch action to fetch listings with selected filters
-        //dispatch(fetchListings({ bedrooms, bathrooms, price, state, city }));
+        
         dispatch(fetchListings())
     }, [dispatch, bedrooms, bathrooms, price, state, city]);
 
 
     const filteredListings = listings.filter(listing => {
-        // Check if the listing matches the selected filter options
         if (bedrooms && listing.bedrooms <= bedrooms) {
             return false;
         }
@@ -40,7 +42,7 @@ function ListingIndex() {
         if (state && listing.state !== state) {
             return false;
         }
-        // If all filter options are null or match the listing, include the listing
+        
         return true;
     });
 
@@ -48,33 +50,33 @@ function ListingIndex() {
         return null;
     }
     return (
-        <div>
+        <div className="index-page">
             <div className="filters">
                 {/* <SearchBar /> */}
                 <div>
-                    <label>Bedrooms:</label>
+                    {/* <label>Bedrooms:</label> */}
                     <select onChange={(e) => setBedrooms(e.target.value)}>
-                        <option value="">Any</option>
-                        <option value="1">1+</option>
-                        <option value="2">2+</option>
-                        <option value="3">3+</option>
-                        <option value="4">4+</option>
+                        <option value="">Bedrooms</option>
+                        <option value="1">1+ bd</option>
+                        <option value="2">2+ bd</option>
+                        <option value="3">3+ bd</option>
+                        <option value="4">4+ bd</option>
                     </select>
                 </div>
                 <div>
-                    <label>Bathrooms:</label>
+                    {/* <label>Bathrooms:</label> */}
                     <select onChange={(e) => setBathrooms(e.target.value)}>
-                        <option value="">Any</option>
-                        <option value="1">1+</option>
-                        <option value="2">2+</option>
-                        <option value="3">3+</option>
-                        <option value="4">4+</option>
+                        <option value="">Bathrooms</option>
+                        <option value="1">1+ ba</option>
+                        <option value="2">2+ ba</option>
+                        <option value="3">3+ ba</option>
+                        <option value="4">4+ ba</option>
                     </select>
                 </div>
                 <div>
-                    <label>Price:</label>
+                    {/* <label>Price:</label> */}
                     <select onChange={(e) => setPrice(e.target.value)}>
-                        <option value="">Any</option>
+                        <option value="">Price</option>
                         <option value="500000">$500,000+</option>
                         <option value="1000000">$1,000,000+</option>
                         <option value="2000000">$2,000,000+</option>
@@ -82,29 +84,26 @@ function ListingIndex() {
                 </div>
                
                 <div>
-                    <label>City:</label>
+                    {/* <label>City:</label> */}
                     <select onChange={(e) => setCity(e.target.value)}>
-                        <option value="">Any</option>
-                        <option value="San Francisco">San Francisco</option>
-                        <option value="Los Angeles">Los Angeles</option>
-                        <option value="New York">New York City</option>
-                        <option value="Houston">Houston</option>
-                        <option value="Miami">Miami</option>
+                        <option value="">City</option>
+                        {cities.map((city, index) => (
+                            <option key={index} value={city}>{city}</option>
+                        ))}
                     </select>
                 </div>
                 <div>
-                    <label>State:</label>
+                    {/* <label>State:</label> */}
                     <select onChange={(e) => setState(e.target.value)}>
-                        <option value="">Any</option>
-                        <option value="CA">California</option>
-                        <option value="NY">New York</option>
-                        <option value="TX">Texas</option>
-                        <option value="FL">Florida</option>
+                        <option value="">State</option>
+                        {states.map((state, index) => (
+                            <option key={index} value={state}>{state}</option>
+                        ))}
                     </select>
                 </div>
             </div>
-        <div className="container">
-
+        <div className="index-container">
+                            
                 {filteredListings.map(listing => (
                     <Link to={`/listings/${listing.id}`} key={listing.id} className="card-link">
                         <div className="card">
