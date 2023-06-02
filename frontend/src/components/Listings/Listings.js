@@ -24,13 +24,19 @@ const Listings = () => {
 
     return (
         <div className="container">
+            <div className="swiper-button-prev"></div>
+            <div className="swiper-button-next"></div>
             <Swiper
                 modules={[Navigation, Mousewheel]}
                 spaceBetween={50}
                 slidesPerView={3}
-                navigation
+                navigation={{
+                    prevEl: '.swiper-button-prev',
+                    nextEl: '.swiper-button-next',
+                }}
                 mousewheel
             >
+                
                 {displayedListings.map((listing, index) =>
                     listing && (
                         <SwiperSlide key={listing.id}>
@@ -52,7 +58,9 @@ const Listings = () => {
                         </SwiperSlide>
                     )
                 )}
+                
             </Swiper>
+            
         </div>
     );
 };
