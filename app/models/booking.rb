@@ -22,8 +22,6 @@ class Booking < ApplicationRecord
     foreign_key: :user_id
 
     validates :listing_id, :user_id, :date, :time, :participants, presence: true
-
-    validates :user_id, uniqueness: { scope: :listing_id, message: "has already booked this listing" }
     
     validates :participants, numericality: { greater_than_or_equal_to: 1, message: "cannot be less than 1"}
 

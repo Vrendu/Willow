@@ -55,7 +55,8 @@ const ListingShow = () => {
     const checkIsBooked = () => {
         Object.keys(bookings).forEach((bookingKey) => {
             const booking = bookings[bookingKey];
-            if (booking && currentUser && booking.listing_id === listing.id && booking.user_id === currentUser.id) {
+            // needs an additional check that the date is not in the past
+            if (booking && currentUser && booking.listing_id === listing.id && booking.user_id === currentUser.id && new Date(booking.date) >= new Date()) {
                 setTourBooked(true);
             }
         });
@@ -106,13 +107,10 @@ const ListingShow = () => {
     
    
     const removeListing = () => {
-        //dispatch(deleteListing(listing.id));
-       // alert("Listing deleted")
        setShowConfirmation(true);
     };
 
     const handleConfirmDelete = () => {
-        //removeListing();
         dispatch(deleteListing(listing.id))
         setShowConfirmation(false)
         history.push("/");
@@ -139,8 +137,6 @@ const ListingShow = () => {
         return (
             <div className="no-listing-message">
                 <h2>Listing not found/deleted</h2>
-                {/* Link to home page, with label click to redirect to home page if 
-                it hasn't automatically happened */}
                 <Link to="/">Click to redirect to home page</Link>
             </div>
         );
@@ -199,11 +195,9 @@ const ListingShow = () => {
                             <Link to={{ pathname: "/updatelisting", state: { listing } }}>
                                 <button className="update">Update Listing</button>
                             </Link>
-                            {/* <Link to="/"> */}
-                                <button className="delete" onClick={() => removeListing()}>
-                                    Delete Listing
-                                </button>
-                            {/* </Link> */}
+                            <button className="delete" onClick={() => removeListing()}>
+                                Delete Listing
+                            </button>
                         </p>
                     )}
                     {showConfirmation && (

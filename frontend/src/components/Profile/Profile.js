@@ -60,8 +60,8 @@ function Profile() {
         return (
             <div className="bookings">
                 {Object.keys(bookings).map((bookingKey) => {
-                    const booking = bookings[bookingKey];
-                    if (booking && currentUser && booking.user_id === currentUser.id) {
+                    const booking = bookings[bookingKey];  
+                    if (new Date(booking.date) > new Date()) {
                         const listing = listings.find((listing) => listing.id === booking.listing_id);
                         if (listing && listing.photos.length > 0) {
                             const formattedTime = new Date(booking.time).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
@@ -111,6 +111,48 @@ function Profile() {
                                 </div>
                             );
                         }
+                    }
+                })}
+            </div>
+        );
+    }
+
+    function renderPastTours() {
+        if (Object.keys(bookings).length === 0) {
+            return (
+                <div className="no-bookings-message">
+                    <h2>You have no past tours.</h2>
+                </div>
+            );
+        }
+        return (
+            <div className="bookings">
+                {Object.keys(bookings).map((bookingKey) => {
+                    const booking = bookings[bookingKey];
+                    if (new Date(booking.date) < new Date()) {
+                        const listing = listings.find((listing) => listing.id === booking.listing_id);
+                        if (listing && listing.photos.length > 0) {
+                            const formattedTime = new Date(booking.time).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+                            return (
+                                <div className="upcoming-tour" key={booking.id}>
+                                    <img src={listing.photos[0]} alt={listing.title} />
+                                    <div className="tour-details">
+                                        <h3>{listing.title}</h3>
+                                        <p>
+                                            <FaCalendarAlt className="tour-icon" /> {booking.date}
+                                        </p>
+                                        <p>
+                                            <FaClock className="tour-icon" /> {formattedTime}
+                                        </p>
+                                        <br />
+                                        <p>{listing.address}, {listing.city}, {listing.state} {listing.zip_code}</p>     
+                                        <h3 className="thankyoumessage"> Thank you for touring!</h3>
+                                        <br></br>
+                                        <Link to={`/listings/${listing.id}`} className="viewlistingagain"> Check out this Listing again</Link>
+                                    </div>
+                                </div>
+                            );
+                        } 
                     }
                 })}
             </div>
@@ -171,9 +213,13 @@ function Profile() {
                     <span className="bookings-button" onClick={() => setActiveTab("bookings")}>
                         Upcoming Tours
                     </span>
+                    <span className="past-tours-button" onClick={() => setActiveTab("past-tours")}>
+                        Past Tours
+                    </span>
                     <span className="favorites-button" onClick={() => setActiveTab("favorites")}>
                         Your Favorites
                     </span>
+                    
                 </div>
                 {showConfirmation && (
                     <div className="confirmation-modal">
@@ -189,6 +235,7 @@ function Profile() {
                 )}
                 {activeTab === "bookings" && renderBookings()}
                 {activeTab === "favorites" && renderFavorites()}
+                {activeTab === "past-tours" && renderPastTours()}
                 
             </div>
         </div>

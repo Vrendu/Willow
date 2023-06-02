@@ -64,12 +64,12 @@
     justify-content: space-evenly;
 }
 
-.bookings-button, .favorites-button{
+.bookings-button, .favorites-button, .past-tours-button{
     cursor: pointer;
     font-family: sans-serif;
     font-size: x-large;
 }
-.bookings-button:hover, .favorites-button:hover{
+.bookings-button:hover, .favorites-button:hover, .past-tours-button:hover{
     color: #0074E4;
 }
 
@@ -83,6 +83,21 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
     
+}
+
+.thankyoumessage{
+    color:red;
+    font-family: sans-serif;
+    align-self: center;
+}
+
+.viewlistingagain{
+    align-self: center;
+    text-decoration: none;
+    &:hover{
+        color: #0074E4;
+        cursor: pointer;
+    }
 }
 
 .fcard {
