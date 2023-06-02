@@ -41,7 +41,7 @@ function App() {
             </div>
             
             <div className="listings">
-              <span className="recently-added-text">Recently Added Listings</span>
+              <span className="recently-added-text">Recently Added</span>
               <div className ="listingsswiper">
                 <Listings></Listings>
               </div>

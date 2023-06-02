@@ -24,8 +24,7 @@ const Listings = () => {
 
     return (
         <div className="container">
-            <div className="swiper-button-prev"></div>
-            <div className="swiper-button-next"></div>
+            
             <Swiper
                 modules={[Navigation, Mousewheel]}
                 spaceBetween={50}
@@ -36,7 +35,8 @@ const Listings = () => {
                 }}
                 mousewheel
             >
-                
+            <div className="swiper-button-prev"></div>
+            <div className="swiper-button-next"></div>
                 {displayedListings.map((listing, index) =>
                     listing && (
                         <SwiperSlide key={listing.id}>
