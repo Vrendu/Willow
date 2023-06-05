@@ -183,7 +183,7 @@ const ListingShow = () => {
                         {listing.square_feet} sqft
                     </span>{" "}
                     <br></br>
-                    <div className="address">
+                    <div className="laddress">
                         {listing.address} {" "}
                         {listing.city} {", "} {listing.state} {" "} {listing.zip_code}
                     </div>

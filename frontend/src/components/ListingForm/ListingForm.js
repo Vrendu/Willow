@@ -135,7 +135,7 @@ const ListingForm = () => {
                 <h3>Create Your Listing</h3>
                 <label>
                     Title
-                    <input type="text2" value={title} onChange={(e) => setTitle(e.target.value)} />
+                    <input type="text3" value={title} onChange={(e) => setTitle(e.target.value)} />
                 </label>
                 <label>
                     Description
@@ -165,15 +165,15 @@ const ListingForm = () => {
                         <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
                     </label>
                     <label>
-                        Bedrooms
+                        Bed
                         <input type="text" value={bedrooms} onChange={(e) => setBedrooms(e.target.value)} />
                     </label>
                     <label>
-                        Bathrooms
+                        Bath
                         <input type="text" value={bathrooms} onChange={(e) => setBathrooms(e.target.value)} />
                     </label>
                     <label>
-                        Square Feet
+                        Square Ft
                         <input type="text" value={squareFeet} onChange={(e) => setSquareFeet(e.target.value)} />
                     </label>
                 </div>
@@ -181,16 +181,15 @@ const ListingForm = () => {
                     Images
                     <input type="file" onChange={(e) => handleImage(e)} multiple  />
                 </label>
-                {/* <Link to="/"> */}
-                    <button type="submit" className="submit">Create</button>
-                {/* </Link> */}     
-                
+                <button type="submit" className="submit">Create</button>
+
+                <div className="message-container"> 
+                    {message.map((message, index) => (
+                        <p key={index} className="lerror">{message}</p>
+                    ))}
+                </div>
             </form>
-            <div className="message-container"> 
-            {message.map((message, index) => (
-                    <p key={index} className="lerror">{message}</p>
-                ))}
-            </div>
+            
         </div>
         </div>
     );

@@ -11,6 +11,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { fetchDataForSearch } from '../../store/listingsActions';
 import { FaSearch, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { useEffect } from 'react';
 
 function Navigation() {
   const sessionUser = useSelector(state => state.session.user);
@@ -61,6 +62,21 @@ function Navigation() {
     setSearchResults(data.results);
   };
   const data = fetchDataForSearch();
+
+  const [showMenu, setShowMenu] = useState(false);
+  const openMenu = () => {
+    if (showMenu) return;
+    setShowMenu(true);
+  };
+  useEffect(() => {
+    if (!showMenu) return;
+    const closeMenu = () => {
+      setShowMenu(false);
+    };
+    document.addEventListener('click', closeMenu);
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
+
   return (
     <div className='navbar'>
       <div className="home">
@@ -73,12 +89,28 @@ function Navigation() {
           <Link to="/searchresults">
             <FaSearch className="icon" /> Search Listings
           </Link>
-          <a href="https://github.com/Vrendu">
-            <FaGithub className="icon" /> Github
-          </a>
-          <a href="https://www.linkedin.com/in/vamshi-renduchintala-216571271/">
-            <FaLinkedin className="icon" /> LinkedIn
-          </a>
+          <span className='aboutme' onClick={openMenu}>About Me</span>
+          {showMenu && (
+            <ul className="aboutme-dropdown">
+              <li> 
+                 <a href="https://github.com/Vrendu">
+                    <FaGithub className="icon" /> Github
+                 </a>
+              </li>
+              <br></br>
+              <li>
+                <a href="https://www.linkedin.com/in/vamshi-renduchintala-216571271/">
+                  <FaLinkedin className="icon" /> LinkedIn
+                </a>
+              </li>
+              <br></br>
+              <li>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </li>
+            </ul>
+          )}
+         
+          
         </div>
         {sessionLinks}
       </div>

@@ -12,10 +12,11 @@
     margin-left: auto;
     margin-right: auto;
     max-width: 50%;
-    max-height: 70vh;
+    max-height: 80vh;
     margin-bottom: auto;
     transition: all 0.4s ease-in-out;
     background-color: white;
+    overflow: auto;
 }
 
 .form-container:hover{
@@ -28,11 +29,15 @@
 .form {
     display: flex;
     flex-direction: column;
-    margin-top: 5%;
+    margin-top: auto;
     margin-left: auto;
     margin-right: auto;
     font-family: sans-serif;
-   
+}
+
+.textarea{
+    min-width: 30vw;
+    min-height: 20vh;
 }
 
 label {
@@ -42,8 +47,7 @@ label {
     color: #333;
 }
 
-input[type="text"],
-textarea {
+input[type="text"] {
     padding: 8px;
     border: none;
     border: 1px solid #ccc;
@@ -53,7 +57,7 @@ textarea {
     /* background-color: #f6f6f6; */
     font-size: 16px;
     color: #333;
-    width: 5vw;    
+    width: 3vw;    
 }
 
 input[type="text2"]{
@@ -69,18 +73,27 @@ input[type="text2"]{
     width: 10vw;
 }
 
-.textarea {
-    width: 20vw;
-    height: 20vh;
-    margin-left: 10%;
-}
-.address, .other-details{
-    display: flex;
+input[type="text3"] {
+    padding: 8px;
+    border: none;
+    border: 1px solid #ccc;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 15px;
+    margin-right: 5px;
+    /* background-color: #f6f6f6; */
+    font-size: 16px;
+    color: #333;
+    width: 15vw;
+    height: 3vh;
 }
 
-.address{
-    margin-left: 5%;
+
+.address, .other-details{
+    display: flex;
+    justify-content: space-between;
 }
+
+
 
 input[type="file"] {
     margin-bottom: 15px;
@@ -100,13 +113,7 @@ input[type="file"] {
     margin-bottom: 2%;
 }
 
-
-.message-container {
-    margin-top: 10px;
-}
-
 .lerror {
     color: red;
-    margin-left: 35%;
     font-family: sans-serif;
 }
