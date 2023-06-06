@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { createListing } from "../../store/listingsActions";
 import "./ListingForm.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-
+import { useDropzone } from 'react-dropzone';
+//import 'react-dropzone/dist/styles.css';
+import { FaTimes } from 'react-icons/fa';
 
 const ListingForm = () => {
     const [address, setAddress] = useState("");
@@ -27,6 +29,12 @@ const ListingForm = () => {
                                 "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
                                 "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
                                 "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
+
+    const { getRootProps, getInputProps } = useDropzone({
+        accept: "image/*",
+        onDrop: (acceptedFiles) => handleImage(acceptedFiles),
+    });
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -46,19 +54,16 @@ const ListingForm = () => {
             return;
         }
 
-        // Check that price, bedrooms, bathrooms, and square feet are valid integers
         if (isNaN(parseInt(price)) || isNaN(parseInt(bedrooms)) || isNaN(parseInt(bathrooms)) || isNaN(parseInt(squareFeet)) ) {
             setMessage(["Please enter valid numbers for price, bedrooms, bathrooms, and square feet"]);
             return;
         }
 
-        //also check that price is at least 50000
         if (priceInt < 50000) {
             setMessage(["Please enter a price of at least $50,000"]);
             return;
         }
 
-        //Check that zip code is valid
         if (zipCode.length !== 5 || isNaN(parseInt(zipCode))) {
             setMessage([ "Please enter valid zip code"]);
             return;
@@ -105,20 +110,30 @@ const ListingForm = () => {
         
     };
 
-    const handleImage = (e) => {
-        const newImages = Array.from(e.target.files);
-        setImages(newImages);
-        const urls = newImages.map((image) => URL.createObjectURL(image));
-        setImageUrls(urls);
+    const handleImage = (acceptedFiles) => {
+        // console.log("accepted files ", acceptedFiles);
+        // setImages(acceptedFiles);
+        // console.log("images ", images);
+        // const urls = acceptedFiles.map((image) => URL.createObjectURL(image));
+        // setImageUrls(urls);
+        const updatedImages = acceptedFiles.map((file) => ({
+            file,
+            preview: URL.createObjectURL(file),
+        }));
+
+        setImages(updatedImages);
+        setImageUrls(updatedImages.map((image) => image.preview));
     };
 
-    const handleImageDelete = (index) => {
+    const handleRemoveImage = (index) => {
         const updatedImages = [...images];
+        const updatedImageUrls = [...imageUrls];
+
         updatedImages.splice(index, 1);
+        updatedImageUrls.splice(index, 1);
+
         setImages(updatedImages);
-        const updatedUrls = [...imageUrls];
-        updatedUrls.splice(index, 1);
-        setImageUrls(updatedUrls);
+        setImageUrls(updatedImageUrls);
     };
 
     return (
@@ -172,11 +187,29 @@ const ListingForm = () => {
                         <input type="text" value={squareFeet} onChange={(e) => setSquareFeet(e.target.value)} />
                     </label>
                 </div>
-                <label>
-                    Images
-                    <input type="file" onChange={(e) => handleImage(e)} multiple  />
-                    
-                  </label>  
+                    <label>
+                        Images
+                        <div {...getRootProps({ className: "dropzone" })}>
+                            <input {...getInputProps()} multiple />
+                            {imageUrls.length === 0 && (
+                                <p>Drag and drop files here, or click to select files</p>
+                            )}
+                            <div className="preview-container">
+                                {imageUrls.map((imageUrl, index) => (
+                                    <div key={index} className="preview-image-container">
+                                        <img src={imageUrl} alt={`Preview ${index}`} className="preview-image" />
+                                        <span
+                                            className="remove-image-button"
+                                            onClick={() => handleRemoveImage(index)}
+                                        >
+                                            <FaTimes className="delete-icon" />
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                            
+                        </div>
+                    </label>
                 <button type="submit" className="submit">Create</button>
 
                 <div className="message-container"> 

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./UpdateForm.css";
 import { updateListing } from "../../store/listingsActions";
 import { useLocation,useHistory } from "react-router-dom/cjs/react-router-dom";
+import { useDropzone } from 'react-dropzone';
 
 const UpdateForm = ({listing}) => {
     const [address, setAddress] = useState("");
@@ -28,6 +29,12 @@ const UpdateForm = ({listing}) => {
         "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
         "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
 
+    
+    const { getRootProps, getInputProps } = useDropzone({
+        accept: "image/*",
+        onDrop: (acceptedFiles) => handleImage(acceptedFiles),
+    });
+    
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -99,23 +106,12 @@ const UpdateForm = ({listing}) => {
         history.push(`/listings/${listingID}`);
     };
 
-    const handleImage = (e) => {
-        const newImages = Array.from(e.target.files);
-        setImages(newImages);
-        if (images.length !== 0) {
-            let imagesLoaded = 0;
-            const urls = [];
-            Array.from(images).forEach((image, index) => {
-                const fileReader = new FileReader();
-                fileReader.readAsDataURL(image);
-                fileReader.onload = () => {
-                    urls[index] = fileReader.result;
-                    if (++imagesLoaded == images.length)
-                        setImageUrls(urls);
-                }
-            })
-        }
-        else setImageUrls([]);
+    const handleImage = (acceptedFiles) => {
+        console.log("accepted files ", acceptedFiles);
+        setImages(acceptedFiles);
+        console.log("images ", images);
+        const urls = acceptedFiles.map((image) => URL.createObjectURL(image));
+        setImageUrls(urls);
     };
 
 
@@ -170,10 +166,13 @@ const UpdateForm = ({listing}) => {
                         <input type="text" value={squareFeet} onChange={(e) => setSquareFeet(e.target.value)} />
                     </label>
                 </div>
-                <label>
-                    Images
-                    <input type="file" onChange={(e) => handleImage(e)} multiple />
-                </label>
+                    <label>
+                        Images
+                        <div {...getRootProps({ className: "dropzone" })}>
+                            <input {...getInputProps()} multiple />
+                            <p>Drag and drop files here, or click to select files</p>
+                        </div>
+                    </label>
                 {/* <Link to="/"> */}
                 <button type="submit" className="submit">Update</button>
                 {/* </Link> */}

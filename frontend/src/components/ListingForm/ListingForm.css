@@ -12,7 +12,8 @@
     margin-left: auto;
     margin-right: auto;
     max-width: 50%;
-    min-height: 77vh;
+    min-height: 70vh;
+    max-height: 80vh;
     margin-bottom: auto;
     transition: all 0.4s ease-in-out;
     background-color: white;
@@ -23,6 +24,7 @@
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.375);
     transform: translate(3px, -3px);
     animation: fadeIn 1s ease-in-out;
+    overflow: auto;
 }
 
 .dropzone {
@@ -87,7 +89,6 @@ input[type="text"] {
     border-bottom: 2px solid #ccc;
     margin-bottom: 15px;
     margin-right: 5px;
-    /* background-color: #f6f6f6; */
     font-size: 16px;
     color: #333;
     width: 3vw;    
@@ -100,7 +101,6 @@ input[type="text2"]{
     border-bottom: 2px solid #ccc;
     margin-bottom: 15px;
     margin-right: 5px;
-    /* background-color: #f6f6f6; */
     font-size: 16px;
     color: #333;
     width: 10vw;
@@ -113,7 +113,6 @@ input[type="text3"] {
     border-bottom: 2px solid #ccc;
     margin-bottom: 15px;
     margin-right: 5px;
-    /* background-color: #f6f6f6; */
     font-size: 16px;
     color: #333;
     width: 30vw;
@@ -152,7 +151,35 @@ input[type="file"] {
     font-family: sans-serif;
 }
 
-/* .tour-icon-booked{
-    margin-top: 5%;
-} */
+.dropzone {
+    border: 2px dashed #888;
+    border-radius: 4px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
 
+.dropzone p {
+    margin: 0;
+}
+
+.preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.preview-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.preview-image-container{
+    display: flex;
+}
