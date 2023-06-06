@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createListing } from "../../store/listingsActions";
 import "./UpdateForm.css";
-import { Link } from "react-router-dom/cjs/react-router-dom";
 import { updateListing } from "../../store/listingsActions";
 import { useLocation,useHistory } from "react-router-dom/cjs/react-router-dom";
-import useEffect from "react";
 
 const UpdateForm = ({listing}) => {
     const [address, setAddress] = useState("");

@@ -12,6 +12,7 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { IoMdCalendar, IoMdAddCircle } from 'react-icons/io';
 import BookingFormModal from "../BookingFormModal";
 import { fetchBookings } from "../../store/bookingsActions";
+import { GoogleMap, Marker } from '@react-google-maps/api';
 
 const ListingShow = () => {
     const dispatch = useDispatch();
@@ -55,7 +56,6 @@ const ListingShow = () => {
     const checkIsBooked = () => {
         Object.keys(bookings).forEach((bookingKey) => {
             const booking = bookings[bookingKey];
-            // needs an additional check that the date is not in the past
             if (booking && currentUser && booking.listing_id === listing.id && booking.user_id === currentUser.id && new Date(booking.date) >= new Date()) {
                 setTourBooked(true);
             }
@@ -64,34 +64,34 @@ const ListingShow = () => {
 
 
     useEffect(() => {
-        if (listing){
-            const script = document.createElement("script");
-        script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAV4WKaME8NfVDjcMKlZtvSKn3oe-MiyXU`;
-        script.onload = () => {
-            const map = new window.google.maps.Map(document.getElementById("map"), {
-                center: { lat: listing.lat, lng: listing.lng }, 
-                zoom: 13, // Default zoom level
+        if (listing) {
+            const script = document.createElement('script');
+            script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAV4WKaME8NfVDjcMKlZtvSKn3oe-MiyXU`;
+            script.addEventListener('load', () => {
+                setMap(
+                    new window.google.maps.Map(document.getElementById('map'), {
+                        center: { lat: listing.lat, lng: listing.lng },
+                        zoom: 13,
+                    })
+                );
             });
-            setMap(map);
-        };
-        document.body.appendChild(script);
+            document.body.appendChild(script);
         }
-        
-    }, [listing, currentUser, ]);
+    }, [listing, currentUser]);
 
     useEffect(() => {
         if (map && listing) {
             const geocoder = new window.google.maps.Geocoder();
+            
             geocoder.geocode(
                 { address: `${listing.address} ${listing.city} ${listing.state}` },
                 (results, status) => {
-                    
-                    if (status === "OK") {
-                        console.log("hello");
+                    if (status === "OK" && results) {
                         const marker = new window.google.maps.Marker({
                             position: results[0].geometry.location,
                             map,
                         });
+                        //console.log(results[0].geometry.location)
                         map.setCenter(marker.getPosition());
                     } else {
                         console.error("Geocode was not successful for the following reason:", status);
@@ -99,7 +99,7 @@ const ListingShow = () => {
                 }
             );
         }
-    }, [map, listing]);
+    }, [map, ]);
    
     const checkIsFavorite = () => {
         favorites.forEach((favorite) => {
@@ -159,8 +159,8 @@ const ListingShow = () => {
                     {currentUser && currentUser.id !== listing.poster_id && (
                         <div className="header-tools">
                             <div className="favorite" onClick={toggleFavorite}>
-                                {isFavorite ? <div> <FaHeart className="heart-filled" /> Saved to Favorites </div>: 
-                                    <div> <FaRegHeart className="heart-empty" /> Save to Favorites </div>
+                                {isFavorite ? <div className="hearttext" >  <FaHeart className="heart-filled" /> Saved to Favorites </div>: 
+                                    <div className="hearttext"> <FaRegHeart className="heart-empty" /> Save to Favorites </div>
                                 }  
                                 
                             </div> 
@@ -216,7 +216,20 @@ const ListingShow = () => {
                             </div>
                         </div>
                     </div>)}
-                    <div id="map"></div>
+                    <div id="map">
+                        <GoogleMap
+                            mapContainerStyle={{ height: '400px', width: '100%' }}
+                            center={{ lat: listing.lat, lng: listing.lng }}
+                            zoom={13}
+                        >
+                            {map && (
+                                <Marker
+                                    position={{ lat: listing.lat, lng: listing.lng }}
+                                    map={map}
+                                />
+                            )}
+                        </GoogleMap>
+                    </div>
                 </div>
                 
             </div>

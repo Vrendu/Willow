@@ -85,18 +85,18 @@
 
 .heart-filled {
     color: red;
-    width: 25px;
-    height: 25px;
+    width: 18px;
+    height: 18px;
 }
 
 .heart-empty {
     color: red;
-    font-size: 25px;
+    font-size: 18px;
 }
 
 .tour-icon {
     margin-right: 5px;
-    font-size: 25px;
+    font-size: 18px;
 }
 
 .tour-icon.booked {
@@ -104,9 +104,11 @@
 }
 
 .tour-booked {
-    font-size: 16px;
-    cursor: pointer;
-    
+    font-size: 20px;
+}
+
+.hearttext{
+    font-size: 20px;
 }
 
 .favorite{
@@ -116,5 +118,6 @@
 
 .booking{
     margin-top: 5%;
+    cursor: pointer;
 }
 
