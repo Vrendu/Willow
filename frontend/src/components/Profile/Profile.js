@@ -81,7 +81,7 @@ function Profile() {
                                         <br />
                                         <p className="delete-booking" onClick={() => handleDeleteBooking(booking.id)}>
                                             <FaTimes className="delete-icon"  />
-                                            <span className="cancel-booking">Cancel Booking</span>
+                                            <span className="cancel-booking"> Cancel Booking</span>
                                         </p>
                                         <p className="update-booking">
                                             <UpdateBookingFormModal listingId={listing.id} bookingId={booking.id} /> 
