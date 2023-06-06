@@ -4,6 +4,7 @@ import "./UpdateForm.css";
 import { updateListing } from "../../store/listingsActions";
 import { useLocation,useHistory } from "react-router-dom/cjs/react-router-dom";
 import { useDropzone } from 'react-dropzone';
+import { FaTimes } from 'react-icons/fa';
 
 const UpdateForm = ({listing}) => {
     const [address, setAddress] = useState("");
@@ -114,6 +115,17 @@ const UpdateForm = ({listing}) => {
         setImageUrls(urls);
     };
 
+    const handleRemoveImage = (event, index) => {
+        event.stopPropagation();
+        const updatedImages = [...images];
+        const updatedImageUrls = [...imageUrls];
+
+        updatedImages.splice(index, 1);
+        updatedImageUrls.splice(index, 1);
+
+        setImages(updatedImages);
+        setImageUrls(updatedImageUrls);
+    };
 
     return (
         <div className="background">
@@ -170,12 +182,26 @@ const UpdateForm = ({listing}) => {
                         Images
                         <div {...getRootProps({ className: "dropzone" })}>
                             <input {...getInputProps()} multiple />
-                            <p>Drag and drop files here, or click to select files</p>
+                            {imageUrls.length === 0 && (
+                                <p>Drag and drop files here, or click to select files</p>
+                            )}
+                            <div className="preview-container">
+                                {imageUrls.map((imageUrl, index) => (
+                                    <div key={index} className="preview-image-container">
+                                        <img src={imageUrl} alt={`Preview ${index}`} className="preview-image" />
+                                        <span
+                                            className="remove-image-button"
+                                            onClick={(event) => handleRemoveImage(event, index)}
+                                        >
+                                            <FaTimes className="delete-icon" />
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+
                         </div>
                     </label>
-                {/* <Link to="/"> */}
                 <button type="submit" className="submit">Update</button>
-                {/* </Link> */}
                 <div className="message-container">
                     {message.map((message, index) => (
                         <p key={index} className="error">{message}</p>

@@ -111,21 +111,18 @@ const ListingForm = () => {
     };
 
     const handleImage = (acceptedFiles) => {
-        // console.log("accepted files ", acceptedFiles);
-        // setImages(acceptedFiles);
-        // console.log("images ", images);
-        // const urls = acceptedFiles.map((image) => URL.createObjectURL(image));
-        // setImageUrls(urls);
         const updatedImages = acceptedFiles.map((file) => ({
             file,
             preview: URL.createObjectURL(file),
         }));
 
-        setImages(updatedImages);
-        setImageUrls(updatedImages.map((image) => image.preview));
+        const newImages = [...images, ...updatedImages];
+        setImages(newImages);
+        setImageUrls(newImages.map((image) => image.preview));
     };
 
-    const handleRemoveImage = (index) => {
+    const handleRemoveImage = (event, index) => {
+        event.stopPropagation();
         const updatedImages = [...images];
         const updatedImageUrls = [...imageUrls];
 
@@ -200,7 +197,7 @@ const ListingForm = () => {
                                         <img src={imageUrl} alt={`Preview ${index}`} className="preview-image" />
                                         <span
                                             className="remove-image-button"
-                                            onClick={() => handleRemoveImage(index)}
+                                            onClick={(event) => handleRemoveImage(event,index)}
                                         >
                                             <FaTimes className="delete-icon" />
                                         </span>
