@@ -5,8 +5,6 @@ import "./UpdateForm.css";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { updateListing } from "../../store/listingsActions";
 import { useLocation,useHistory } from "react-router-dom/cjs/react-router-dom";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import useEffect from "react";
 
 const UpdateForm = ({listing}) => {
@@ -133,7 +131,7 @@ const UpdateForm = ({listing}) => {
                 <h3>Update Your Listing</h3>
                 <label>
                     Title
-                    <input type="text2" value={title} onChange={(e) => setTitle(e.target.value)} />
+                    <input type="text3" value={title} onChange={(e) => setTitle(e.target.value)} />
                 </label>
                 <label>
                     Description
@@ -182,13 +180,13 @@ const UpdateForm = ({listing}) => {
                 {/* <Link to="/"> */}
                 <button type="submit" className="submit">Update</button>
                 {/* </Link> */}
-
-            </form>
-            <div className="message-container">
-                {message.map((message, index) => (
-                    <p key={index} className="error">{message}</p>
+                <div className="message-container">
+                    {message.map((message, index) => (
+                        <p key={index} className="error">{message}</p>
                 ))}
             </div>
+            </form>
+            
         </div>
         </div>
     );

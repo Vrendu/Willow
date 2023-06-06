@@ -64,16 +64,19 @@ const ListingShow = () => {
 
 
     useEffect(() => {
-        const script = document.createElement("script");
+        if (listing){
+            const script = document.createElement("script");
         script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAV4WKaME8NfVDjcMKlZtvSKn3oe-MiyXU`;
         script.onload = () => {
             const map = new window.google.maps.Map(document.getElementById("map"), {
-                center: { lat: 37.7749, lng: -122.4194 }, // San Francisco as default center
+                center: { lat: listing.lat, lng: listing.lng }, 
                 zoom: 13, // Default zoom level
             });
             setMap(map);
         };
         document.body.appendChild(script);
+        }
+        
     }, [listing, currentUser, ]);
 
     useEffect(() => {
@@ -82,7 +85,9 @@ const ListingShow = () => {
             geocoder.geocode(
                 { address: `${listing.address} ${listing.city} ${listing.state}` },
                 (results, status) => {
+                    
                     if (status === "OK") {
+                        console.log("hello");
                         const marker = new window.google.maps.Marker({
                             position: results[0].geometry.location,
                             map,

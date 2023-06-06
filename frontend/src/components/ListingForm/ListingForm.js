@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createListing } from "../../store/listingsActions";
 import "./ListingForm.css";
-import { Link } from "react-router-dom/cjs/react-router-dom";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
 
 const ListingForm = () => {
     const [address, setAddress] = useState("");
@@ -110,20 +108,17 @@ const ListingForm = () => {
     const handleImage = (e) => {
         const newImages = Array.from(e.target.files);
         setImages(newImages);
-        if (images.length !== 0){
-            let imagesLoaded = 0;
-            const urls = [];
-            Array.from(images).forEach((image, index) => {
-                const fileReader = new FileReader();
-                fileReader.readAsDataURL(image);
-                fileReader.onload = () => {
-                    urls[index] = fileReader.result;
-                    if (++imagesLoaded == images.length)
-                        setImageUrls(urls);
-                }
-            })
-        }
-        else setImageUrls([]);
+        const urls = newImages.map((image) => URL.createObjectURL(image));
+        setImageUrls(urls);
+    };
+
+    const handleImageDelete = (index) => {
+        const updatedImages = [...images];
+        updatedImages.splice(index, 1);
+        setImages(updatedImages);
+        const updatedUrls = [...imageUrls];
+        updatedUrls.splice(index, 1);
+        setImageUrls(updatedUrls);
     };
 
     return (
@@ -180,7 +175,8 @@ const ListingForm = () => {
                 <label>
                     Images
                     <input type="file" onChange={(e) => handleImage(e)} multiple  />
-                </label>
+                    
+                  </label>  
                 <button type="submit" className="submit">Create</button>
 
                 <div className="message-container"> 

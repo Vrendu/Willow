@@ -92,20 +92,20 @@ function Navigation() {
           <span className='aboutme' onClick={openMenu}>About Me</span>
           {showMenu && (
             <ul className="aboutme-dropdown">
-              <li> 
-                 <a href="https://github.com/Vrendu">
-                    <FaGithub className="icon" /> Github
-                 </a>
+              <li>
+                <a href="https://github.com/Vrendu" target="_blank" rel="noopener noreferrer">
+                  <FaGithub className="icon" /> Github
+                </a>
               </li>
               <br></br>
               <li>
-                <a href="https://www.linkedin.com/in/vamshi-renduchintala-216571271/">
+                <a href="https://www.linkedin.com/in/vamshi-renduchintala-216571271/" target="_blank" rel="noopener noreferrer">
                   <FaLinkedin className="icon" /> LinkedIn
                 </a>
               </li>
               <br></br>
               <li>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                My name is Vamshi Renduchintala, and I am a full stack software engineer graduating from App Academy. I previously worked as a scientist at a molecular diagnostics company called Cepheid, before deciding to pursue my true interest and make the switch to software development. My primary experience so far is in developing fully functioning web applications utilizing React and Redux frontend, along with Ruby on Rails backend / Node.js backend.
               </li>
             </ul>
           )}
