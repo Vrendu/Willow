@@ -65,8 +65,8 @@ const ListingShow = () => {
 
     useEffect(() => {
         if (listing) {
-           // const script = document.createElement('script');
-            const script = document.getElementById('mapsscript');
+            const script = document.createElement('script');
+            //const script = document.getElementById('mapsscript');
             script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAV4WKaME8NfVDjcMKlZtvSKn3oe-MiyXU`;
             script.addEventListener('load', () => {
                 setMap(
@@ -76,7 +76,7 @@ const ListingShow = () => {
                     })
                 );
             });
-            //document.body.appendChild(script);
+            document.body.appendChild(script);
         }
     }, [listing, currentUser]);
 
