@@ -39,7 +39,7 @@ function LoginForm() {
         <label>
           <span>Username or Email</span>
           <input
-            type="text"
+            type="textv"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
