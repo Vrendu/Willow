@@ -122,7 +122,9 @@ const ListingForm = () => {
     };
 
     const handleRemoveImage = (event, index) => {
-        event.stopPropagation();
+        event.stopPropagation(); // Prevents the dropzone from opening the image in the browser
+        // stop nav window from opening
+        event.preventDefault();
         const updatedImages = [...images];
         const updatedImageUrls = [...imageUrls];
 
