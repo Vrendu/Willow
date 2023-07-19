@@ -1,3 +1,5 @@
+[Live site](https://willow-vbvg.onrender.com/)
+
 # Willow 
 
 Background: 
@@ -10,47 +12,56 @@ This app will allow users to search for, create, update, destroy and manage like
 
 
 1. User Auth 
-user can log in, log out, and create account
-user can demo login
+   user can login/demo login, logout, and create account
+   
+   ![Sign In](https://github.com/Vrendu/Willow/assets/93363393/9d0563cd-3e7c-4095-95c0-d91a0d23f35b)
+   
+   ![Sign Up](https://github.com/Vrendu/Willow/assets/93363393/8078c6ff-9a76-4a36-a3f9-e6204cd6bc34)
+   
+   ![Log Out](https://github.com/Vrendu/Willow/assets/93363393/b0b5974f-a8c2-4673-9d84-7862f6e43e87)
 
-<img width="500" src="https://user-images.githubusercontent.com/93363393/236381580-9ba7f1b5-552f-4d62-840a-15526310bf37.png">
 
-![sign up](https://user-images.githubusercontent.com/93363393/236381697-63af120f-7685-4d50-8acb-07bcc2adb2a7.png)
+3. Listings - CRUD 
 
-![log out](https://user-images.githubusercontent.com/93363393/236381710-ef8dc139-df5b-4c1e-b568-1b8b858e73ac.png)
-
-
-2. Listings - CRUD 
-
-Displays listings of homes
-listings can be added, updated, and removed
-
-![listings](https://user-images.githubusercontent.com/93363393/236381939-6c2307c6-207b-47f6-99d5-7eb19c2afa40.png)
-
-![create](https://user-images.githubusercontent.com/93363393/236381955-7946f148-aea8-408f-a463-a5709754cc01.png)
-![update](https://user-images.githubusercontent.com/93363393/236381960-3ad8d717-b6b5-46ab-9c7c-4ddcf03b9182.png)
+   listings can be added, updated, and removed, and most recent listings displayed on spash page.
+   
+   ![Recent Listings](https://github.com/Vrendu/Willow/assets/93363393/09188f4e-4c11-4420-a5ae-be86be6b07df)
+   
+   ![Create Listing](https://github.com/Vrendu/Willow/assets/93363393/a9c85006-2a4b-4969-aedd-287cfecf56fe)
+   
+   ![Update Listing](https://github.com/Vrendu/Willow/assets/93363393/89fad6a3-5519-4e22-a351-6a30209109e9)
 
 
 3. Favorites - CRUD 
-favorites can be created and destroyed
+   favorites can be created and destroyed, and viewed in profile
+   
+   ![Add Favorite](https://github.com/Vrendu/Willow/assets/93363393/ec25a156-c0f1-417a-a077-acb20d2d2104)
+   
+   ![Remove Favorite](https://github.com/Vrendu/Willow/assets/93363393/5a92f45f-6248-4329-819d-9342caeea737)
+   
+   ![Favorites](https://github.com/Vrendu/Willow/assets/93363393/a7643c03-f94f-45f2-817e-e3061646ed34)
 
-![addfav](https://user-images.githubusercontent.com/93363393/236382024-757a09ba-f8cf-4e4c-986f-d46888ebcd27.png)
-![removefav](https://user-images.githubusercontent.com/93363393/236382025-f9170611-6642-4a71-93d6-79437f4acd40.png)
+4. Bookings - CRUD
+   tour bookings can be created, viewed in profile, updated, and deleted
+   ![Tour Booked](https://github.com/Vrendu/Willow/assets/93363393/f42482dc-cc29-4576-8b38-c8cf82dbaf8f)
+      
+   ![Bookings](https://github.com/Vrendu/Willow/assets/93363393/c264acba-939d-44f3-948c-c39c06bc6f68)
 
 
-4. Maps - Google Maps
+6. Maps - Google Maps
 
-App utilizes Google Maps API to display location of listings
+   App utilizes Google Maps API to display location of listings
+   
+   ![Google Maps](https://github.com/Vrendu/Willow/assets/93363393/120bae6d-9295-423c-8bc7-01724f7b17f6)
 
-![googlemaps](https://user-images.githubusercontent.com/93363393/236382099-93428ae0-8543-4c34-9b8b-bd3cdc95d29b.png)
 
+6. Search
 
-5. Search
+   Users can search for listings in their chosen location, filtering by city, state, number of bedrooms/bathrooms, and price
+   Coming soon is text based search 
+   
+   ![Search](https://github.com/Vrendu/Willow/assets/93363393/49fed1c9-e628-4cbf-8879-9bc5cdb840ec)
 
-Users can search for listings in their chosen location, filtering by city, state, number of bedrooms/bathrooms, and price
-Coming soon is text based search 
-
-![search](https://user-images.githubusercontent.com/93363393/236382153-e2e67ee3-93a0-4443-82fe-0344408b895a.png)
 
 
 Technologies and Libraries Used: 
