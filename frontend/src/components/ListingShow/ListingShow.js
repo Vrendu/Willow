@@ -231,6 +231,8 @@ const ListingShow = () => {
                             )}
                         </GoogleMap>
                     </div>
+                    Reviews 
+                    
                 </div>
                 
             </div>
