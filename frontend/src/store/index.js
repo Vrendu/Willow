@@ -4,6 +4,7 @@ import session from './session';
 import listings from './listingsActions';
 import favorites from './favoritesActions';
 import bookings from './bookingsActions';
+import reviews from './reviewsActions';
 // import favorites from './favoritesActions';
 
 const rootReducer = combineReducers({

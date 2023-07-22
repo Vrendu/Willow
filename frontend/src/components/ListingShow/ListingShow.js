@@ -13,6 +13,7 @@ import { IoMdCalendar, IoMdAddCircle } from 'react-icons/io';
 import BookingFormModal from "../BookingFormModal";
 import { fetchBookings } from "../../store/bookingsActions";
 import { GoogleMap, Marker } from '@react-google-maps/api';
+import { fetchReviews } from "../../store/reviewsActions";
 
 const ListingShow = () => {
     const dispatch = useDispatch();
@@ -27,10 +28,11 @@ const ListingShow = () => {
     const [map, setMap] = useState(null);
     const [tourBooked, setTourBooked] = useState(false);
     const bookings = useSelector((state) => state.bookings);
+    const reviews = useSelector((state) => state.listings[id]?.reviews);
+    //console.log(Array.from(reviews));
    
     useEffect(() => {
         dispatch(fetchListing(id));
-        
         if (currentUser){
             dispatch(fetchUser(currentUser.id)) 
              
@@ -43,6 +45,7 @@ const ListingShow = () => {
         if(currentUser && listing){
             checkIsFavorite(); 
             dispatch(fetchBookings(currentUser.id));
+            
         }
     }, [listing, currentUser, ])
 
@@ -232,7 +235,21 @@ const ListingShow = () => {
                         </GoogleMap>
                     </div>
                     Reviews 
-                    
+                    {Array.from(reviews).map((review) => (
+                        <div className="review">
+                            <div className="reviewer">
+                                {review.author_id}
+                            </div>
+                            <div className="review-title">
+                                {review.title}
+                            </div>
+                            <div className="review-body">
+                                {review.description}
+                            </div>
+                        </div>
+                    ))} 
+
+
                 </div>
                 
             </div>

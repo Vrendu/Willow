@@ -1,7 +1,11 @@
 class ReviewsController < ApplicationController
     def index
-        @reviews = Review.all
-        render :index 
+        if params[:listing_id].present?
+            @reviews = Review.where(listing_id: params[:listing_id])
+        else
+            @reviews = Review.all
+        end
+        render :index
     end
     
     def create

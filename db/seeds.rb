@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 require 'open-uri'
-
+Review.destroy_all
 Favorite.destroy_all 
 Listing.destroy_all
 User.destroy_all 
@@ -51,7 +51,23 @@ User.create!(
     password: 'cristufuhhh'
 )
 
+User.create!(
+    username: 'Michael Corleone',
+    email: 'the_godfather@gmail.com',
+    password: 'thegodfather'
+)
 
+User.create!(
+    username: 'Don Vito Corleone',
+    email: 'the_don@gmail.com',
+    password: 'thegodfather'
+)
+
+User.create!(
+    username: 'Sonny Corleone',
+    email: 'the_brother@gmail.com',
+    password: 'thegodfather'
+)
 
 
 user_ids = User.pluck(:id)
@@ -297,3 +313,163 @@ Listing.all.each_with_index do |listing, index|
         )
     end
 end
+
+Review.create!(
+  title: "Beautiful home with stunning views",
+  description: "This home was absolutely stunning! The views were breathtaking and the house itself was gorgeous. We had a wonderful time and would definitely stay here again.",
+  rating: 5,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Great location, beautiful home",
+  description: "We had a great time staying at this home. The location was perfect and the house itself was beautiful. We would definitely stay here again!",
+  rating: 4,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Amazing house with everything you need",
+  description: "This house was amazing! It had everything we needed and more. The views were breathtaking and the location was perfect. We would definitely stay here again!",
+  rating: 5,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Not as advertised",
+  description: "This house was not as advertised. The pictures made it look much nicer than it actually was. The location was also not great, as it was far from everything. We would not stay here again.",
+  rating: 2,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Stunning views, great location",
+  description: "This house was amazing! The views were breathtaking and the location was perfect. We had a great time and would definitely stay here again.",
+  rating: 5,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Meh",
+  description: "This house was just okay. The location was not great and the house itself was not very nice. We would not stay here again.",
+  rating: 3,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Pretty good",
+  description: "This house was pretty good. The location was great and the house itself was nice. We would stay here again.",
+  rating: 4,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Beautiful home with stunning views",
+  description: "This home was absolutely stunning! The views were breathtaking and the house itself was gorgeous. We had a wonderful time and would definitely stay here again.",
+  rating: 5,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Great location, beautiful home",
+  description: "We had a great time staying at this home. The location was perfect and the house itself was beautiful. We would definitely stay here again!",
+  rating: 4,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Amazing house with everything you need",
+  description: "This house was amazing! It had everything we needed and more. The views were breathtaking and the location was perfect. We would definitely stay here again!",
+  rating: 5,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Not as advertised",
+  description: "This house was not as advertised. The pictures made it look much nicer than it actually was. The location was also not great, as it was far from everything. We would not stay here again.",
+  rating: 2,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Stunning views, great location",
+  description: "This house was amazing! The views were breathtaking and the location was perfect. We had a great time and would definitely stay here again.",
+  rating: 5,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Need more time to explore",
+  description: "We only stayed here for one night, but we wish we could have stayed longer! The house was beautiful and the location was perfect. We would definitely stay here again.",
+  rating: 5,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Great location, beautiful home",
+  description: "We had a great time staying at this home. The location was perfect and the house itself was beautiful. We would definitely stay here again!",
+  rating: 4,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Amazing house with everything you need",
+  description: "This house was amazing! It had everything we needed and more. The views were breathtaking and the location was perfect. We would definitely stay here again!",
+  rating: 5,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Not as advertised",
+  description: "This house was not as advertised. The pictures made it look much nicer than it actually was. The location was also not great, as it was far from everything. We would not stay here again.",
+  rating: 2,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Stunning views, great location",
+  description: "This house was amazing! The views were breathtaking and the location was perfect. We had a great time and would definitely stay here again.",
+  rating: 5,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Need more time to explore",
+  description: "We only stayed here for one night, but we wish we could have stayed longer! The house was beautiful and the location was perfect. We would definitely stay here again.",
+  rating: 5,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Great location, beautiful home",
+  description: "We had a great time staying at this home. The location was perfect and the house itself was beautiful. We would definitely stay here again!",
+  rating: 4,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Amazing house with everything you need",
+  description: "This house was amazing! It had everything we needed and more. The views were breathtaking and the location was perfect. We would definitely stay here again!",
+  rating: 5,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
