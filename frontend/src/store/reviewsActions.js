@@ -13,6 +13,23 @@ export const destroyReview = (reviewID) => {
     return {type: "DELETE_REVIEW", reviewID};
 }
 
+// export const setReviews = (reviews) => {
+//     return { type: "SET_REVIEWS", payload: reviews };
+// }
+
+// export const receiveReview = (review) => {
+//     return {type: "RECEIVE_REVIEW", review};
+// }
+
+// export const fetchReviews = (listingID) => {
+//     return (dispatch) => {
+//         csrfFetch(`/api/reviews?listing_id=${listingID}`)
+//             .then((response) => response.json())
+//             .then((reviews) => {
+//                 dispatch(setReviews(reviews));
+//             });
+//     };
+// };
 
 export const createReview = (review) => {
     return async (dispatch) => {
@@ -61,26 +78,24 @@ export const deleteReview = (reviewID) => {
     };
 }
 
-// const initialState = {};
+const initialState = {};
 
-// const reviewsReducer = (state = initialState, action) => {
-//     const newState = { ...state }
-//     switch (action.type) {
-//         case "SET_REVIEWS":
-//             return { ...state, ...action.payload };
-//         case "RECEIVE_REVIEW":
-//             newState[action.review.id] = action.review
-//             return newState;
-//         case "POST_REVIEW":
-//             return {...state, [action.review.id]: action.review};
-//         case "UPDATE_REVIEW":
-//             return {...state, [action.review.id]: action.review};
-//         case "DELETE_REVIEW":
-//             delete newState[action.reviewID];
-//             return newState;
-//         default:
-//             return state;
-//     }
-// }
+const reviewsReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case "SET_REVIEWS":
+            return { ...state, ...action.payload };
+        case "RECEIVE_REVIEW":
+            return { ...state, [action.review.id]: action.review };
+        case "POST_REVIEW":
+        case "UPDATE_REVIEW":
+            return { ...state, [action.review.id]: action.review };
+        case "DELETE_REVIEW":
+            const newState = { ...state };
+            delete newState[action.reviewID];
+            return newState;
+        default:
+            return state;
+    }
+};
 
-// export default reviewsReducer;
+export default reviewsReducer;
