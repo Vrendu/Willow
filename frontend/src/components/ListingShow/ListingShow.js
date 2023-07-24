@@ -14,6 +14,7 @@ import BookingFormModal from "../BookingFormModal";
 import { fetchBookings } from "../../store/bookingsActions";
 import { GoogleMap, Marker } from '@react-google-maps/api';
 import ReviewFormModal from "../ReviewFormModal";
+import UpdateReviewFormModal from "../UpdateReviewFormModal";
 
 
 const ListingShow = () => {
@@ -134,6 +135,10 @@ const ListingShow = () => {
         dispatch(deleteReview(reviewId));
         history.go(0);
     };
+
+    const updateReview = (reviewId) => {
+        console.log("updating review")
+    }
 
     const toggleFavorite = () => {
         if (currentUser) {
@@ -263,7 +268,7 @@ const ListingShow = () => {
                     
                     <div className="reviews-container">
                         <div className="reviewheader">
-                            <span>Overall Rating: {renderStars(averageRating)} ({reviews ? Object.values(reviews).length : 0} review{reviews && Object.values(reviews).length > 1 ? "s": ''}) </span>
+                            <span>Overall Rating: {renderStars(averageRating)} ({reviews ? Object.values(reviews).length : 0} {reviews && Object.values(reviews).length > 1 ? "reviews": 'review'}) </span>
                             <span className="review-modal"><ReviewFormModal/></span>
                         </div>
                         <br></br>   
@@ -282,10 +287,14 @@ const ListingShow = () => {
                                     </div> 
                                     <br></br>
                                     {currentUser?.id === review.author_id && (
-                                        <span className="review-delete" 
-                                            onClick={() => dispatch(reviewDelete(review.id))}>
-                                           <FaTimes/> Delete Review 
-                                        </span>    
+                                        <div className="review-changes">
+                                            <span className="review-delete" onClick={() => dispatch(reviewDelete(review.id))}>
+                                                <FaTimes/> Delete Review 
+                                            </span>    
+                                            <span className="review-edit" onClick={() => updateReview(review.id)}>
+                                                <UpdateReviewFormModal listingId={id} reviewId={review.id}/>
+                                            </span>
+                                        </div>
                                     )}
                             </div>
                         ))}

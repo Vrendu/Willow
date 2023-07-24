@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector} from 'react-redux';
-import "./ReviewForm.css";
-import { useParams, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { createReview } from '../../store/listingsActions';
+import { useDispatch, useSelector } from 'react-redux';
+import "./UpdateReviewForm.css";
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { updateReview } from '../../store/listingsActions';
 import { AiFillStar } from 'react-icons/ai';
 
-function ReviewForm(){
+function UpdateReviewForm({listingId, reviewId}) {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -13,7 +13,7 @@ function ReviewForm(){
     const [title, setTitle] = useState();
     const [description, setDescription] = useState();
     const currentUser = useSelector((state) => state.session.user);
-    const listingID = useParams();
+    
     const [errors, setErrors] = useState([]);
     const [activeRating, setActiveRating] = useState(null);
 
@@ -53,37 +53,38 @@ function ReviewForm(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-         
+
         setErrors([]);
         const formData = new FormData();
-        
+        formData.append("id", reviewId);
         formData.append("rating", parseInt(rating));
         formData.append("title", title);
         formData.append("description", description);
         formData.append("author_id", currentUser.id);
-        formData.append("listing_id", parseInt(listingID.id));
-        return (dispatch(createReview(Object.fromEntries(formData.entries())))
-        .catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) {
-                setErrors(data.errors);
-            }
-            throw res;
-        }))
-        .then(() => history.go(0))
+        formData.append("listing_id", parseInt(listingId));
+        return (dispatch(updateReview(Object.fromEntries(formData.entries())))
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) {
+                    setErrors(data.errors);
+                }
+                throw res;
+            }))
+            .then(() => history.go(0))
     }
 
     return (
         <div>
+            
             <form onSubmit={handleSubmit} className='review-form'>
                 <div>
-                    <h1> Write Your Review </h1>
+                    <h1>Update Your Review</h1>
                     <label>Rating:</label>
                     <div className="stars-container">
                         {renderStars()}
                     </div>
                     <label>Title:</label>
-                    <input 
+                    <input
                         type="text"
                         className='title-input'
                         value={title}
@@ -102,10 +103,10 @@ function ReviewForm(){
                 {errors.map((error, index) => (
                     <div key={index} className='error'>{error}</div>
                 ))}
-            </form> 
+            </form>
 
         </div>
     )
 }
 
-export default ReviewForm;
+export default UpdateReviewForm;

@@ -140,7 +140,13 @@ export const updateReview = (review) => {
             //dispatch(changeReview(data));
             return data;
         } catch (err) {
-            console.error(err);
+            let errors = [];
+            if (err.response && err.response.data && err.response.data.errors) {
+                errors = err.response.data.errors;
+            } else {
+                errors = [err.message];
+            }
+            throw err;
         }
     };
 }

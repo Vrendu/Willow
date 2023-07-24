@@ -199,10 +199,13 @@
     }
 }
 
-.review-delete{
+.review-delete, .review-edit{
     cursor: pointer;
     &:hover{
         color: red;
     }
     align-items: end;
+    margin-right: 5%;
 }
+
+
