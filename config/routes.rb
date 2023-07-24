@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :bookings
     resources :favorites, only: [:create, :destroy]
     resource :session, only: [:show, :create, :destroy]
+    resources :reviews, only: [:index, :create, :show, :destroy, :update]
   end
 
   get '*path', to: "static_pages#frontend_index", constraints: -> (req) {!req.xhr? && req.format.html?}

@@ -57,7 +57,6 @@ export const createBooking = (booking) => {
                 method: "POST",
                 body: JSON.stringify(booking),
             });
-            const data = await response.json();
             return response;
         } catch (error) {
             let errors = [];

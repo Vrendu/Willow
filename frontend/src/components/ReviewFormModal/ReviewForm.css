@@ -1,0 +1,39 @@
+.review-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-family: sans-serif;
+}
+
+.filled-star {
+    color: #f0ad4e;
+}
+
+.empty-star {
+    color: lightgrey;
+}
+
+#form-star {
+    font-size: 2em;
+}
+
+#form-star:hover {
+    cursor: pointer;
+}
+
+.title-input{
+    min-width: 20vw;
+    margin-bottom: 2%;
+}
+
+.description-input{
+    min-width: 21vw;
+    min-height: 15vh;
+    margin-bottom: 2%;
+}
+
+.stars-container{
+    margin-bottom: 2%;
+}
