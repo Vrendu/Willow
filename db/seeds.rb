@@ -355,7 +355,7 @@ Review.create!(
 )
 
 Review.create!(
-  title: "Meh",
+  title: "Meh Not Super Great",
   description: "This house was just okay. The location was not great and the house itself was not very nice. We would not stay here again.",
   rating: 3,
   author_id: user_ids.sample,
