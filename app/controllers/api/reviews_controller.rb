@@ -1,4 +1,4 @@
-class ReviewsController < ApplicationController
+class Api::ReviewsController < ApplicationController
     def index
         if params[:listing_id].present?
             @reviews = Review.where(listing_id: params[:listing_id])

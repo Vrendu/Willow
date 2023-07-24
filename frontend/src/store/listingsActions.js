@@ -29,7 +29,7 @@ export const fetchDataForSearch = async () => {
 
 export const fetchListings = () => {
     return (dispatch) => {
-        fetch("/api/listings")
+        csrfFetch("/api/listings")
             .then((response) => response.json())
             .then((listings) => {
                 dispatch(setListings(listings));
@@ -107,6 +107,57 @@ export const updateListing = (listing) => {
 
 export const getListings = (state) => {
    return state.listings ? Object.values(state.listings) : [] 
+}
+
+export const createReview = (review) => {
+    return async (dispatch) => {
+        try {
+            const response = await csrfFetch("/api/reviews", {
+                method: "POST",
+                body: JSON.stringify(review),
+            });
+            return response;
+        } catch (err) {
+            let errors = [];
+            if (err.response && err.response.data && err.response.data.errors) {
+                errors = err.response.data.errors;
+            } else {
+                errors = [err.message];
+            }
+            throw err;
+        }
+    };
+}
+
+export const updateReview = (review) => {
+    return async (dispatch) => {
+        try {
+            const response = await csrfFetch(`/api/reviews/${review.id}`, {
+                method: "PUT",
+                body: JSON.stringify(review),
+            });
+            const data = await response.json();
+            //dispatch(changeReview(data));
+            return data;
+        } catch (err) {
+            console.error(err);
+        }
+    };
+}
+
+export const deleteReview = (reviewID) => {
+    return async (dispatch) => {
+        try {
+            const response = await csrfFetch(`/api/reviews/${reviewID}`, {
+                method: "DELETE",
+            });
+            const data = await response.json();
+            //dispatch(destroyReview(data));
+            return data;
+        } catch (err) {
+            console.error(err);
+        }
+    };
 }
 
 

@@ -1,19 +1,20 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchListing, deleteListing } from "../../store/listingsActions";
+import { fetchListing, deleteListing, deleteReview } from "../../store/listingsActions";
 import { createFavorite, deleteFavorite } from "../../store/favoritesActions";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import "./ListingShow.css";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { getFavorites } from "../../store/favoritesActions";
 import { fetchUser } from "../../store/session";
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { FaHeart, FaTimes, FaRegHeart } from 'react-icons/fa';
 import { IoMdCalendar, IoMdAddCircle } from 'react-icons/io';
 import BookingFormModal from "../BookingFormModal";
 import { fetchBookings } from "../../store/bookingsActions";
 import { GoogleMap, Marker } from '@react-google-maps/api';
-import { render } from "react-dom";
+import ReviewFormModal from "../ReviewFormModal";
+
 
 const ListingShow = () => {
     const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const ListingShow = () => {
     const bookings = useSelector((state) => state.bookings);
     const reviews = useSelector((state) => state.listings[id]?.reviews);
     const [averageRating, setAverageRating] = useState(0);
-    
+
     useEffect(() => {
         dispatch(fetchListing(id));
         if (currentUser){
@@ -127,6 +128,11 @@ const ListingShow = () => {
 
     const handleCancelDelete = () => {
         setShowConfirmation(false);
+    };
+
+    const reviewDelete = (reviewId) => {
+        dispatch(deleteReview(reviewId));
+        history.go(0);
     };
 
     const toggleFavorite = () => {
@@ -255,10 +261,10 @@ const ListingShow = () => {
                         </GoogleMap>
                     </div>
                     
-                    <div className="review-form">
+                    <div className="reviews-container">
                         <div className="reviewheader">
-                            <span>Overall Rating {renderStars(averageRating)} ({reviews ? Object.values(reviews).length : 0} reviews) </span>
-                            <span className="review-modal">Leave a Review</span>
+                            <span>Overall Rating: {renderStars(averageRating)} ({reviews ? Object.values(reviews).length : 0} review{reviews && Object.values(reviews).length > 1 ? "s": ''}) </span>
+                            <span className="review-modal"><ReviewFormModal/></span>
                         </div>
                         <br></br>   
                         {reviews && Object.values(reviews).reverse().map((review) => (
@@ -274,6 +280,13 @@ const ListingShow = () => {
                                     <div className="review-description">
                                         {review.description}
                                     </div> 
+                                    <br></br>
+                                    {currentUser?.id === review.author_id && (
+                                        <span className="review-delete" 
+                                            onClick={() => dispatch(reviewDelete(review.id))}>
+                                           <FaTimes/> Delete Review 
+                                        </span>    
+                                    )}
                             </div>
                         ))}
                         {console.log(reviews)}
