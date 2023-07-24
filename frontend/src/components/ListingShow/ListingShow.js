@@ -298,7 +298,6 @@ const ListingShow = () => {
                                     )}
                             </div>
                         ))}
-                        {console.log(reviews)}
                     </div>
 
 
