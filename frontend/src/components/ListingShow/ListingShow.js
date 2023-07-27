@@ -269,7 +269,7 @@ const ListingShow = () => {
                     <div className="reviews-container">
                         <div className="reviewheader">
                             <span>Overall Rating: {renderStars(averageRating)} ({reviews ? Object.values(reviews).length : 0} {reviews && Object.values(reviews).length > 1 ? "reviews": 'review'}) </span>
-                            <span className="review-modal"><ReviewFormModal/></span>
+                           {currentUser && <span className="review-modal"><ReviewFormModal/></span>} 
                         </div>
                         <br></br>   
                         {reviews && Object.values(reviews).reverse().map((review) => (
