@@ -47,7 +47,7 @@
 .index-container {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 10%;
+    margin-top: 15%;
     margin-left: 10%;
     margin-right: 10%;
 }
@@ -82,7 +82,16 @@
     border-color: #e3e3e3;
 }
 
+.filter{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
 
+.filter-container{
+    min-width: 50%;
+}
 .filters select {
     padding: 8px 12px;
     border: 1px solid #ccc;
@@ -108,4 +117,6 @@
     justify-content: space-between;
 }
 
-
+.second-search{
+    align-self: center;
+}

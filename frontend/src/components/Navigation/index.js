@@ -86,31 +86,23 @@ function Navigation() {
       </div>
       <div className="navbar-links">
         <div className="searchbar">
-          <Link to="/searchresults">
+          {/* <Link to="/searchresults">
             <FaSearch className="icon" /> Search Listings
-          </Link>
+          </Link> */}
           <span className='aboutme' onClick={openMenu}>About Me</span>
           {showMenu && (
             <ul className="aboutme-dropdown">
-              <li>
-                <a href="https://github.com/Vrendu" target="_blank" rel="noopener noreferrer">
-                  <FaGithub className="icon" /> Github
-                </a>
-              </li>
-              <br></br>
-              <li>
-                <a href="https://www.linkedin.com/in/vamshi-renduchintala-216571271/" target="_blank" rel="noopener noreferrer">
-                  <FaLinkedin className="icon" /> LinkedIn
-                </a>
-              </li>
-              <br></br>
-              <li>
+               <li>
                 My name is Vamshi Renduchintala, and I am a full stack software engineer graduating from App Academy. I previously worked as a scientist at a molecular diagnostics company called Cepheid, before deciding to pursue my true interest and make the switch to software development. My primary experience so far is in developing fully functioning web applications utilizing React and Redux frontend, along with Ruby on Rails backend / Node.js backend.
               </li>
             </ul>
           )}
-         
-          
+         <a href="https://github.com/Vrendu" target="_blank" rel="noopener noreferrer" className='github'>
+                  <FaGithub className="icon" /> Github
+         </a>
+        <a href="https://www.linkedin.com/in/vamshi-renduchintala-216571271/" target="_blank" rel="noopener noreferrer">
+                  <FaLinkedin className="icon" /> LinkedIn
+        </a>
         </div>
         {sessionLinks}
       </div>

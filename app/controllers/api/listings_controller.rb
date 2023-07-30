@@ -2,8 +2,17 @@ class Api::ListingsController < ApplicationController
 
 wrap_parameters :listing, include: Listing.attribute_names + [:photos]
 
-    def index
-        @listings = Listing.all
+     def index
+        if params[:q].present?
+            search_query = "%#{params[:q]}%"
+            @listings = Listing.where(
+                "zip_code ILIKE ? OR city ILIKE ? OR state ILIKE ? OR address ILIKE ?",
+                search_query, search_query, search_query, search_query
+            )
+        else
+            # if no search query, no listings
+            @listings = Listing.none
+        end
         render :index
     end
   
@@ -23,10 +32,18 @@ wrap_parameters :listing, include: Listing.attribute_names + [:photos]
         end
     end
 
-    def search 
-        @listings = Listing.where("city ILIKE ? OR state ILIKE ?", "%#{params[:search]}%")
-        render :index
-    end 
+    # def search
+    #     if params[:search].present?
+    #         search_query = "%#{params[:search]}%"
+    #         @listings = Listing.where(
+    #         "city ILIKE ? OR state ILIKE ? OR address ILIKE ?",
+    #         search_query, search_query, search_query
+    #         )
+    #     else
+    #         @listings = Listing.all
+    #     end
+    #     render :index
+    # end
 
     def edit
         @listing = Listing.find(params[:id])
