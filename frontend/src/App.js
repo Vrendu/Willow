@@ -40,12 +40,12 @@ function App() {
             }}>
               Find a Home Today
               <SearchBar
-                placeholder="Enter an address, city, state, or zip code"
+                placeholder="Enter an address, city, state (ex. CA, NY), or zip code"
               />
             </div>
             
             <div className="listings">
-              <span className="recently-added-text">Homes Near You</span>
+              <span className="recently-added-text">Homes in CA</span>
               <div className ="listingsswiper">
                 <Listings></Listings>
               </div>

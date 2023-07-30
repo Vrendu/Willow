@@ -14,7 +14,10 @@ function ListingIndex() {
     const queryParams = new URLSearchParams(location.search);
     const searchQuery = queryParams.get('q') || '';
 
-    console.log("listings are", listings)
+    const [bedroomsFilter, setBedroomsFilter] = useState("0");
+    const [bathroomsFilter, setBathroomsFilter] = useState("0");
+    const [priceFilter, setPriceFilter] = useState("0");
+
     useEffect(() => {
         // Fetch listings based on the search query
         dispatch(clearListings());
@@ -23,6 +26,17 @@ function ListingIndex() {
         console.log("search query", searchQuery);
     }, [dispatch, searchQuery, ]);
 
+
+    const filteredListings = listings.filter((listing) => {
+        const bedroomsMatch =
+            parseInt(listing.bedrooms) >= parseInt(bedroomsFilter) || bedroomsFilter === "0";
+        const bathroomsMatch =
+            parseInt(listing.bathrooms) >= parseInt(bathroomsFilter) || bathroomsFilter === "0";
+        const priceMatch =
+            parseInt(listing.price) >= parseInt(priceFilter) || priceFilter === "0";
+
+        return bedroomsMatch && bathroomsMatch && priceMatch;
+    });
   
     
     if (!listings){
@@ -35,24 +49,24 @@ function ListingIndex() {
                 {/* filters for bedrooms, bathrooms, price */}
                 <div className="filter-container">
                     <div className="filter">
-                        <label>Bedrooms</label>
-                        <select>
+                        <select onChange={(e) => setBedroomsFilter(e.target.value)}>
+                            <option value="">Bedrooms</option>
                             <option value="1">1+</option>
                             <option value="2">2+</option>
                             <option value="3">3+</option>
                             <option value="4">4+</option>
                             <option value="5">5+</option>
                         </select>
-                        <label>Bathrooms</label>
-                        <select>
+                        <select onChange={(e) => setBathroomsFilter(e.target.value)}>
+                            <option value="">Bathrooms</option>
                             <option value="1">1+</option>
                             <option value="2">2+</option>
                             <option value="3">3+</option>
                             <option value="4">4+</option>
                             <option value="5">5+</option>
                         </select>
-                        <label>Price</label>
-                        <select>
+                        <select onChange={(e) => setPriceFilter(e.target.value)}>
+                            <option value="">Price</option>
                             <option value="100000">$100,000+</option>
                             <option value="200000">$200,000+</option>
                             <option value="300000">$300,000+</option>
@@ -71,7 +85,7 @@ function ListingIndex() {
             
         <div className="index-container">
                             
-                {Array.from(listings).map(listing => (
+                {filteredListings.map(listing => (
                     <Link to={`/listings/${listing.id}`} key={listing.id} className="card-link">
                         <div className="card">
                             <img src={listing.photos[0]} alt={listing.title} />
