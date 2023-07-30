@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-//import SignupFormPage from "./components/SignupFormPage";
 import Navigation from "./components/Navigation";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Listings from "./components/Listings/Listings";
@@ -9,11 +8,13 @@ import ListingForm from "./components/ListingForm/ListingForm";
 import UpdateForm from "./components/UpdateForm/UpdateForm";
 import ListingIndex from "./components/ListingIndex/ListingIndex";
 import Profile from "./components/Profile/Profile";
-// import { ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-// import { ToastProvider } from 'react-toast-notifications';
+//import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
+
+
+  
+
   return (
     <>
       {/* <ToastContainer /> */}
@@ -38,6 +39,9 @@ function App() {
               
             }}>
               Find a Home Today
+              <SearchBar
+                placeholder="Enter city, state, and/or zip code"
+              />
             </div>
             
             <div className="listings">
@@ -61,7 +65,7 @@ function App() {
         <Route exact path="/updatelisting">
           <UpdateForm></UpdateForm>
         </Route>
-        <Route exact path="/searchresults">
+        <Route path="/searchresults">
           <ListingIndex/>
         </Route>
       </Switch>

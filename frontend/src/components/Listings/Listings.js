@@ -19,9 +19,6 @@ const Listings = () => {
         return null;
     }
 
-    const reversedListings = [...listings].reverse();
-    const displayedListings = reversedListings.slice(0, 9);
-
     return (
         <div className="container">
             
@@ -37,7 +34,7 @@ const Listings = () => {
             >
             <div className="swiper-button-prev"></div>
             <div className="swiper-button-next"></div>
-                {displayedListings.map((listing, index) =>
+                {listings.map((listing, index) =>
                     listing && (
                         <SwiperSlide key={listing.id}>
                             <Link to={`/listings/${listing.id}`} className="card-link">

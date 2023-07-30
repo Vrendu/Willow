@@ -108,4 +108,7 @@
     justify-content: space-between;
 }
 
-
+.second-search{
+    position: fixed;
+    top:20%;
+}

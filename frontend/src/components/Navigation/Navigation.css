@@ -43,7 +43,7 @@
 .aboutme-dropdown{
   position: absolute;
     top: calc(2vh + 20px);
-    left: calc(6vw + 40px);
+    left: calc(1vw + 40px);
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -199,4 +199,8 @@
   margin-left: auto;
   margin-right: auto;
   font-family: sans-serif;
+}
+
+.github{
+  margin-left: 5%;
 }

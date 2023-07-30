@@ -21,19 +21,35 @@ export const destroyListing = (listingID) => {
     return {type: "DELETE_LISTING", listingID};
 }
 
+export const clearAllListings = () => {
+    return {type: "CLEAR_ALL_LISTINGS"};
+}
+
 export const fetchDataForSearch = async () => {
     const response = await fetch('/api/listings');
     const data = await response.json();
     return data;
 }
 
-export const fetchListings = () => {
-    return (dispatch) => {
-        csrfFetch("/api/listings")
-            .then((response) => response.json())
-            .then((listings) => {
-                dispatch(setListings(listings));
-            });
+export const fetchListings = (query = '') => {
+    return async (dispatch) => {
+        try {
+            let url = "/api/listings";
+            if (query) {
+                url += `?q=${encodeURIComponent(query)}`;
+            }
+
+            const response = await csrfFetch(url);
+            if (!response.ok) {
+                throw new Error('Failed to fetch listings.');
+            }
+            const listings = await response.json();
+            console.log("listings", listings);
+            dispatch(setListings(listings));
+        } catch (error) {
+            // Handle error if needed
+            console.error('Error fetching listings:', error);
+        }
     };
 };
 
@@ -109,6 +125,11 @@ export const getListings = (state) => {
    return state.listings ? Object.values(state.listings) : [] 
 }
 
+// thunk action to clear all listings from state
+export const clearListings = () => async (dispatch) => {   
+    dispatch(clearAllListings());
+};
+
 export const createReview = (review) => {
     return async (dispatch) => {
         try {
@@ -183,6 +204,8 @@ const listingsReducer = (state = {}, action) => {
         case "DELETE_LISTING":
             delete newState[action.listingID];
             return newState;
+        case "CLEAR_ALL_LISTINGS":
+            return {};
         default:
             return state;
     }

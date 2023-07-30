@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import "./SearchBar.css"
 
-function SearchBar({ placeholder, data}) {
+function SearchBar({ placeholder, onSearch}) {
     const [query, setQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const history = useHistory();
 
     const handleSearch = async (e) => {
         e.preventDefault();
-        const response = await fetch(`/api/listings/search?q=${query}`);
-        const results = await response.json();
-       // setSearchResults(results);
-        history.push('searchresults');
+        history.push(`/searchresults?q=${query}`);
     };
 
+
     return (
-        <div className='search'>
+        <div >
             <form onSubmit={handleSearch}>
                 <input
                     type='text'
@@ -28,6 +27,7 @@ function SearchBar({ placeholder, data}) {
                     <i className='fa fa-search'></i>
                 </button>
             </form>
+            
         </div>
     );
 }
