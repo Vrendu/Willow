@@ -21,53 +21,53 @@ const Listings = () => {
        
     }, [dispatch]);
 
-    useEffect(() => {
-        // Function to fetch user's location and set it to state
-        const getUserLocation = () => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    async (position) => {
-                        const { latitude, longitude } = position.coords;
-                        setUserLocation({ latitude, longitude });
+    // useEffect(() => {
+    //     // Function to fetch user's location and set it to state
+    //     const getUserLocation = () => {
+    //         if (navigator.geolocation) {
+    //             navigator.geolocation.getCurrentPosition(
+    //                 async (position) => {
+    //                     const { latitude, longitude } = position.coords;
+    //                     setUserLocation({ latitude, longitude });
 
-                        // Get the zip code using reverse geocoding
-                        try {
-                            const apiKey = 'AIzaSyAV4WKaME8NfVDjcMKlZtvSKn3oe-MiyXU';
-                            const response = await axios.get(
-                                `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`
-                            );
-                            console.log("response", response);
-                            if (response.data && response.data.results && response.data.results.length > 0) {
-                                const addressComponents = response.data.results[0].address_components;
-                                let city = '';
-                                let state = '';
+    //                     // Get the zip code using reverse geocoding
+    //                     try {
+    //                         const apiKey = '';
+    //                         const response = await axios.get(
+    //                             `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`
+    //                         );
+    //                         console.log("response", response);
+    //                         if (response.data && response.data.results && response.data.results.length > 0) {
+    //                             const addressComponents = response.data.results[0].address_components;
+    //                             let city = '';
+    //                             let state = '';
 
-                                addressComponents.forEach((component) => {
-                                    if (component.types.includes('locality')) {
-                                        city = component.long_name;
-                                    } else if (component.types.includes('administrative_area_level_1')) {
-                                        state = component.long_name;
-                                    }
-                                });
+    //                             addressComponents.forEach((component) => {
+    //                                 if (component.types.includes('locality')) {
+    //                                     city = component.long_name;
+    //                                 } else if (component.types.includes('administrative_area_level_1')) {
+    //                                     state = component.long_name;
+    //                                 }
+    //                             });
 
-                                // Update the state with city and state
-                                setUserCityState(`${city}, ${state}`);
-                                console.log("user city and state", userCityState);
-                            }
-                        } catch (error) {
-                            console.error('Error in reverse geocoding:', error.message);
-                        }
-                    },
-                    (error) => {
-                        console.error('Error getting user location:', error.message);
-                    }
-                );
-            } else {
-                console.error('Geolocation is not available in this browser.');
-            }
-        };
-        getUserLocation();
-    }, []);
+    //                             // Update the state with city and state
+    //                             setUserCityState(`${city}, ${state}`);
+    //                             console.log("user city and state", userCityState);
+    //                         }
+    //                     } catch (error) {
+    //                         console.error('Error in reverse geocoding:', error.message);
+    //                     }
+    //                 },
+    //                 (error) => {
+    //                     console.error('Error getting user location:', error.message);
+    //                 }
+    //             );
+    //         } else {
+    //             console.error('Geolocation is not available in this browser.');
+    //         }
+    //     };
+    //     getUserLocation();
+    // }, []);
    
    
 
