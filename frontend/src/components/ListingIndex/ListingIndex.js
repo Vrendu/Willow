@@ -24,13 +24,50 @@ function ListingIndex() {
     }, [dispatch, searchQuery, ]);
 
   
+    
     if (!listings){
         return null;
     }
     return (
         <div className="index-page">
-            <div className="second-search"><SearchBar value={searchQuery} /> </div>
-            
+            <div className="filters">
+                <div className="second-search"><SearchBar placeholder={searchQuery} /> </div>
+                {/* filters for bedrooms, bathrooms, price */}
+                <div className="filter-container">
+                    <div className="filter">
+                        <label>Bedrooms</label>
+                        <select>
+                            <option value="1">1+</option>
+                            <option value="2">2+</option>
+                            <option value="3">3+</option>
+                            <option value="4">4+</option>
+                            <option value="5">5+</option>
+                        </select>
+                        <label>Bathrooms</label>
+                        <select>
+                            <option value="1">1+</option>
+                            <option value="2">2+</option>
+                            <option value="3">3+</option>
+                            <option value="4">4+</option>
+                            <option value="5">5+</option>
+                        </select>
+                        <label>Price</label>
+                        <select>
+                            <option value="100000">$100,000+</option>
+                            <option value="200000">$200,000+</option>
+                            <option value="300000">$300,000+</option>
+                            <option value="400000">$400,000+</option>
+                            <option value="500000">$500,000+</option>
+                            <option value="600000">$600,000+</option>
+                            <option value="700000">$700,000+</option>
+                            <option value="800000">$800,000+</option>
+                            <option value="900000">$900,000+</option>
+                            <option value="1000000">$1,000,000+</option>
+                        </select>
+
+                    </div>
+                </div>
+            </div>
             
         <div className="index-container">
                             

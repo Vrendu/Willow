@@ -6,11 +6,12 @@ wrap_parameters :listing, include: Listing.attribute_names + [:photos]
         if params[:q].present?
             search_query = "%#{params[:q]}%"
             @listings = Listing.where(
-                "city ILIKE ? OR state ILIKE ? OR address ILIKE ?",
-                search_query, search_query, search_query
+                "zip_code ILIKE ? OR city ILIKE ? OR state ILIKE ? OR address ILIKE ?",
+                search_query, search_query, search_query, search_query
             )
         else
-            @listings = Listing.all
+            # if no search query, no listings
+            @listings = Listing.none
         end
         render :index
     end
