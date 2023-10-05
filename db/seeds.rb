@@ -300,15 +300,282 @@ Listing.create!(
   poster_id: user_ids.sample
 )
 
+# Seattle Listings
+
+Listing.create!(
+  title: "Modern Condo in Downtown Seattle",
+  description: "Brand new, modern condo located in downtown Seattle. Walking distance to all the best restaurants, shops, and entertainment. Features high-end finishes, in-unit laundry, and a private balcony.",
+  price: 750000,
+  bedrooms: 1,
+  bathrooms: 1,
+  address: "345 S 5th St",
+  city: "Seattle",
+  state: "WA",
+  zip_code: "98101",
+  square_feet: 2100,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Luxury Penthouse in Belltown",
+  description: "Stunning penthouse unit in one of Seattle's most exclusive neighborhoods. Features breathtaking views of the Space Needle, spacious living areas, and a private rooftop deck.",
+  price: 1850000,
+  bedrooms: 3,
+  bathrooms: 3,
+  address: "2000 1st Ave",
+  city: "Seattle",
+  state: "WA",
+  zip_code: "98121",
+  square_feet: 1400,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Cozy Cottage in the Cascade Mountains",
+  description: "Escape to this charming and rustic cottage nestled in the beautiful Cascade Mountains. Features a cozy fireplace, peaceful surroundings, and a private hot tub.",
+  price: 400000,
+  bedrooms: 2,
+  bathrooms: 1,
+  address: "1234 Redwood Dr",
+  city: "Snoqualmie Pass",
+  state: "WA",
+  zip_code: "98068",
+  square_feet: 1350,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Sunny Studio in Capitol Hill",
+  description: "Bright and sunny studio apartment located in the heart of Seattle's vibrant Capitol Hill neighborhood. Features a fully equipped kitchen, in-unit laundry, and easy access to public transportation.",
+  price: 1000000,
+  bedrooms: 1,
+  bathrooms: 1,
+  address: "3316 Lauren Drive",
+  city: "Seattle",
+  state: "WA",
+  zip_code: "98102",
+  square_feet: 1500,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Secluded Retreat in the San Juan Islands",
+  description: "Get away from it all at this secluded and peaceful retreat in the San Juan Islands. Features beautiful gardens, a private hot tub, and easy access to hiking trails.",
+  price: 400000,
+  bedrooms: 2,
+  bathrooms: 2,
+  address: "5678 Wine Country Rd",
+  city: "Friday Harbor",
+  state: "WA",
+  zip_code: "98250",
+  square_feet: 1500,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Downtown Seattle Condo with Water View",
+  description: "Elegant condo in the heart of downtown Seattle, offering stunning views of Puget Sound. Enjoy the convenience of city living with all the modern amenities.",
+  price: 800000,
+  bedrooms: 2,
+  bathrooms: 2,
+  address: "123 Pine Street",
+  city: "Seattle",
+  state: "WA",
+  zip_code: "98101",
+  square_feet: 1300,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Charming Craftsman Home in Tacoma",
+  description: "A charming Craftsman-style home in Tacoma's historic district. This well-maintained property offers a spacious yard, original details, and easy access to Tacoma's vibrant scene.",
+  price: 475000,
+  bedrooms: 3,
+  bathrooms: 2,
+  address: "456 Oakwood Avenue",
+  city: "Tacoma",
+  state: "WA",
+  zip_code: "98403",
+  square_feet: 1800,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Modern Loft in Bellevue",
+  description: "Contemporary loft living in Bellevue's tech hub. This stylish loft features open spaces, high ceilings, and is surrounded by shopping and dining options.",
+  price: 650000,
+  bedrooms: 1,
+  bathrooms: 1,
+  address: "789 Tech Park Boulevard",
+  city: "Bellevue",
+  state: "WA",
+  zip_code: "98004",
+  square_feet: 1000,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Secluded Cabin in Leavenworth",
+  description: "Escape to a secluded cabin in the picturesque town of Leavenworth. Enjoy the beauty of the Cascade Mountains, hiking trails, and a cozy retreat in the woods.",
+  price: 350000,
+  bedrooms: 2,
+  bathrooms: 1,
+  address: "567 Forest Retreat Road",
+  city: "Leavenworth",
+  state: "WA",
+  zip_code: "98826",
+  square_feet: 1200,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Lakefront Home in Bellingham",
+  description: "A stunning lakefront home in Bellingham with panoramic views of Lake Whatcom. Features a private dock, spacious deck, and a perfect setting for water enthusiasts.",
+  price: 950000,
+  bedrooms: 4,
+  bathrooms: 3,
+  address: "123 Lakeside Drive",
+  city: "Bellingham",
+  state: "WA",
+  zip_code: "98229",
+  square_feet: 2800,
+  poster_id: user_ids.sample
+)
+
+
+
+# Boston and Massachusetts Listings
+
+Listing.create!(
+  title: "Cozy Cottage in Historic Salem",
+  description: "A charming cottage nestled in the historic town of Salem. This cozy retreat offers a tranquil garden, perfect for relaxation. Enjoy the rich history and culture of Salem just steps away.",
+  price: 275000,
+  bedrooms: 2,
+  bathrooms: 1,
+  address: "123 Witchcraft Lane",
+  city: "Salem",
+  state: "MA",
+  zip_code: "01970",
+  square_feet: 1100,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Spacious Family Home in Newton",
+  description: "A spacious family home in the desirable city of Newton. Featuring a large backyard, open floor plan, and excellent school districts, this home is perfect for families.",
+  price: 750000,
+  bedrooms: 4,
+  bathrooms: 2,
+  address: "456 Oaktree Lane",
+  city: "Newton",
+  state: "MA",
+  zip_code: "02458",
+  square_feet: 2400,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Luxury Condo in Back Bay, Boston",
+  description: "Luxurious condo in the prestigious Back Bay neighborhood of Boston. Enjoy high-end finishes, concierge service, and proximity to world-class shopping and dining.",
+  price: 980000,
+  bedrooms: 2,
+  bathrooms: 2,
+  address: "789 Commonwealth Ave",
+  city: "Boston",
+  state: "MA",
+  zip_code: "02215",
+  square_feet: 1500,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Lakefront Retreat in Worcester",
+  description: "A serene lakefront retreat in Worcester, perfect for nature lovers. This home offers stunning water views, a private dock, and easy access to hiking trails.",
+  price: 425000,
+  bedrooms: 3,
+  bathrooms: 2,
+  address: "567 Lakeside Drive",
+  city: "Worcester",
+  state: "MA",
+  zip_code: "01609",
+  square_feet: 1800,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Historic Brownstone in Beacon Hill, Boston",
+  description: "Live in the heart of historic Beacon Hill in this charming brownstone. Original architectural details, a private courtyard, and proximity to Charles River make it a rare find.",
+  price: 625000,
+  bedrooms: 2,
+  bathrooms: 1,
+  address: "112 Acorn Street",
+  city: "Boston",
+  state: "MA",
+  zip_code: "02108",
+  square_feet: 1400,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Country Estate in Concord",
+  description: "Escape to this country estate in Concord, surrounded by nature. This elegant home offers a spacious garden, a pond, and easy access to historic Concord attractions.",
+  price: 875000,
+  bedrooms: 5,
+  bathrooms: 3,
+  address: "789 Meadowbrook Road",
+  city: "Concord",
+  state: "MA",
+  zip_code: "01742",
+  square_feet: 3200,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Contemporary Loft in Cambridge",
+  description: "A contemporary loft in vibrant Cambridge. This urban space features high ceilings, exposed brick, and is close to universities, tech companies, and cultural hotspots.",
+  price: 550000,
+  bedrooms: 1,
+  bathrooms: 1,
+  address: "234 Tech Park Avenue",
+  city: "Cambridge",
+  state: "MA",
+  zip_code: "02139",
+  square_feet: 1000,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Seaside Cottage in Cape Cod",
+  description: "Experience seaside living in this charming Cape Cod cottage. Enjoy breathtaking ocean views, a private beach, and the tranquility of Cape Cod living.",
+  price: 425000,
+  bedrooms: 2,
+  bathrooms: 1,
+  address: "456 Beachfront Drive",
+  city: "Cape Cod",
+  state: "MA",
+  zip_code: "02601",
+  square_feet: 1200,
+  poster_id: user_ids.sample
+)
+
+
+
+# seed a variety of listings from new york, with actual new york zip codes and addresses
+
+
+
+
+
 
 Listing.all.each_with_index do |listing, index| 
+    random_index = rand(1..16)
     listing.photos.attach(
-        io: URI.open("https://willow-v-seeds.s3.us-west-1.amazonaws.com/House+Photos+for+FullStack+Project/file#{index+1}.webp"),
+        io: URI.open("https://willow-v-seeds.s3.us-west-1.amazonaws.com/House+Photos+for+FullStack+Project/file#{random_index}.webp"),
         filename: "file#{index + 1}.webp"
     )
     (1..4).each do |idx|
         listing.photos.attach(
-            io: URI.open("https://willow-v-seeds.s3.us-west-1.amazonaws.com/House+Photos+for+FullStack+Project/file#{index+1}-img#{idx}.webp"),
+            io: URI.open("https://willow-v-seeds.s3.us-west-1.amazonaws.com/House+Photos+for+FullStack+Project/file#{random_index}-img#{idx}.webp"),
             filename: "file#{index + 1}-img#{idx}.webp"
         )
     end
