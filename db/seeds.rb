@@ -560,9 +560,430 @@ Listing.create!(
 
 
 
-# seed a variety of listings from new york, with actual new york zip codes and addresses
+# New York Listings
+Listing.create!(
+  title: "Luxury Penthouse in Manhattan",
+  description: "Elevate your lifestyle with this luxurious penthouse in the heart of Manhattan. Enjoy breathtaking skyline views, top-of-the-line amenities, and upscale living.",
+  price: 5000000,
+  bedrooms: 4,
+  bathrooms: 4,
+  address: "123 Park Avenue",
+  city: "New York",
+  state: "NY",
+  zip_code: "10017",
+  square_feet: 3500,
+  poster_id: user_ids.sample
+)
 
+Listing.create!(
+  title: "Brownstone Beauty in Brooklyn Heights",
+  description: "Live in a historic brownstone in the charming neighborhood of Brooklyn Heights. This elegant home offers classic architectural details and a private garden.",
+  price: 2750000,
+  bedrooms: 5,
+  bathrooms: 3,
+  address: "456 Willow Street",
+  city: "Brooklyn",
+  state: "NY",
+  zip_code: "11201",
+  square_feet: 2800,
+  poster_id: user_ids.sample
+)
 
+Listing.create!(
+  title: "Modern Condo in Long Island City",
+  description: "Contemporary condo living in Long Island City. Features open layouts, city views, and easy access to Manhattan via public transit.",
+  price: 900000,
+  bedrooms: 2,
+  bathrooms: 2,
+  address: "789 Queens Plaza",
+  city: "Long Island City",
+  state: "NY",
+  zip_code: "11101",
+  square_feet: 1200,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Historic Townhouse in Harlem",
+  description: "Own a piece of history with this beautifully restored townhouse in Harlem. Enjoy original details, a private backyard, and proximity to cultural landmarks.",
+  price: 1600000,
+  bedrooms: 6,
+  bathrooms: 4,
+  address: "101 Malcolm X Boulevard",
+  city: "New York",
+  state: "NY",
+  zip_code: "10026",
+  square_feet: 3200,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Waterfront Apartment in Battery Park City",
+  description: "Live by the water in Battery Park City. This waterfront apartment offers stunning Hudson River views, modern finishes, and serene living in the city.",
+  price: 2200000,
+  bedrooms: 3,
+  bathrooms: 2,
+  address: "567 Battery Place",
+  city: "New York",
+  state: "NY",
+  zip_code: "10280",
+  square_feet: 1800,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Chic Loft in SoHo",
+  description: "Experience loft living in the trendy neighborhood of SoHo. This chic space features high ceilings, exposed brick, and is surrounded by art galleries and boutiques.",
+  price: 1500000,
+  bedrooms: 2,
+  bathrooms: 2,
+  address: "234 Mercer Street",
+  city: "New York",
+  state: "NY",
+  zip_code: "10012",
+  square_feet: 1600,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Spacious Family Home in Queens",
+  description: "A spacious family home in a quiet Queens neighborhood. This property offers a large backyard, modern upgrades, and excellent schools nearby.",
+  price: 800000,
+  bedrooms: 4,
+  bathrooms: 3,
+  address: "345 Maple Avenue",
+  city: "Queens",
+  state: "NY",
+  zip_code: "11423",
+  square_feet: 2200,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Garden Retreat in Staten Island",
+  description: "Escape to a garden retreat in Staten Island. This serene property offers lush landscaping, a deck for outdoor entertaining, and a peaceful escape from city life.",
+  price: 750000,
+  bedrooms: 3,
+  bathrooms: 2,
+  address: "678 Oakwood Lane",
+  city: "Staten Island",
+  state: "NY",
+  zip_code: "10301",
+  square_feet: 1900,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Lakefront Home in the Catskills",
+  description: "A beautiful lakefront home in the scenic Catskill Mountains. Enjoy waterfront living, boating, and relaxation in this tranquil escape from the city.",
+  price: 1200000,
+  bedrooms: 4,
+  bathrooms: 3,
+  address: "101 Mountain View Road",
+  city: "Catskill",
+  state: "NY",
+  zip_code: "12414",
+  square_feet: 2800,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Cozy Apartment in Astoria",
+  description: "A cozy apartment in the diverse neighborhood of Astoria. This well-maintained unit offers affordability and easy access to dining, shops, and transportation.",
+  price: 500000,
+  bedrooms: 1,
+  bathrooms: 1,
+  address: "345 Main Street",
+  city: "Astoria",
+  state: "NY",
+  zip_code: "11102",
+  square_feet: 800,
+  poster_id: user_ids.sample
+)
+
+#Chicago Listings
+
+Listing.create!(
+  title: "Luxury Condo in Downtown Chicago",
+  description: "Experience luxury living in downtown Chicago. This elegant condo offers stunning city views, modern finishes, and access to the vibrant Chicago scene.",
+  price: 1200000,
+  bedrooms: 3,
+  bathrooms: 2,
+  address: "123 Magnificent Mile",
+  city: "Chicago",
+  state: "IL",
+  zip_code: "60611",
+  square_feet: 1800,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Suburban Oasis in Naperville",
+  description: "Escape to this suburban oasis in Naperville. Enjoy a spacious backyard, a quiet neighborhood, and top-rated schools in this family-friendly home.",
+  price: 550000,
+  bedrooms: 4,
+  bathrooms: 3,
+  address: "456 Oakwood Lane",
+  city: "Naperville",
+  state: "IL",
+  zip_code: "60540",
+  square_feet: 2400,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Modern Loft in West Loop, Chicago",
+  description: "Contemporary loft living in Chicago's West Loop. This stylish loft features open spaces, industrial touches, and proximity to dining and nightlife.",
+  price: 800000,
+  bedrooms: 2,
+  bathrooms: 2,
+  address: "789 Warehouse Avenue",
+  city: "Chicago",
+  state: "IL",
+  zip_code: "60607",
+  square_feet: 1400,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Historic Home in Oak Park",
+  description: "Own a piece of history with this beautifully restored home in Oak Park. Enjoy original architectural details, a large porch, and proximity to Frank Lloyd Wright's designs.",
+  price: 950000,
+  bedrooms: 5,
+  bathrooms: 3,
+  address: "101 Hemingway Avenue",
+  city: "Oak Park",
+  state: "IL",
+  zip_code: "60302",
+  square_feet: 3200,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Lakefront Retreat in Lake Geneva, WI",
+  description: "A stunning lakefront retreat in Lake Geneva, Wisconsin, just a short drive from Chicago. Enjoy waterfront living, boating, and relaxation in this scenic escape.",
+  price: 1500000,
+  bedrooms: 4,
+  bathrooms: 4,
+  address: "567 Lakeside Drive",
+  city: "Lake Geneva",
+  state: "WI",
+  zip_code: "53147",
+  square_feet: 2800,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Downtown Apartment in Evanston",
+  description: "Live in downtown Evanston, just north of Chicago. This modern apartment offers urban living, excellent schools, and easy access to public transportation.",
+  price: 700000,
+  bedrooms: 2,
+  bathrooms: 2,
+  address: "234 Elm Street",
+  city: "Evanston",
+  state: "IL",
+  zip_code: "60201",
+  square_feet: 1200,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Charming Bungalow in Oak Lawn",
+  description: "A charming bungalow in the suburban town of Oak Lawn. This cozy home features a landscaped yard, a sunroom, and a quiet neighborhood.",
+  price: 350000,
+  bedrooms: 3,
+  bathrooms: 2,
+  address: "345 Maple Avenue",
+  city: "Oak Lawn",
+  state: "IL",
+  zip_code: "60453",
+  square_feet: 1500,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Riverfront Condo in Aurora",
+  description: "Enjoy riverfront living in Aurora, a suburb of Chicago. This condo offers serene water views, a fitness center, and easy access to shopping and dining.",
+  price: 450000,
+  bedrooms: 2,
+  bathrooms: 2,
+  address: "678 Riverfront Drive",
+  city: "Aurora",
+  state: "IL",
+  zip_code: "60504",
+  square_feet: 1100,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Golf Course Home in Glenview",
+  description: "Live on a golf course in the suburban town of Glenview. This spacious home offers scenic views, a large backyard, and proximity to recreational amenities.",
+  price: 850000,
+  bedrooms: 4,
+  bathrooms: 3,
+  address: "101 Fairway Lane",
+  city: "Glenview",
+  state: "IL",
+  zip_code: "60025",
+  square_feet: 2600,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Rustic Cabin in Starved Rock State Park",
+  description: "Escape to a rustic cabin in the beautiful Starved Rock State Park, a short drive from Chicago. Enjoy hiking, nature, and a cozy retreat in the woods.",
+  price: 250000,
+  bedrooms: 2,
+  bathrooms: 1,
+  address: "345 Forest Retreat Road",
+  city: "Oglesby",
+  state: "IL",
+  zip_code: "61348",
+  square_feet: 1000,
+  poster_id: user_ids.sample
+)
+
+# Denver Listings 
+
+Listing.create!(
+  title: "Luxury Condo in Downtown Denver",
+  description: "Experience luxury living in downtown Denver. This elegant condo offers stunning city views, modern finishes, and access to the vibrant Denver scene.",
+  price: 1200000,
+  bedrooms: 3,
+  bathrooms: 2,
+  address: "123 Magnificent Mile",
+  city: "Denver",
+  state: "CO",
+  zip_code: "80202",
+  square_feet: 1800,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Suburban Oasis in Littleton",
+  description: "Escape to this suburban oasis in Littleton. Enjoy a spacious backyard, a quiet neighborhood, and top-rated schools in this family-friendly home.",
+  price: 550000,
+  bedrooms: 4,
+  bathrooms: 3,
+  address: "456 Oakwood Lane",
+  city: "Littleton",
+  state: "CO",
+  zip_code: "80120",
+  square_feet: 2400,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Modern Loft in RiNo, Denver",
+  description: "Contemporary loft living in Denver's RiNo neighborhood. This stylish loft features open spaces, industrial touches, and proximity to dining and nightlife.",
+  price: 800000,
+  bedrooms: 2,
+  bathrooms: 2,
+  address: "789 Warehouse Avenue",
+  city: "Denver",
+  state: "CO",
+  zip_code: "80205",
+  square_feet: 1400,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Historic Home in Boulder",
+  description: "Own a piece of history with this beautifully restored home in Boulder. Enjoy original architectural details, a large porch, and proximity to Pearl Street.",
+  price: 950000,
+  bedrooms: 5,
+  bathrooms: 3,
+  address: "101 Hemingway Avenue",
+  city: "Boulder",
+  state: "CO",
+  zip_code: "80302",
+  square_feet: 3200,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Mountain Retreat in Breckenridge",
+  description: "A stunning mountain retreat in Breckenridge, Colorado. Enjoy mountain living, skiing, and relaxation in this scenic escape.",
+  price: 1500000,
+  bedrooms: 4,
+  bathrooms: 4,
+  address: "567 Lakeside Drive",
+  city: "Breckenridge",
+  state: "CO",
+  zip_code: "80424",
+  square_feet: 2800,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Downtown Apartment in Denver",
+  description: "Live in downtown Denver. This modern apartment offers urban living, excellent schools, and easy access to public transportation.",
+  price: 700000,
+  bedrooms: 2,
+  bathrooms: 2,
+  address: "234 Elm Street",
+  city: "Denver",
+  state: "CO",
+  zip_code: "80206",
+  square_feet: 1200,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Charming Bungalow in Englewood",
+  description: "A charming bungalow in the suburban town of Englewood. This cozy home features a landscaped yard, a sunroom, and a quiet neighborhood.",
+  price: 350000,
+  bedrooms: 3,
+  bathrooms: 2,
+  address: "345 Maple Avenue",
+  city: "Englewood",
+  state: "CO",
+  zip_code: "80110",
+  square_feet: 1500,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Riverfront Condo in Denver",
+  description: "Enjoy riverfront living in Denver. This condo offers serene water views, a fitness center, and easy access to shopping and dining.",
+  price: 450000,
+  bedrooms: 2,
+  bathrooms: 2,
+  address: "678 Riverfront Drive",
+  city: "Denver",
+  state: "CO",
+  zip_code: "80202",
+  square_feet: 1100,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Golf Course Home in Castle Rock",
+  description: "Live on a golf course in the suburban town of Castle Rock. This spacious home offers scenic views, a large backyard, and proximity to recreational amenities.",
+  price: 850000,
+  bedrooms: 4,
+  bathrooms: 3,
+  address: "101 Fairway Lane",
+  city: "Castle Rock",
+  state: "CO",
+  zip_code: "80104",
+  square_feet: 2600,
+  poster_id: user_ids.sample
+)
+
+Listing.create!(
+  title: "Rustic Cabin in Estes Park",
+  description: "Escape to a rustic cabin in the beautiful Estes Park, Colorado. Enjoy hiking, nature, and a cozy retreat in the woods.",
+  price: 250000,
+  bedrooms: 2,
+  bathrooms: 1,
+  address: "345 Forest Retreat Road",
+  city: "Estes Park",
+  state: "CO",
+  zip_code: "80517",
+  square_feet: 1000,
+  poster_id: user_ids.sample
+)
 
 
 
@@ -737,6 +1158,54 @@ Review.create!(
   title: "Amazing house with everything you need",
   description: "This house was amazing! It had everything we needed and more. The views were breathtaking and the location was perfect. We would definitely stay here again!",
   rating: 5,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Not as advertised",
+  description: "This house was not as advertised. The pictures made it look much nicer than it actually was. The location was also not great, as it was far from everything. We would not stay here again.",
+  rating: 2,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Stunning views, great location",
+  description: "This house was amazing! The views were breathtaking and the location was perfect. We had a great time and would definitely stay here again.",
+  rating: 5,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Need more time to explore",
+  description: "We only stayed here for one night, but we wish we could have stayed longer! The house was beautiful and the location was perfect. We would definitely stay here again.",
+  rating: 5,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Great location, beautiful home",
+  description: "We had a great time staying at this home. The location was perfect and the house itself was beautiful. We would definitely stay here again!",
+  rating: 4,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Amazing house with everything you need",
+  description: "This house was amazing! It had everything we needed and more. The views were breathtaking and the location was perfect. We would definitely stay here again!",
+  rating: 5,
+  author_id: user_ids.sample,
+  listing_id: Listing.all.sample.id
+)
+
+Review.create!(
+  title: "Not as advertised",
+  description: "This house was not as advertised. The pictures made it look much nicer than it actually was. The location was also not great, as it was far from everything. We would not stay here again.",
+  rating: 2,
   author_id: user_ids.sample,
   listing_id: Listing.all.sample.id
 )

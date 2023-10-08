@@ -42,7 +42,7 @@ function App() {
             </div>
             
             <div className="listings">
-              <span className="recently-added-text">Homes in CA</span>
+              {/* <span className="recently-added-text">Listings in Your State</span> */}
               <div className ="listingsswiper">
                 <Listings></Listings>
               </div>

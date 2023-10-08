@@ -25,11 +25,7 @@ export const clearAllListings = () => {
     return {type: "CLEAR_ALL_LISTINGS"};
 }
 
-export const fetchDataForSearch = async () => {
-    const response = await fetch('/api/listings');
-    const data = await response.json();
-    return data;
-}
+
 
 export const fetchListings = (query = '') => {
     return async (dispatch) => {

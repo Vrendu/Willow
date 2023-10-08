@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import * as sessionActions from "../../store/session";
 import SearchBar from '../SearchBar/SearchBar';
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { fetchDataForSearch } from '../../store/listingsActions';
+//import { fetchDataForSearch } from '../../store/listingsActions';
 import { FaSearch, FaGithub, FaLinkedin } from 'react-icons/fa';
 import { useEffect } from 'react';
 
@@ -54,14 +54,14 @@ function Navigation() {
       </>
     );
   }
-  const handleSearch = async e => {
-    e.preventDefault();
-    const response = await fetch(`/api/search?q=${query}`);
-    const data = await response.json();
-    history.push('/searchresults');
-    setSearchResults(data.results);
-  };
-  const data = fetchDataForSearch();
+  // const handleSearch = async e => {
+  //   e.preventDefault();
+  //   const response = await fetch(`/api/search?q=${query}`);
+  //   const data = await response.json();
+  //   history.push('/searchresults');
+  //   setSearchResults(data.results);
+  // };
+  // const data = fetchDataForSearch();
 
   const [showMenu, setShowMenu] = useState(false);
   const openMenu = () => {
