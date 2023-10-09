@@ -8,12 +8,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Mousewheel } from "swiper";
 import axios from 'axios';
 import { clearAllListings } from '../../store/listingsActions';
-import firebase from 'firebase/app';
+//import firebase from 'firebase/app';
 
 const Listings = () => {
     const dispatch = useDispatch();
     const listings = useSelector(getListings);
-    const [userLocation, setUserLocation] = useState(null);
+   // const [userLocation, setUserLocation] = useState(null);
+    //const [userCoordinates, setUserCoordinates] = useState(null);
     const stateToAbbr = { 
         "Alabama": "AL",
         "Alaska": "AK",
@@ -83,60 +84,35 @@ const Listings = () => {
     // want to get user location from IP address, and then fetch listings based on that location
     useEffect(() => {
         // Make an API request to get user location based on IP
-        axios.get('https://ipinfo.io/json?token=7cf3db293dbbd5')
-            .then((response) => {
-                // Extract location data from the response
-                const { city, region } = response.data;
-                setUserLocation(`${region}`);
+        // axios.get('https://ipinfo.io/json?token=7cf3db293dbbd5')
+        //     .then((response) => {
+        //         // Extract location data from the response
+        //         const { city, region, postal } = response.data;
+        //         //console.log("response", response.data)
+        //         setUserLocation(`${city}, ${region} ${postal}`);
+        //         console.log("user location", userLocation);
+        //         console.log("region", region);
+        //         // Use geocoding API to convert user's location to coordinates
+        //         // const geocoder = new window.google.maps.Geocoder();
+        //         // geocoder.geocode({ address: userLocation }, (results, status) => {
+        //         //     if (status === "OK") {
+        //         //         const { lat, lng } = results[0].geometry.location;
+        //         //         setUserCoordinates({ lat, lng });
+        //         //         console.log("results ", results[0].geometry.location)
+        //         //         console.log("user coordinates", userCoordinates);
+        //         //     } else {
+        //         //         console.error("Geocoding failed:", status);
+        //         //     }
+        //         // });
 
-                // Use geocoding API to convert user's location to coordinates
-                axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${userLocation}&key=AIzaSyAV4WKaME8NfVDjcMKlZtvSKn3oe-MiyXU`)
-                    .then((geoResponse) => {
-                        const { lat, lng } = geoResponse.data.results[0].geometry.location;
-                        console.log("user coordinates", lat, lng);
-
-                        // Now, you can use these coordinates to fetch listings within a radius
-                        // Dispatch an action or make another API request to fetch listings
-                        // within 100 miles of the user's coordinates.
-                        const db = firebase.firestore();
-
-                        // Define a reference to your listings collection
-                        const listingsRef = db.collection('listings');
-                        console.log("listingsRef", listingsRef);
-
-                        // Use GeoFirestore to perform geospatial queries
-                        const geoFirestore = new GeoFirestore(listingsRef);
-
-                //         // Define the user's coordinates and radius
-                //         const userCoordinates = new firebase.firestore.GeoPoint(lat, lng);
-                //         const radius = 100; // 100 miles
-
-                //         // Perform a geospatial query to get listings within the radius
-                //         geoFirestore
-                //             .query()
-                //             .within(userCoordinates, radius, 'location')
-                //             .get()
-                //             .then((querySnapshot) => {
-                //                 // Handle the listings within the radius
-                //                 const listingsWithinRadius = [];
-                //                 querySnapshot.forEach((doc) => {
-                //                     listingsWithinRadius.push(doc.data());
-                //                 });
-
-                //                 // Dispatch an action or update the component state with the listings within the radius.
-                //             })
-                //             .catch((error) => {
-                //                 console.error('Error fetching listings within radius:', error);
-                //             });
-                     })
-                    .catch((geoError) => {
-                        console.error('Error fetching user coordinates:', geoError);
-                    });
-                dispatch(fetchListings(stateToAbbr[region]));
-            })
-            .catch((error) => {
-                console.error('Error fetching user location:', error);
-            });
+                
+                dispatch(fetchListings());
+                
+           // })
+            // .catch((error) => {
+            //     console.log('Error fetching user location:', error);
+            // });
+        
     }, [dispatch]);
    
 
@@ -146,7 +122,7 @@ const Listings = () => {
 
     return (
         <> 
-        <span className="recently-added-text"> Listings in {userLocation} </span>
+        <span className="recently-added-text"> Listings Near You </span>
         <div className="container">
             
             <Swiper

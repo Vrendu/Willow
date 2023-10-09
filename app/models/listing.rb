@@ -16,9 +16,13 @@
 #  title       :string           not null
 #  description :text             not null
 #  square_feet :integer
+#  latitude    :float
+#  longitude   :float
 #
 class Listing < ApplicationRecord
   VALID_STATE_ABBREVIATIONS = %w[AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY].freeze
+
+
 
   validates :address, :city, :zip_code, :price, :poster_id, :bedrooms, :bathrooms, :title, :description, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 50000, message: "must be at least 50,000" }
@@ -27,6 +31,14 @@ class Listing < ApplicationRecord
   validates :city, format: { with: /\A[a-zA-Z\s]+\z/, message: "should only contain letters and spaces" }
   validates :zip_code, format: { with: /\A\d{5}\z/, message: "should be a 5-digit number" }
   validates :state, inclusion: { in: VALID_STATE_ABBREVIATIONS, message: "should be a valid state abbreviation" }
+
+  def full_address 
+    "#{self.address}, #{self.city}, #{self.state} #{self.zip_code}"
+  end
+
+  geocoded_by :full_address
+  after_validation :geocode, if: ->(obj) { obj.address_changed? || obj.city_changed? || obj.state_changed? || obj.zip_code_changed? }
+
 
   belongs_to :poster, class_name: :User, foreign_key: :poster_id
   has_many_attached :photos

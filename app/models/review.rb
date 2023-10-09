@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: reviews
+#
+#  id          :bigint           not null, primary key
+#  title       :string           not null
+#  description :text
+#  rating      :integer          not null
+#  author_id   :bigint           not null
+#  listing_id  :bigint           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
 class Review < ApplicationRecord
 
     validates :listing_id, :author_id, :rating, :description, presence: true

@@ -10,8 +10,17 @@ wrap_parameters :listing, include: Listing.attribute_names + [:photos]
                 search_query, search_query, search_query, search_query
             )
         else
-            # if no search query, no listings
-            @listings = Listing.none
+            response = Net::HTTP.get_response(URI.parse('https://ipinfo.io/json'))
+            user_data = JSON.parse(response.body)
+            
+            # Extract latitude and longitude from the user's location data
+            user_latitude, user_longitude = user_data['loc'].split(',').map(&:to_f)
+            
+            # Now you have the user's coordinates, and you can use them for geospatial queries
+            user_location = [user_latitude, user_longitude]
+
+            # Listings within a 100-kilometer radius of the user's location
+            @listings = Listing.near(user_location, 100)
         end
         render :index
     end
