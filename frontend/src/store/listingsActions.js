@@ -52,9 +52,8 @@ export const fetchListings = ( query = '') => {
 export const fetchListingsByLocation = (location) => {
     return async (dispatch) => {
         try {
-            console.log("location", location)
             let url = '/api/listings?latitude=' + location.latitude + '&longitude=' + location.longitude;
-            console.log("url", url)
+            
             const response = await csrfFetch(url);
             if (!response.ok) {
                 throw new Error('Failed to fetch listings.');

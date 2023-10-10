@@ -13,7 +13,6 @@ import { clearAllListings } from '../../store/listingsActions';
 const Listings = () => {
     const dispatch = useDispatch();
     const listings = useSelector(getListings);
-    const [userLocation, setUserLocation] = useState(null);
     
     useEffect(() => {    
         dispatch(clearAllListings());     
@@ -22,9 +21,6 @@ const Listings = () => {
     useEffect(() => {
         const fetchLocation = async () => {
             const response = await axios.get("https://geolocation-db.com/json/");
-            console.log(response.data.latitude, response.data.longitude);
-          // setUserLocation({latitude: response.data.latitude, longitude: response.data.longitude});
-            //axios.post('/api/update-user-location', {response.data.latitude, response.data.longitude });
             dispatch(fetchListingsByLocation({latitude: response.data.latitude, longitude: response.data.longitude})); 
         };
         fetchLocation();
