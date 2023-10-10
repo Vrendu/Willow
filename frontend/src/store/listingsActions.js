@@ -27,20 +27,20 @@ export const clearAllListings = () => {
 
 
 
-export const fetchListings = (query = '') => {
+export const fetchListings = ( query = '') => {
     return async (dispatch) => {
         try {
             let url = "/api/listings";
             if (query) {
                 url += `?q=${encodeURIComponent(query)}`;
-            }
+            } 
 
             const response = await csrfFetch(url);
             if (!response.ok) {
                 throw new Error('Failed to fetch listings.');
             }
             const listings = await response.json();
-            console.log("listings", listings);
+            
             dispatch(setListings(listings));
         } catch (error) {
             // Handle error if needed
@@ -48,6 +48,26 @@ export const fetchListings = (query = '') => {
         }
     };
 };
+
+export const fetchListingsByLocation = (location) => {
+    return async (dispatch) => {
+        try {
+            console.log("location", location)
+            let url = '/api/listings?latitude=' + location.latitude + '&longitude=' + location.longitude;
+            console.log("url", url)
+            const response = await csrfFetch(url);
+            if (!response.ok) {
+                throw new Error('Failed to fetch listings.');
+            }
+            const listings = await response.json();
+            dispatch(setListings(listings));
+        } catch (error) {
+            // Handle error if needed
+            console.error('Error fetching listings:', error);
+        }
+    };
+};
+
 
 export const fetchListing = (listingID) => {
     return (dispatch) => {

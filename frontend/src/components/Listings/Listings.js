@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchListings, getListings } from '../../store/listingsActions';
+import { fetchListings, fetchListingsByLocation, getListings } from '../../store/listingsActions';
 import "./Listings.css";
 import 'swiper/css/bundle';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
@@ -13,13 +13,23 @@ import { clearAllListings } from '../../store/listingsActions';
 const Listings = () => {
     const dispatch = useDispatch();
     const listings = useSelector(getListings);
+    const [userLocation, setUserLocation] = useState(null);
     
     useEffect(() => {    
         dispatch(clearAllListings());     
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(fetchListings());
+        const fetchLocation = async () => {
+            const response = await axios.get("https://geolocation-db.com/json/");
+            console.log(response.data.latitude, response.data.longitude);
+          // setUserLocation({latitude: response.data.latitude, longitude: response.data.longitude});
+            //axios.post('/api/update-user-location', {response.data.latitude, response.data.longitude });
+            dispatch(fetchListingsByLocation({latitude: response.data.latitude, longitude: response.data.longitude})); 
+        };
+        fetchLocation();
+       
+        
     }, [dispatch]);
    
 

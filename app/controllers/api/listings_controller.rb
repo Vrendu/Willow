@@ -3,23 +3,18 @@ class Api::ListingsController < ApplicationController
 wrap_parameters :listing, include: Listing.attribute_names + [:photos]
 
      def index
-        if params[:q].present?
+        if params[:q].present? && !params[:latitude].present? && !params[:longitude].present?
             search_query = "%#{params[:q]}%"
             @listings = Listing.where(
                 "zip_code ILIKE ? OR city ILIKE ? OR state ILIKE ? OR address ILIKE ?",
                 search_query, search_query, search_query, search_query
             )
-        else
-            response = Net::HTTP.get_response(URI.parse('https://ipinfo.io/json'))
-            user_data = JSON.parse(response.body)
-            
+        elsif params[:latitude].present? && params[:longitude].present? && !params[:q].present?
             # Extract latitude and longitude from the user's location data
-            user_latitude, user_longitude = user_data['loc'].split(',').map(&:to_f)
+            user_latitude, user_longitude = params[:latitude], params[:longitude]
             
             # Now you have the user's coordinates, and you can use them for geospatial queries
             user_location = [user_latitude, user_longitude]
-
-            puts user_location
 
             # Listings within a 100-kilometer radius of the user's location
             @listings = Listing.near(user_location, 200)
