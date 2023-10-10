@@ -19,6 +19,8 @@ wrap_parameters :listing, include: Listing.attribute_names + [:photos]
             # Now you have the user's coordinates, and you can use them for geospatial queries
             user_location = [user_latitude, user_longitude]
 
+            puts user_location
+
             # Listings within a 100-kilometer radius of the user's location
             @listings = Listing.near(user_location, 200)
         end
