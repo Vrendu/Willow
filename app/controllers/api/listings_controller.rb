@@ -17,7 +17,7 @@ wrap_parameters :listing, include: Listing.attribute_names + [:photos]
             user_location = [user_latitude, user_longitude]
 
             # Listings within a 100-kilometer radius of the user's location
-            @listings = Listing.near(user_location, 200)
+            @listings = Listing.near(user_location, 300)
         end
         render :index
     end

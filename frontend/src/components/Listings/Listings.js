@@ -20,8 +20,14 @@ const Listings = () => {
 
     useEffect(() => {
         const fetchLocation = async () => {
-            const response = await axios.get("https://geolocation-db.com/json/");
-            dispatch(fetchListingsByLocation({latitude: response.data.latitude, longitude: response.data.longitude})); 
+            try {
+                const response = await axios.get("https://ipinfo.io?token=7cf3db293dbbd5");
+                const data = response.data;
+                const [latitude, longitude] = data.loc.split(',');
+                dispatch(fetchListingsByLocation({ latitude: parseFloat(latitude), longitude: parseFloat(longitude)}));
+            } catch (error) {
+                console.error("Error fetching location:", error);
+            }
         };
         fetchLocation();
        
